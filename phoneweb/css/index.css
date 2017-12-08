@@ -169,6 +169,7 @@ body{
 .jd_product > .product_box > .product_box_tit > h3{
 	font-family: normal;
 	font-size: 15px;
+	padding-top: 7px;
 	padding-left: 18px;
 	position: relative;
 }
