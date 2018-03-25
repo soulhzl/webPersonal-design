@@ -1,0 +1,42 @@
+@charset "utf-8";
+ul,li{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a{
+	color: #9a9a9a;
+	text-decoration: none;
+}
+
+.demo1 li{
+	background-color: rgb(238, 238, 238, 1);
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+	padding-left: 1%;
+	height: 50px;
+	min-height: 50px;
+	width: 0;
+	font-family: "Arial";
+	font-size: 20px;
+}
+
+.demo1 li a{
+	width: 50%;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 5px;
+	position: absolute;
+}
+
+.demo1 li:hover{
+	background-color: rgba(238, 238, 238, 1);
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	-o-transition: all 0.3s ease-in-out 0s;
+	-ms-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+	width: 50%;
+}
