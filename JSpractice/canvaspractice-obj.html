@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+
+	<script type="text/javascript">
+		function Canvas(){
+			this.obj = document.querySelector("#canvas");
+			this.balllist = [];
+			this.context = this.obj.getContext("2d");
+		}
+
+		Canvas.prototype = {
+			init : function(){
+				this.obj.style.display = "block";
+				this.obj.style.background = "#222";
+			},
+			initWH : function(){
+				this.obj.width = window.innerWidth;
+				this.obj.height = window.innerHeight;
+			}
+		}
+
+		function getRandom(min, max){
+			return (max - min) * Math.random() + min;
+		}
+
+		function Ball(x, y){
+			this.x = x;
+			this.y = y;
+			this.r = getRandom(20, 30);
+			this.a = 1;
+			this.colorlist = ["red", "yellow", "blue", "pink", "lime"];
+			this.color = this.colorlist[parseInt(getRandom(0, this.colorlist.length))];
+			this.vx = getRandom(-0.5, 0.5);
+			this.vy = getRandom(-0.5, 0.5);
+			this.v = 0.98;
+			this.list = 0;
+			this.vr = -0.2;
+		}
+
+		Ball.prototype = {
+			draw : function(){
+				canvas.context.beginPath();
+				canvas.context.fillStyle = this.color;
+				canvas.context.globalAlpha = this.a;
+				canvas.context.globalCompositeOperation = "lighter";
+				canvas.context.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+				canvas.context.fill();
+				this.update();
+			},
+			update : function(){
+				this.x+=this.vx;
+				this.y+=this.vy;
+				this.a*=this.v;
+				if (this.x > window.innerWidth || this.t > window.innerHeight) {
+					canvas.balllist.splice(this.length, 1);
+				}
+				this.r+=this.vr;
+				if (this.r < 0) {
+					this.r = 0;
+				}
+				this.vx*=this.v;
+				this.vy*=this.v;
+			}
+		}
+
+		function render(){
+			canvas.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+			canvas.balllist.forEach(function(item){
+				item.draw();
+			});
+
+			if (canvas.balllist.length > 200) {
+				var l = canvas.balllist.length - 200;
+				canvas.balllist.splice(0, l);
+			}
+			requestAnimationFrame(render);
+		}
+
+		function createBall(e){
+			for (var i = Math.floor(getRandom(1, 4)); i > 0; i--) {
+				var ball = new Ball(e.clientX, e.clientY);
+				ball.list = canvas.balllist.length;
+				canvas.balllist.push(ball);
+			}
+		}
+
+		function bindEvents(){
+			window.addEventListener("resize", function(){
+				canvas.initWH();
+			});
+
+			canvas.obj.addEventListener("mousemove", function(e){
+				createBall(e);
+			});
+		}
+		var canvas = new Canvas();
+		canvas.init();
+		canvas.initWH();
+		
+		bindEvents();
+		render();
+	</script>
+</body>
+</html>

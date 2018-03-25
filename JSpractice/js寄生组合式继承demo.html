@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		  //所有实例会共享属性的值  
+    function object(o){  
+        function F(){}  //创建一个临时的构造函数  
+        F.prototype=o;  //将传入的参数作为该构造函数的原型  
+        return new F(); //返回这个构造函数的一个实例  
+    }  
+      
+      
+    function inheritPrototype(subType,superType){  
+        var prototype=Object(superType.prototype); //继承父类原型  
+        prototype.constructor=subType;  //将构造函数指针指向子类，增强对象  
+        subType.prototype=prototype;  //将结果指定给子类原型  
+    }  
+      
+    function Person(name){  
+        this.name=name;  
+        this.friends=["Lily"];  
+    }  
+      
+    Person.prototype.sayName=function(){  
+        return this.name;  
+    }  
+      
+    function Child(name,age){  
+        Person.call(this,name); //借用构造函数继承实例属性  
+        this.age=age;  
+    }  
+      
+    inheritPrototype(Child,Person);   
+      
+    Child.prototype.sayAge=function(){  
+        return this.age;  
+    }  
+      
+    var p1=new Child("Tom",10);  
+    alert(p1.sayName()); //Tom  
+    alert(p1.sayAge()); //10  
+    alert(p1.friends); //Lily  
+      
+    var p2=new Child("Sam",5);  
+    alert(p2.sayName()); //Sam  
+    alert(p2.sayAge()); //5  
+    alert(p2.friends); //Lily  
+      
+    p1.friends.push("Bob");  
+      
+    alert(p1.friends); //Lily,Bob  
+    alert(p2.friends); //Lily  
+	</script>
+</body>
+</html>

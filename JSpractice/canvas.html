@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<script type="text/javascript">
+		
+		var canvas = document.querySelector("#canvas"),
+		context = {},
+		img = {};
+
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+
+		context = canvas.getContext("2d");
+
+		img = new Image();
+		img.src = "timg.jpg";
+
+		context.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
+		var imgData = context.getImageData(0, 0, window.innerWidth, window.innerHeight);
+		for (var i=0;i<imgData.data.length;i+=4)
+		{
+			imgData.data[i]=255-imgData.data[i];
+			imgData.data[i+1]=255-imgData.data[i+1];
+			imgData.data[i+2]=255-imgData.data[i+2];
+			imgData.data[i+3]=255;
+		}
+		context.putImageData(imgData,0,0);
+
+	</script>
+</body>
+</html>

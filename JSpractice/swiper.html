@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+	.container{
+		display: flex;
+		position: relative;
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
+	}
+
+	.swiper{
+		width: 100vw;
+		height: 60vh;
+		overflow: hidden;
+	}
+
+	.swiper > .bg-img{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100vh;
+	}
+
+	.swiper > .bg-img > img{
+		width: 100vw;
+		height: 100vh;
+		filter: blur(10px);
+	}
+
+	.swiper > ul{
+		display: flex;
+		width: 100vw;
+		height: 80vh;
+		transform: translateZ(0);
+	}
+
+	.swiper > ul > li{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100vw;
+		height: 60vh;
+	}
+
+	.swiper > ul > li > img{
+		width: 80%;
+		height: 80%;
+		border-radius: 30px;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="swiper">
+			<div class="bg-img"><img src="timg.jpg"></div>
+			<ul>
+				<li><img src="1.jpg"></li>
+				<li><img src="2.jpg"></li>
+				<li><img src="3.jpg"></li>
+				<li><img src="4.jpg"></li>
+				<li><img src="5.jpg"></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var data = {
+			oUl : document.querySelector("ul"),
+			aLi : document.querySelectorAll("li"),
+			oImg : document.querySelector(".bg-img img")
+		};
+
+		swiper(data);
+		function swiper(data){
+			var n = data.aLi.length;
+			data.oUl.style.width = n + "00vw";
+			data.oUl.addEventListener("touchstart", touchEv, {passive : true});
+			data.oUl.addEventListener("touchmove", touchEv, {passive : true});
+			data.oUl.addEventListener("touchend", touchEv, {passive : true});
+
+			var star = 0,
+			starPoint,
+			w = data.aLi[0].offsetWidth;
+			data.oUl.transform = {};
+			function touchEv(){
+				var ev = window.event || ev;
+				switch(ev.type){
+					case "touchstart":
+					data.oUl.style.transition = "";
+					star = data.oUl.transform["translateX"] || 0;
+					starPoint = ev.changedTouches[0];
+					break;
+					case "touchmove":
+					var nowPoint = ev.changedTouches[0];
+					var disX = star + nowPoint.pageX - starPoint.pageX;
+					data.oUl.style.transform = "translateX(" + disX + "px)";
+					data.oUl.transform = { "translateX" : disX};
+					break;
+					case "touchend":
+					var d = data.oUl.transform["translateX"];
+					d = Math.min(0, d);
+					d = Math.max(-(n-1)*w, d);
+					d = Math.round(d/w)*w;
+					data.oUl.style.transition = "0.5s";
+					data.oUl.style.transform = "translateX(" + d + "px)";
+					data.oUl.transform = { "translateX" : d};
+					data.oImg.src = data.aLi[Math.round(-d/w)].children[0].src;
+					break;
+				}
+			}
+		}
+		
+		
+		
+	</script>
+</body>
+</html>

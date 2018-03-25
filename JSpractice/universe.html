@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+	body{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	ul{
+		position: relative;
+	}
+
+	li{
+		position: absolute;
+		left: 50%;
+		right: 50%;
+		transform: translate(-50%, -50%);
+		border: 2px solid black;
+		border-radius: 50%;
+		animation-name: change;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+
+	li > span{
+		position: absolute;
+		left: 50%;
+		top: -4px;
+		width: 5px;
+		height: 5px;
+		background-color: blue;
+		border-radius: 50%;
+	}
+
+	li:nth-child(1){
+		width: 60px;
+		height: 60px;
+		box-shadow: 0 0 50px #c90;
+		background-color: #c90;
+		border: none;
+		animation-duration: 5s;
+	}
+
+	li:nth-child(2){
+		width: 120px;
+		height: 120px;
+		animation-duration: 8s;
+	}
+
+	li:nth-child(3){
+		width: 180px;
+		height: 180px;
+		animation-duration: 10s;
+	}
+
+	li:nth-child(4){
+		width: 240px;
+		height: 240px;
+		animation-duration: 15s;
+	}
+
+	li:nth-child(5){
+		width: 300px;
+		height: 300px;
+		animation-duration: 17s;
+	}
+
+	li:nth-child(6){
+		width: 360px;
+		height: 360px;
+		animation-duration: 19s;
+	}
+
+	li:nth-child(7){
+		width: 420px;
+		height: 420px;
+		animation-duration: 22s;
+	}
+
+	@keyframes change{
+		0%{
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+
+		100%{
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+	</ul>
+</body>
+</html>
