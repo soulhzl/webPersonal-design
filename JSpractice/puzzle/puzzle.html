@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	h2 {
+		text-align: center;
+		margin-top: 80px;
+	}
+	#canvas {
+		display:none;
+	}
+
+	#game {
+		max-width: 456px;
+		margin: 130px auto;
+		margin-top: 10px;
+	}
+
+	#game > li {
+		width: 150px;
+		height:150px;
+		float: left;
+		list-style: none;
+		margin:1px;
+	}
+	#game > li img{
+		width:150px;
+		height:150px;
+	}
+	/*提示信息*/
+	.hint {
+		width:100%;
+		height: 100%;
+		position: fixed;
+		top:0 ;
+		background-color: #3C3C3C;
+		opacity: .8;
+		text-align: center;
+		z-index: 999;
+		color: white;
+	}
+	.hint>div{
+		font-size: 20px;
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		margin-left: -100px;
+	}
+	.hint p{
+		margin: 1px 0;
+	}
+	.hide{
+		display: none;
+	}
+</style>
+</head>
+<body>
+	<!-- <h2>已移动步数 <span id="step">0</span></h2> -->
+	<canvas id="canvas" width="150" height="150">cannot support canvas</canvas>
+	<ul id="game">
+		<li><img src="" alt="" draggable="true"></li>
+		<li><img src="" alt="" draggable="true"></li>
+		<li><img src="" alt="" draggable="true"></li>
+		<li><img src="" alt="" draggable="true"></li>
+		<li><img src="" alt="" draggable="true"></li>
+		<li><img src="" alt="" draggable="true"></li>
+		<li><img src="" alt="" draggable="true"></li>
+		<li><img src="" alt="" draggable="true"></li>
+		<li><img src="" alt="" draggable="true"></li>
+	</ul>
+	<div class="hint hide">
+		<div>
+			<p>恭喜你！你已经通过！</p>
+			<p>已击败 96%的人</p>
+			<p id="next">点击进入下一关！</p>
+			<div/>
+		</div>
+		<script type="text/javascript">
+			function Puzzle(){
+				this.canvas = document.querySelector("#canvas");
+				this.cxt = this.canvas.getContext("2d");
+				this.imgList = document.querySelectorAll("img");
+				this.imgArr = [].slice.call(this.imgList);
+			}
+
+			Puzzle.prototype = {
+				init : function(url){
+					let image = new Image();
+					image.src = url;
+					image.onload = function(){
+						this.randomImg();
+						this.renderImg(image);
+						this.dragEvent();
+					}.bind(this);
+				},
+				renderImg : function(img){
+					let index = 0;
+					for (let i = 0; i < 3; i++) {
+						for (let j = 0; j < 3; j++) {
+							this.cxt.drawImage(img, 150 * j, 150 * i, 150, 150, 0, 0, 150, 150);
+							this.imgArr[index].src = this.canvas.toDataURL("img/jpeg");
+							this.imgArr[index].id = index;
+							index++;
+						}
+					}
+				},
+				randomImg : function(){
+					this.imgArr.sort(function(){
+						return Math.random() - Math.random();
+					});
+				},
+				dragEvent : function(){
+					let oUl = document.getElementById("game");
+					oUl.addEventListener("dragstart", function(e){
+						let target = e.target;
+						if (target.tagName.toLowerCase() == "img") {
+							e.dataTransfer.setData("id", target.id);
+						}
+					});
+					oUl.addEventListener("dragover", function(e){
+						e.preventDefault();
+					});
+					oUl.addEventListener("drop", function(e){
+						let target = e.target;
+						if (target.tagName.toLowerCase() == "img") {
+							let obtain = document.getElementById(e.dataTransfer.getData("id"));
+							let objAttr = {
+								src : obtain.src,
+								id : obtain.id
+							}
+							obtain.src = target.src;
+							target.src = objAttr.src;
+							obtain.id = target.id;
+							target.id = objAttr.id;
+						}
+					});
+				}
+			}
+
+			let puzzle = new Puzzle();
+			puzzle.init("img/1.jpg");
+		</script>
+	</body>
+	</html>
