@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./jquery.fullpage.min.css">
+	<style type="text/css">
+		.box{
+			width: 100px;
+			height: 100px;
+			background-color: black;
+		}
+
+		.section.current .box{
+			animation: change 5s forwards;
+		}
+
+		@keyframes change{
+			0%{
+				width: 100px;
+				height: 100px;
+			}
+
+			100%{
+				width: 500px;
+				height: 500px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="fullPageId">
+		<div class="section"></div>
+		<div class="section">
+			<div class="box"></div>
+		</div>
+		<div class="section"></div>
+	</div>
+	<script type="text/javascript" src="./jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="./jquery.fullpage.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#fullPageId").fullpage({
+				sectionsColor : ['red', 'yellow', 'blue'],
+				afterLoad : function(anchor, index){
+					if (index === 2) {
+						var now = index - 1;
+						$(".section").eq(now).addClass("current");
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>

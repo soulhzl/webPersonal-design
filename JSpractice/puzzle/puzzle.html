@@ -83,24 +83,86 @@
 			<div/>
 		</div>
 		<script type="text/javascript">
-			function Puzzle(){
-				this.canvas = document.querySelector("#canvas");
-				this.cxt = this.canvas.getContext("2d");
-				this.imgList = document.querySelectorAll("img");
-				this.imgArr = [].slice.call(this.imgList);
-			}
+			/* ES5 */
+			// function Puzzle(){
+			// 	this.canvas = document.querySelector("#canvas");
+			// 	this.cxt = this.canvas.getContext("2d");
+			// 	this.imgList = document.querySelectorAll("img");
+			// 	this.imgArr = [].slice.call(this.imgList);
+			// }
 
-			Puzzle.prototype = {
-				init : function(url){
+			// Puzzle.prototype = {
+			// 	init : function(url){
+			// 		let image = new Image();
+			// 		image.src = url;
+			// 		image.onload = function(){
+			// 			this.randomImg();
+			// 			this.renderImg(image);
+			// 			this.dragEvent();
+			// 		}.bind(this);
+			// 	},
+			// 	renderImg : function(img){
+			// 		let index = 0;
+			// 		for (let i = 0; i < 3; i++) {
+			// 			for (let j = 0; j < 3; j++) {
+			// 				this.cxt.drawImage(img, 150 * j, 150 * i, 150, 150, 0, 0, 150, 150);
+			// 				this.imgArr[index].src = this.canvas.toDataURL("img/jpeg");
+			// 				this.imgArr[index].id = index;
+			// 				index++;
+			// 			}
+			// 		}
+			// 	},
+			// 	randomImg : function(){
+			// 		this.imgArr.sort(function(){
+			// 			return Math.random() - Math.random();
+			// 		});
+			// 	},
+			// 	dragEvent : function(){
+			// 		let oUl = document.getElementById("game");
+			// 		oUl.addEventListener("dragstart", function(e){
+			// 			let target = e.target;
+			// 			if (target.tagName.toLowerCase() == "img") {
+			// 				e.dataTransfer.setData("id", target.id);
+			// 			}
+			// 		});
+			// 		oUl.addEventListener("dragover", function(e){
+			// 			e.preventDefault();
+			// 		});
+			// 		oUl.addEventListener("drop", function(e){
+			// 			let target = e.target;
+			// 			if (target.tagName.toLowerCase() == "img") {
+			// 				let obtain = document.getElementById(e.dataTransfer.getData("id"));
+			// 				let objAttr = {
+			// 					src : obtain.src,
+			// 					id : obtain.id
+			// 				}
+			// 				obtain.src = target.src;
+			// 				target.src = objAttr.src;
+			// 				obtain.id = target.id;
+			// 				target.id = objAttr.id;
+			// 			}
+			// 		});
+			// 	}
+			// }
+
+			/* ES6 */
+			class Puzzle{
+				constructor(){
+					this.canvas = document.querySelector("#canvas");
+					this.cxt = this.canvas.getContext("2d");
+					this.imgList = document.querySelectorAll("img");
+					this.imgArr = [...this.imgList];
+				};
+				init(url){
 					let image = new Image();
 					image.src = url;
-					image.onload = function(){
+					image.addEventListener("load", () => {
 						this.randomImg();
 						this.renderImg(image);
 						this.dragEvent();
-					}.bind(this);
-				},
-				renderImg : function(img){
+					});
+				};
+				renderImg(img){
 					let index = 0;
 					for (let i = 0; i < 3; i++) {
 						for (let j = 0; j < 3; j++) {
@@ -110,13 +172,11 @@
 							index++;
 						}
 					}
-				},
-				randomImg : function(){
-					this.imgArr.sort(function(){
-						return Math.random() - Math.random();
-					});
-				},
-				dragEvent : function(){
+				};
+				randomImg(){
+					this.imgArr.sort(() => Math.random() - Math.random());
+				};
+				dragEvent(){
 					let oUl = document.getElementById("game");
 					oUl.addEventListener("dragstart", function(e){
 						let target = e.target;
@@ -131,19 +191,12 @@
 						let target = e.target;
 						if (target.tagName.toLowerCase() == "img") {
 							let obtain = document.getElementById(e.dataTransfer.getData("id"));
-							let objAttr = {
-								src : obtain.src,
-								id : obtain.id
-							}
-							obtain.src = target.src;
-							target.src = objAttr.src;
-							obtain.id = target.id;
-							target.id = objAttr.id;
+							[obtain.src, target.src] = [target.src, obtain.src];
+							[obtain.id, target.id] = [target.id, obtain.id];
 						}
 					});
-				}
+				};
 			}
-
 			let puzzle = new Puzzle();
 			puzzle.init("img/1.jpg");
 		</script>
