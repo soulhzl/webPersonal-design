@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function process(values){
+			if (!(values instanceof Array)) {
+				throw new Error('must be an Array');
+			}
+
+			return -1;
+		}
+
+		let a = 1;
+		process(a);
+	</script>
+</body>
+</html>

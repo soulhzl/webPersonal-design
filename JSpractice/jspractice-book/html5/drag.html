@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div draggable='true' id="drag"></div>
+	<div id="droptarget"></div>
+	<script type="text/javascript">
+		let dragtarget = document.querySelector('#drag');
+		dragtarget.addEventListener('dragstart', function(e){
+			e.dataTransfer.setData('id', e.target.id);
+		}, false);
+
+		let droptarget = document.querySelector('#droptarget');
+		droptarget.addEventListener('dragover', function(e){
+			e.preventDefault();
+		}, false);
+
+		droptarget.addEventListener('dragenter', function(e){
+			e.preventDefault();
+		}, false);
+
+		droptarget.addEventListener('drop', function(e){
+			e.preventDefault();
+			let id = e.dataTransfer.getData('id');
+			console.log(id);
+		}, false);
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		* Date()日期
+		*/
+		let now = new Date("june 5, 2018");
+		console.log("Date:" + now);
+		let second = new Date(Date.UTC(2018, 0));
+		console.log("Date:" + second);
+		let start = Date.now();
+		console.log("Date:" + start);
+
+		/*
+		* function函数
+		* arguments保存函数参数
+		* arguments.callee指向函数本身
+		* apply()设置this对象值
+		* call()设置this对象值
+		* bind()创建函数实例
+		*/
+		function getCanShu(){
+			for (let i = arguments.length - 1; i >= 0; i--) {
+				console.log("arguments:" + arguments[i]);
+			}
+		}
+
+		getCanShu(1, 2, 3);
+
+		function add(num){
+			if (num <= 1) {
+				return 1;
+			}
+			return num + arguments.callee(num-1);
+		}
+
+		let n = add(10);
+		console.log("arguments,callee:" + n);
+
+		window.color = "red";
+		let o = {color : "blue"};
+
+		function sayColor(){
+			console.log("不同的this:" + this.color);
+		}
+
+		sayColor.apply(this);
+		sayColor.call(this);
+		sayColor.apply(o);
+		sayColor.call(o);
+
+		let bindCan = sayColor.bind(o);
+		bindCan();
+	</script>
+</body>
+</html>

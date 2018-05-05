@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="myDiv">
+		<h1>haha</h1>
+		<p><b>asdasdsad</b><b>sss</b></p>
+	</div>
+	<script type="text/javascript">
+		/* 检测 */
+		let support = document.implementation.hasFeature('CSS', '2.0');
+		console.log(support);
+
+		/* 设置css样式 */
+		let oDiv = document.querySelector('#myDiv');
+		oDiv.style.width = '100px';
+		oDiv.style.height = '100px';
+		oDiv.style.backgroundColor = 'red';
+
+		/* 获取style相关属性的值 */
+		console.log(oDiv.style.getPropertyValue('width'));
+		console.log(getComputedStyle(oDiv)['width']);
+
+		/* 移除style相关属性的值 */
+		oDiv.style.removeProperty('background-color');
+
+		/* 获取元素大小 */
+		console.log(oDiv.getBoundingClientRect());
+
+		/* 遍历元素节点 */
+		let filter = function(node){
+			return node.tagName.toLowerCase() == 'p' ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+		}
+
+		// let iterator = document.createNodeIterator(oDiv, NodeFilter.SHOW_ELEMENT, filter, false);
+		let iterator = document.createTreeWalker(oDiv, NodeFilter.SHOW_ELEMENT, null, false);
+
+		// let node = iterator.nextNode();
+
+		// while(node != null){
+		// 	console.log(node.tagName);
+		// 	node = iterator.nextNode();
+		// }
+		let node = iterator.firstChild();
+
+		while(node != null){
+			console.log(node.tagName);
+			node = iterator.nextSibling();
+		}
+
+		/* 范围 */
+		console.log(document.implementation.hasFeature('Range', '2.0'));
+		let range = document.createRange();
+		let p = document.querySelector('p');
+		
+	</script>
+</body>
+</html>

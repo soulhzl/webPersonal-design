@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		sessionStorage.setItem('name', 'session');
+		sessionStorage.setItem('sex', 'nan');
+		sessionStorage.setItem('heihei', 'papapa');
+
+		for (var i = 0; i < sessionStorage.length; i++) {
+			let key = sessionStorage.key(i);
+			console.log('key:' + sessionStorage.key(i));
+			console.log('value:' + sessionStorage.getItem(key));
+		}
+
+		// delete sessionStorage.name;
+		sessionStorage.removeItem('sex');
+
+		for(let key in sessionStorage){
+			console.log('delete-value：' + sessionStorage.getItem(key));
+		}
+		
+	</script>
+</body>
+</html>

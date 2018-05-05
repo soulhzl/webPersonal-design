@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		* const定义常数
+		* let定义块
+		* ...剩余参数
+		*/
+
+		function sum(...nums){
+
+			return nums;
+		}
+
+		var su = sum([1, 2, 3]);
+		console.log(su[0][0]);
+
+		/* 结构赋值 */
+		let [name, value] = ['color', 'value'];
+		console.log(name + ':' + value);
+
+		let value1 = 'haha',
+		value2 = 'papa';
+
+		[value1, value2] = [value2, value1];
+		console.log(value1);
+		console.log(value2);
+
+		let person = {
+			name : 'pp',
+			age : 23
+		}
+
+		let {name : pName, age : pAge} = person;
+
+		console.log(pName);
+		console.log(pAge);
+
+		/* Proxy代理*/
+		/* map,set,weakmap集合 */
+		let map = new Map();
+
+		map.set('name', 'mapp');
+		console.log(map.get('name'));
+		console.log(new Set());
+		console.log(new WeakMap());
+
+		/* 类 */
+
+		class Person{
+			constructor(name, value){
+				this.name = name;
+				this.value = value;
+			}
+
+			sayName(){
+				console.log(this.name);
+			}
+		}
+
+		let p = new Person('hh', 'vv');
+		p.sayName();
+
+		/* 继承 */
+		class Employee extends Person{
+			constructor(name, value){
+				super(name, value);
+			}
+		}
+
+		/* 模块 */
+		// export {Person};导出
+		// import person from 'xxx.js';导入
+	</script>
+</body>
+</html>

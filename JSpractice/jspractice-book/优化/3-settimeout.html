@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		setTimeout(function(){
+			console.log('haha');
+			setTimeout(arguments.callee, 1000);
+		}, 1000);
+	</script>
+</body>
+</html>

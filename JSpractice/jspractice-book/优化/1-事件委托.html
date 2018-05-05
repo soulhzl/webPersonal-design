@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li id="first">first</li>
+		<li id="second">second</li>
+		<li id="third">third</li>
+	</ul>
+	<script type="text/javascript">
+		/* 事件委托 */
+		let oUl = document.querySelector('ul');
+
+		oUl.addEventListener('click', function(e){
+			switch(e.target.id){
+				case 'first':
+				console.log('first');
+				break;
+
+				case 'second':
+				console.log('second');
+				break;
+
+				case 'third':
+				console.log('third');
+				break;
+			}
+		}, false);
+	</script>
+</body>
+</html>

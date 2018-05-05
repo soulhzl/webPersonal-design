@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let request,db;
+
+		request = indexedDB.open('admin');
+
+		request.onsuccess = function(e){
+			db = e.target.result;
+			console.log(db);
+		}
+
+	</script>
+</body>
+</html>

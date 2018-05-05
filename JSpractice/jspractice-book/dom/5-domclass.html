@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="c1 c2 c3">aaa
+		<h2>remove</h2></div>
+	<button id="btn"></button>
+	<div id="delete">
+		hahahaha
+	</div>
+	<script type="text/javascript">
+		/* className：获取class全部属性 */
+		let oDiv = document.getElementsByTagName('div');
+		console.log(oDiv[0]);
+		console.log(oDiv[0].className);
+
+		/*
+		* classList
+		* add() 添加类
+		* contains() 是否包含类
+		* remove() 移除类
+		* toggle() 有则移除，无则添加
+		*/
+		oDiv[0].classList.add('c4');
+		console.log('add:' + oDiv[0].className);
+		console.log('contains:' + oDiv[0].classList.contains('c4'));
+		oDiv[0].classList.remove('c1');
+		console.log('remove:' + oDiv[0].className);
+		oDiv[0].classList.toggle('c1');
+		console.log('toggle:' + oDiv[0].className);
+
+		/*
+		* activeElement 获得焦点的元素
+		*/
+		let oBtn = document.getElementById('btn');
+		oBtn.focus();
+		console.log(document.activeElement === oBtn);
+		console.log('hasFocus:' + document.hasFocus());
+
+		/*
+		* compatMode 渲染模式
+		* readyState 加载状态
+		* charset 字符编码
+		*/
+		console.log('readyState:' + document.readyState);
+		console.log('compatMode:' + document.compatMode);
+		console.log('charset:' + document.charset);
+
+		/*
+		* innerHTML 插入标记
+		*/
+		oDiv[0].innerHTML = "<h1>Hello World</h1>";
+
+		let oDelete = document.getElementById('delete');
+		oDelete.removeChild(oDelete.firstChild);
+	</script>
+</body>
+</html>

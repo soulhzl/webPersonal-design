@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		* 数据属性
+		*/
+
+		let person = {
+			name : "nikela"
+		}
+
+		Object.defineProperty(person, "name", {
+			configurable : false,
+			writable : false,
+			value : "haha"
+		});
+
+		console.log("defineProperty:" + person.name);
+		person.name = "nikela";
+		console.log("defineProperty:" + person.name);
+
+		/*
+		* 访问器属性
+		*/
+
+		let book = {
+			edition : 1,
+			_year : 2004
+		};
+
+		Object.defineProperty(book, "year", {
+			get : function(){
+				return this._year;
+			},
+			set : function(newvalue){
+				if (newvalue > 2004) {
+					this._year = newvalue;
+					this.edition += newvalue - 2004;
+				}
+			}
+		});
+
+		book.year = 2005;
+		console.log("defineProperty:" + book.edition);
+
+		let people = {};
+
+		Object.defineProperties(people, {
+			_year : {
+				writable : true,
+				value : 2004
+			},
+			edition : {
+				writable :true,
+				value : 1
+			},
+			year : {
+				get : function(){
+					return this._year;
+				},
+				set : function(newvalue){
+					if (newvalue > 2004) {
+						this._year = newvalue;
+						this.edition += newvalue - 2004;
+					}
+				}
+			}
+		});
+
+		people.year = 2006;
+		console.log("defineProperties:" + people.edition);
+
+		let descriptor = Object.getOwnPropertyDescriptor(people, "_year");
+		console.log("getOwnPropertityDescriptor:" + descriptor.value);
+
+		/*
+		* 工厂模式
+		* 寄生构造函数模式
+		*/
+		function createObj(name, age){
+			let o = new Object();
+			o.name = name;
+			o.age = age;
+			o.sayName = function(){
+				console.log(this.name);
+			}
+			return o;
+		}
+
+		let obj = createObj("haha", 22);
+		obj.sayName();
+
+		/*
+		* 构造函数模式
+		*/
+		function Person(name, age){
+			this.name = name;
+			this.age = age;
+			this.sayName = function(){
+				console.log(this.name);
+			}
+		}
+		let one = new Person("gouzao", 23);
+		one.sayName();
+
+		/*
+		* 原型模式
+		*/
+		function Proto(){}
+
+		Proto.prototype.name = "haha";
+		Proto.prototype.age = 24;
+		Proto.prototype.sayAge = function(){
+			console.log(this.age);
+		};
+		let two = new Proto();
+		two.sayAge();
+		/*
+		* 简便原型模式
+		*/
+
+		function Projianbian(){}
+
+		Projianbian.prototype = {
+			constructor : Projianbian,
+			name : "hehe",
+			age : 25,
+			sayName : function(){
+				console.log(this.name);
+			}
+		}
+		let three = new Projianbian();
+		three.sayName();
+		/*
+		* 组合使用构造函数模式和原型模式(使用广泛，默认模式)
+		*/
+		function Gouyuan(name, age){
+			this.name = name;
+			this.age = age;
+		}
+
+		Gouyuan.prototype = {
+			constructor : Gouyuan,
+			sayName : function(){
+				console.log(this.name);
+			}
+		}
+
+		let four = new Gouyuan("gouyuan", 26);
+		four.sayName();
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange = function(){
+			if (xhr.status == 200 && xhr.readyState == 4) {
+				console.log(xhr.responseText);
+			}
+		};
+		
+		xhr.open('get', 'example.php?name=haha', true);
+
+		xhr.send(null);
+	</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<h1>hello world</h1>
+		<div id="getDiv" class="myDiv" data-attr='setting'>
+			<span>haha</span>
+			<span>hehe</span>
+		</div>
+		<h2>no.2</h2>
+		<ul id="myList"></ul>
+	</div>
+	
+	<script type="text/javascript">
+		/* 动态加载JS文件 */
+		document.write("<script src=\"example.js\"><\/script");
+
+		let div = document.getElementById('getDiv');
+		console.log('childNodes:' + div.childNodes.item(0));
+		console.log('nodeName:' + div.nodeName);
+		console.log('tagName:' + div.tagName);
+		console.log('nodeValue:' + div.nodeValue);
+		console.log('parentNode:' + div.parentNode);
+		console.log('previousSibling:' + div.previousSibling);
+		console.log('nextSibling:' + div.nextSibling);
+		console.log('firstChild:' + div.firstChild == div.childNodes[0]);
+		console.log('getAttribute:' + div.lastChild);
+
+		/* 设置属性 */
+		div.setAttribute('id', 'papapa');
+		console.log('getAttribute:' + div.getAttribute('id'));
+
+		/* 移除属性 */
+		div.removeAttribute('data-attr');
+		console.log('getAttribute:' + div.getAttribute('class'));
+		console.log('getAttribute:' + div.getAttribute('data-attr'));
+
+		/* 创建元素 */
+		let cDiv = document.createElement('div');
+		cDiv.id = 'cctv';
+		
+		/* 创建文本节点 */
+		let cText = document.createTextNode('hello world');
+		cDiv.appendChild(cText);
+		let cOntherText = document.createTextNode('heihei');
+		cDiv.appendChild(cOntherText);
+
+		/* 在元素后添加 */
+		document.body.appendChild(cDiv);
+
+		/* 把节点合并 */
+		cDiv.normalize();
+		console.log('normalize后:' + cDiv.childNodes.length);
+
+		/* 把节点分割 */
+		let newNode = cDiv.firstChild.splitText(5);
+		console.log(cDiv.firstChild.nodeValue);
+		console.log(newNode.nodeValue);
+
+		/* 文档片段 */
+		let oUl = document.getElementById('myList'),
+		fragment = document.createDocumentFragment(),
+		li = null;
+
+		for (var i = 5; i >= 0; i--) {
+			li = document.createElement('li');
+			li.appendChild(document.createTextNode(i + '个li'));
+			fragment.appendChild(li);
+		}
+
+		oUl.appendChild(fragment);
+	</script>
+</body>
+</html>

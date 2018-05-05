@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		* 继承
+		*/
+		function SuperOne(){
+			this.prototo = true;
+		}
+
+		SuperOne.prototype.getPrototo = function(){
+			console.log(this.prototo);
+		}
+
+		function SubOne(){
+			this.prototo = false;
+		}
+
+		SubOne.prototype = new SuperOne();
+
+		SubOne.prototype.getPrototo = function(){
+			console.log("继承：" + this.prototo);
+		}
+
+		let instanceOne = new SubOne();
+		instanceOne.getPrototo();
+
+		/*
+		* 借用构造函数
+		*/
+		function SuperTwo(){
+			this.color = ["red", "yellow"];
+		}
+
+		function SubTwo(){
+			SuperTwo.call(this);
+		}
+
+		let  instanceTwo = new SuperTwo();
+		instanceTwo.color.push("black");
+		let  instanceThree = new SuperTwo();
+		instanceThree.color.push("white");
+		console.log("借用构造函数：" + instanceTwo.color);
+		console.log("借用构造函数：" + instanceThree.color);
+
+		/*
+		* 组合继承(常用继承模式)
+		*/
+		function SuperThree(name){
+			this.name = name;
+			this.chaofeng = ["hehe", "haha"];
+		}
+
+		SuperThree.prototype.sayName = function(){
+			console.log("组合继承:" + this.name);
+		};
+
+		function SubThree(name, age){
+			SuperThree.call(this, name);
+			this.age = age;
+		}
+
+		SubThree.prototype = new SuperThree();
+		SubThree.prototype.constructor = SubThree;
+
+		SubThree.prototype.sayAge = function(){
+			console.log("组合继承:" + this.age);
+		};
+
+		let instanceFour = new SubThree("nikela", 22);
+		instanceFour.chaofeng.push("heihei");
+		console.log("组合继承:" + instanceFour.chaofeng);
+		instanceFour.sayName();
+		instanceFour.sayAge();
+
+		let instanceFive = new SubThree("jiange", 40);
+		instanceFive.chaofeng.push("biubiu");
+		console.log("组合继承:" + instanceFive.chaofeng);
+		instanceFive.sayName();
+		instanceFive.sayAge();
+	</script>
+</body>
+</html>

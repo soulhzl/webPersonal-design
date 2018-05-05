@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/* 序列化 */
+		let obj = {
+			name : 'heihei',
+			age : 22,
+			school : 'haha'
+		}
+
+		let str = JSON.stringify(obj);
+		console.log(str);
+		/* 解析 */
+		let jiexi = JSON.parse(str);
+		console.log(jiexi);
+		console.log(jiexi['name']);
+	</script>
+</body>
+</html>

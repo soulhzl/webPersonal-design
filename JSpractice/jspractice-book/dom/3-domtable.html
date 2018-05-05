@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/* 创建表格 */
+		let table = document.createElement('table');
+		table.border = 1;
+		table.width = '100%';
+
+		let tbody = document.createElement('tbody');
+		table.appendChild(tbody);
+
+		tbody.insertRow(0);
+		tbody.rows[0].insertCell(0);
+		tbody.rows[0].cells[0].appendChild(document.createTextNode('cell 1'));
+		document.body.appendChild(table);
+	</script>
+</body>
+</html>

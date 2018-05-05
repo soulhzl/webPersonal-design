@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form>
+		<input type="text" name="text" id="text" value="qiqiqiqi">
+	</form>
+	<script type="text/javascript">
+		let data = new FormData();
+		data.append('text', document.forms[0].firstChild.nextSibling.defaultValue);
+
+		let xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange = function(){
+			if (xhr.status == 200 && xhr.readyState == 4) {
+				console.log(xhr.responseText);
+			}
+		};
+
+		xhr.open('post', 'example.php', true);
+		xhr.send(data);
+
+	</script>
+</body>
+</html>

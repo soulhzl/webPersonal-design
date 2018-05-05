@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="500px" height="500px"></canvas>
+	<img src="1.jpg">
+	<canvas id="img" width="500px" height="500px"></canvas>
+	<canvas id="imgdata" width="500px" height="500px"></canvas>
+	<script type="text/javascript">
+		let canvas = document.querySelector('#canvas');
+
+		let ctx = canvas.getContext('2d');
+
+		/* 渐变 */
+		let gradient = ctx.createLinearGradient(0, 0, 50, 50);
+		gradient.addColorStop(0, 'white');
+		gradient.addColorStop(1, 'black');
+		/* 绘制并填充矩形 */
+		ctx.fillStyle = gradient;
+		ctx.fillRect(0, 0, 50, 50);
+		
+		/* 阴影 */
+		ctx.shadowOffsetX = 5;
+		ctx.shadowOffsetY = 5;
+		ctx.shadowBlur = 4;
+		ctx.shadowColor = 'red';
+
+		/* 绘制并描边矩形 */
+		ctx.strokeStyle = 'black';
+		ctx.strokeRect(50, 50, 100, 100);
+
+		/* 清楚画布上矩形区域 */
+		ctx.clearRect(30, 30, 30, 30);
+
+		/* 开始绘制 */
+		ctx.beginPath();
+
+		/* 移动后画圆 */
+		ctx.lineTo(150, 150);
+		ctx.arc(50, 50, 25, 0, 2*Math.PI, false);
+
+		ctx.stroke();
+
+		/* 绘制文字 */
+		ctx.font = 'bold 14px Arial';
+		ctx.textAlign = 'center';
+		ctx.textBaseline = 'middle';
+		ctx.fillText('哈哈', 100, 100);
+
+		/* 变换原点 */
+		ctx.translate(200, 200);
+		ctx.lineTo(50, 50);
+		ctx.stroke();
+
+		/* 保存以及返回 */
+		ctx.fillStyle = 'yellow';
+		ctx.save();
+
+		ctx.fillStyle = 'green';
+		ctx.save();
+
+		ctx.fillStyle = 'black';
+		ctx.fillRect(20, 20, 20, 20);
+
+		ctx.restore();
+		ctx.fillRect(40, 40, 20, 20);
+
+		ctx.restore();
+		ctx.fillRect(60, 60, 20, 20);
+		ctx.closePath();
+
+		let canImg = document.querySelector('#img');
+
+		let cimg = canImg.getContext('2d');
+
+		let img = document.images[0];
+
+		let cdata = document.querySelector('#imgdata');
+
+		let datactx = cdata.getContext('2d');
+
+		img.onload = function(){
+			/* 绘制图片 */
+			cimg.drawImage(img, 0, 0);
+			datactx.drawImage(img, 0, 0);
+
+			/* 获取图像数据并变幻 */
+			let imageData = datactx.getImageData(0, 0, 500, 500);
+
+			let data = imageData.data;
+			for (var i = 0, len = data.length; i < len; i+=4) {
+				red = data[i];
+				green = data[i + 1];
+				blue = data[i + 2];
+				alpha = data[i + 3];
+				average = Math.floor((red + blue + green)/3);
+
+				data[i] = average;
+				data[i + 1] = average;
+				data[i + 2] = average;
+			}
+			imageData.data = data;
+			datactx.putImageData(imageData, 0, 0);
+		};
+
+		
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		try{
+			let item = new Array(Number.MAX_VALUE);
+		}catch(e){
+			console.log(e.message);
+		}finally{
+			console.log('final!!!');
+		}
+	</script>
+</body>
+</html>

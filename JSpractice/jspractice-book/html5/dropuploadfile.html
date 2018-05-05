@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#drop{
+			width: 500px;
+			height: 500px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<div id="drop"></div>
+	<img src="" id="myImg">
+	<script type="text/javascript">
+		let oDiv = document.getElementById('drop'),
+		oImg = document.getElementById('myImg');
+		
+		function handle(e){
+			e.preventDefault();
+
+			let form = new FormData(),
+			xhr = new XMLHttpRequest;
+
+			if (e.type == 'drop') {
+				let files = e.dataTransfer.files;
+				form.append('file', files[0]);
+
+				xhr.open('post', 'receive.php', true);
+
+				xhr.onreadystatechange = function(){
+					if (xhr.status == 200 && xhr.readyState == 4) {
+						console.log(xhr.responseText);
+					}
+				};
+
+				xhr.send(form);
+
+			}
+		}
+
+		oDiv.addEventListener('dragenter', handle, false);
+		oDiv.addEventListener('dragover', handle, false);
+		oDiv.addEventListener('drop', handle, false);
+	</script>
+</body>
+</html>

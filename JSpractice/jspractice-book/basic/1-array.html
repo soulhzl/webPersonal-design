@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/* 
+		* 数组显示、添加、移除方法
+		* toString()以字符串形式显示
+		* toLocaleString()以字符串形式显示
+		* valueOf()返回数组本身
+		* join()用不同分隔符构建字符串
+		* push()往数组末尾添加
+		* pop()从数组末尾移除
+		* shift()从数组前端移除
+		* unshift()往数组前端添加
+		*/
+		let color = ["red", "yellow", "black"];
+		console.log("toString:" + color.toString());
+		console.log("toLocaleString:" + color.toLocaleString());
+		console.log("valueOf:" + color.valueOf());
+		console.log("join:" + color.join("|"));
+		color.push("green");
+		console.log("push:" + color.toString());
+		color.pop();
+		console.log("pop:" + color.toString());
+		color.shift();
+		console.log("shift:" + color.toString());
+		color.unshift("pink");
+		console.log("unshift:" + color.toString());
+
+		/*
+		* 数组排序方法
+		* sort()按升序排列数组
+		* reverse()反转数组
+		*/
+		let values = [23, 11, 234, 112, 33];
+		values.sort();
+		console.log("sort:" + values.toString());
+		values.reverse();
+		console.log("reverse:" + values.toString());
+		values.sort(compare);
+		console.log("sort包含参数:" + values.toString());
+
+		function compare(value1, value2){
+			if (value1 < value2) {
+				return -1;
+			}
+			else if (value1 > value2) {
+				return 1;
+			}
+			else{
+				return 0;
+			}
+		}
+
+		/*
+		* 数组操作方法
+		* concat()把接受到的参数添加到复制数组副本的后面
+		* slice()返回数组开始-结束的位置
+		* splice()可删除、插入、替换数组项
+		*/
+		let color1 = color.concat(["white", "white", "blue", "purple"]);
+		console.log("concat:" + color1);
+		let color2 = color1.slice(1, 4);
+		console.log("slice:" + color2);
+
+		/*
+		* 数组位置方法
+		* indexOf()从开始向后查找
+		* lastIndexOf()从末尾向前查找
+		*/
+		console.log("indexOf:" + color1.indexOf("white"));
+		console.log("lastIndexOf:" + color1.lastIndexOf("white"));
+
+		/*
+		* 数组迭代方法
+		* every()
+		* filter()
+		* forEach()
+		* map()
+		* some()
+		*/
+		let everyResult = values.every(function(item, index, array){
+			return (item > 50);
+		});
+		console.log("every:" + everyResult);
+		let someResult = values.some(function(item, index, array){
+			return (item > 50);
+		});
+		console.log("some:" + someResult);
+		let filterResult = values.filter(function(item, index, array){
+			return (item > 50);
+		});
+		console.log("filter:" + filterResult);
+		let mapResult = values.map(function(item, index, array){
+			return (item * 2);
+		});
+		console.log("map:" + mapResult);
+		values.forEach(function(item, index, array){
+			console.log("forEach:" + item);
+		});
+		
+		/*
+		* 数组归并方法
+		* reduce迭代所有项，从第一项开始
+		* reduceRight迭代所有项，从最后一项开始
+		*/
+		let sum1 = values.reduce(function(prev, cur, index, array){
+			return prev + cur;
+		});
+		let sum2 = values.reduceRight(function(prev, cur, index, array){
+			return prev + cur;
+		});
+		console.log("reduce:" + sum1);
+		console.log("reduceRight:" + sum2);
+	</script>
+</body>
+</html>

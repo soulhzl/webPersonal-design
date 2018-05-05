@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		* 窗口上边和左边
+		*/
+		let leftPos = (typeof window.screenLeft == 'number') ? window.screenLeft : window.screenX;
+		console.log('screenLeft:' + leftPos);
+		let topPos = (typeof window.screenTop == 'number') ? window.screenTop : window.screenY;
+		console.log('screenTop:' + topPos);
+
+		/*
+		* moveTo()移动窗口
+		* moveBy()移动窗口
+		*/
+		window.moveTo(100, 100);
+		console.log('moveTo:' + leftPos);
+		console.log('moveTo:' + topPos);
+		window.moveBy(100, 100);
+		console.log('moveBy:' + leftPos);
+		console.log('moveBy:' + topPos);
+
+		/*
+		* 窗口大小
+		*/
+		let pageWidth = window.innerWidth,
+		pageHeight = window.innerHeight;
+		console.log('innerWidth、innerHeight:' + pageWidth, pageHeight);
+
+		if (typeof pageWidth == 'number') {
+			if (document.compatMode == 'CSS1Compat') {
+				pageWidth = document.documentElement.clientWidth;
+				pageHeight = document.documentElement.clientHeight;
+			}
+			else{
+				pageWidth = document.body.clientWidth;
+				pageHeight = document.body.clientHeight;
+			}
+		}
+
+		/*
+		* resizeTo()调整浏览器窗口大小
+		* resizeBy()调整浏览器窗口大小
+		*/
+		window.resizeTo(200, 200);
+		window.resizeBy(500, 500);
+
+		/*
+		* open()导航到特定的URL
+		* close()关闭新打开的窗口
+		* closed检测是否关闭
+		*/
+		let wroxwin = window.open("www.undefined.com", "wroxwindow", "height=400,width=400,top=10,left=10,resizable=yes");
+
+		wroxwin.resizeTo(500, 500);
+		wroxwin.resizeBy(100, 100);
+		wroxwin.close();
+		console.log('closed:' + wroxwin.closed);
+		console.log('opener:' + wroxwin.opener == window);
+
+		/*
+		* setTimeout()超时调用
+		* clearTimeout()取消未执行的超时调用
+		*/
+		var timeId = setTimeout(function(){
+			console.log('setTimeout:超时调用');
+		}, 1000);
+
+		clearTimeout(timeId);
+
+		/*
+		* setInterval()间歇调用
+		* clearInterval()取消间歇调用
+		*/
+		let num = 0,
+		max = 5;
+
+		function increaseNum(){
+			console.log('setInterval:' + num);
+			num++;
+			if (num == max) {
+				clearInterval(intervalId);
+				console.log('setInterval:done');
+			}
+		}
+
+		let intervalId = setInterval(increaseNum, 500);
+
+		/*
+		* 系统提示框
+		* alert()提示框
+		* confirm()选择框
+		* prompt()输入框
+		*/
+		alert('alert!!!');
+
+		let result1 = confirm('are you sure?');
+		if (result1) {
+			console.log('confirm:true');
+		}
+		else{
+			console.log('confirm:false');
+		}
+
+		let result2 = prompt('请输入');
+		console.log('prompt:' + result2);
+	</script>
+</body>
+</html>

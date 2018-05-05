@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">点击</button>
+	<a href="asd.html" id="abq">阻止默认行为</a>
+	<script type="text/javascript">
+		let btn = document.querySelector('#btn');
+
+		/* dom0级点击事件 */
+		// btn.onclick = function(){
+		// 	console.log('dom0');
+		// };
+
+		/* 
+		*dom2级事件 
+		* false冒泡  true捕获
+		* IE对应attachEvent()
+		*/
+		btn.addEventListener('click', function(e){
+			console.log('dom2');
+
+		}, false);
+
+		let handle = function(){
+			alert('hello world');
+		}
+
+		btn.addEventListener('click', handle, false);
+
+		/* 
+		* 移除事件绑定 
+		* IE对应detachEvent()
+		*/
+		btn.removeEventListener('click', handle, false);
+
+		/* 阻止默认行为 */
+		let oA = document.querySelector('#abq');
+		oA.onclick = function(e){
+			e.preventDefault();
+			/* 阻止冒泡或者捕获 */
+			e.stopPropagation();
+		}
+
+		/* 阻止冒泡或者捕获 */
+		document.body.onclick = function(){
+			console.log('body');
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/* xml解析 */
+		let parser = new DOMParser(),
+		xmldom;
+
+		try{
+			xmldom = parser.parseFromString('<root><child/></root>', 'text/xml');
+			console.log(xmldom.documentElement.firstChild.tagName);
+		}catch(ex){
+			console.log('error');
+		}
+		
+	</script>
+</body>
+</html>

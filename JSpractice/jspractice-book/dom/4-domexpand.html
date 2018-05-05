@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div1"></div>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<h1 class="biaoti">haha</h1>
+	<script type="text/javascript">
+		/** 
+		* 查询元素
+		* getElementById
+		* getElementsByTagName return:NodeList
+		* querySelector
+		* querySelectorAll return:NodeList
+		* getElementsByClassName return:NodeList
+		*/
+		let div1 = document.querySelector('#div1');
+		console.log('querySelector:' + div1);
+		console.log(div1);
+
+		let oLi = document.querySelectorAll('li');
+		console.log('querySelectorAll:' + oLi);
+		console.log(oLi);
+
+		let oHyi = document.getElementsByClassName('biaoti');
+		console.log(oHyi[0]);
+	</script>
+</body>
+</html>

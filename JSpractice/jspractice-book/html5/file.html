@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#drop{
+			width: 500px;
+			height: 500px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<div id="drop"></div>
+	<img src="" id="myImg">
+	<script type="text/javascript">
+		let oDiv = document.getElementById('drop'),
+		oImg = document.getElementById('myImg');
+		
+		function handleEvent(e){
+			e.preventDefault();
+
+			if (e.type == 'drop') {
+				files = e.dataTransfer.files;
+				oImg.src = files[0].name;
+			}
+		}
+
+		oDiv.addEventListener('dragenter', handleEvent, false);
+		oDiv.addEventListener('dragover', handleEvent, false);
+		oDiv.addEventListener('drop', handleEvent, false);
+
+	</script>
+</body>
+</html>
