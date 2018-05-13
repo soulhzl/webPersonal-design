@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let str = 'asdddasdasdw';
+		/* 
+		* [字符]：匹配字符里任意一个字符都符合
+		* ^：以。。开头
+		* $：以。。结尾
+		* [^信息]：除了信息以外的都匹配
+		* ?：出现一次或不出现
+		* +：出现一次或多次
+		* *：出现零次或多次
+		* {数字}：指定次数
+		* {数字，数字}：指定次数，数字与数字范围内
+		* 操作符后面加?，非贪婪的，最小限度匹配
+		* .：匹配任意字符
+		* \d：任意数字
+		* \D：任意非数字
+		* \w：任意单词字符
+		* \W：任意非单词字符
+		* \s：匹配空白字符
+		* \S：匹配非空白字符
+		* \b：匹配单词边界
+		* \B：匹配非单词边界
+		* ()：分组
+		* |：或
+		* \数字：数字为1，则捕获第一个分组里的匹配方式（反向引用）
+		* ?:    （在括号里面首部加）让一组括号不进行捕获
+		*/
+		let reg1 = /^asd/;
+		let reg2 = /asd$/;
+		let reg3 = /[^asd]/;
+		let match = reg3.exec(str);
+		console.log(reg1.test(str));
+		console.log(reg2.test(str));
+		console.log(reg3.test(str));
+		console.log(match);
+
+		/* 1-匹配空字符串 */
+		function myTrim(str){
+			return (str || "").replace(/^\s+|\s+$/g, '');
+		}
+
+		let kongge = '   sda  asd   ';
+		let t = myTrim(kongge);
+		console.log(t);
+	</script>
+</body>
+</html>
