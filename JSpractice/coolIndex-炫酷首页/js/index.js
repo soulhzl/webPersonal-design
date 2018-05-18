@@ -15,6 +15,7 @@
 	init();
 
 	function init(){
+		loading();
 		autoHeight();
 		resizeHeight();
 		arrowPos(nowIndex);
@@ -24,7 +25,43 @@
 		bindAbout();
 	}
 
-	/* 适配告诉 */
+	/* 加载 */
+	function loading(){
+		let load = $('#loading'),
+		loadup = $$(load, '.up')[0],
+		loaddown = $$(load, '.down')[0],
+		progress = $$(load, 'span')[0],
+		num = 0;
+
+		arr = ['./img/1.jpg','./img/2.jpg','./img/3.jpg','./img/4.jpg','./img/5.jpg','./img/6.jpg','./img/7.jpg','./img/8.jpg','./img/9.jpg','./img/10.jpg',];
+
+		for (let i = 0, len = arr.length; i < len; i++) {
+			let img = new Image();
+			img.src = arr[i];
+			img.onload = function(){
+				loadAll();
+			}
+			img.onerror = function(){
+				loadAll();
+			}
+		}
+
+		function loadAll(){
+			num++;
+			let len = arr.length;
+			progress.style.width = num/len*100 + '%';
+			if (num == len) {
+				progress.style.display = 'none';
+				loadup.style.height = loaddown.style.height = '0%';
+			}
+		}
+
+		loadup.addEventListener('transitionend', function(){
+			load.parentNode.removeChild(load);
+		}, false);
+	}
+
+	/* 适配高度 */
 	function autoHeight(){
 		let winH = getHeight(),
 		bgH = 998 + header.offsetHeight,
@@ -32,7 +69,7 @@
 
 		main.style.height = ih - header.offsetHeight + 'px'
 
-		for (var i = 0, len = oLiList.length; i < len; i++) {
+		for (let i = 0, len = oLiList.length; i < len; i++) {
 			oLiList[i].style.height = ih - header.offsetHeight + 'px';
 		}
 	}
@@ -51,7 +88,7 @@
 			up.style.width = '';
 		}
 
-		for (var i = 0; i < 4; i++) {
+		for (let i = 0; i < 4; i++) {
 			asideLi[i].className = '';
 		}
 		asideLi[nowIndex].className = 'active';
@@ -124,7 +161,7 @@
 
 	/* 绑定about图片事件 */
 	function bindAbout(){
-		for (var i = 0, len = about.length; i < len; i++) {
+		for (let i = 0, len = about.length; i < len; i++) {
 			change(about[i]);
 		}
 
@@ -140,7 +177,7 @@
 			{name : 'top', value : -upH}
 			],
 			fragment = document.createDocumentFragment();
-			for (var i = 0; i < 4; i++) {
+			for (let i = 0; i < 4; i++) {
 				let li = document.createElement('li');
 				li.style.width = upW/2 + 'px';
 				li.style.height = upH/2 + 'px';
@@ -157,13 +194,13 @@
 
 			let aImg = $$(up, 'img');
 			parent.onmouseover = function(){
-				for (var i = 0, len = aImg.length; i < len; i++) {
+				for (let i = 0, len = aImg.length; i < len; i++) {
 					aImg[i].style[dir[i].name] = dir[i].value + 'px';
 				}
 			}
 
 			parent.onmouseout = function(){
-				for (var i = 0, len = aImg.length; i < len; i++) {
+				for (let i = 0, len = aImg.length; i < len; i++) {
 					aImg[i].style[dir[i].name] = aImg[i]['init' + dir[i].name] + 'px';
 				}
 			}
