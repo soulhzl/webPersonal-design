@@ -1,0 +1,43 @@
+/* 初始化界面 */
+body,p,ul,ol,h1,h2,h3,h4{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+img{
+	border: none;
+	vertical-align: top;
+}
+a{
+	text-decoration: none;
+}
+.clear{
+	-ms-zoom: 1;
+}
+.clear::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/* 主体样式 */
+body{
+	display: flex;
+		position: relative;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+#myDiv{
+	margin: auto;
+}
+
+#myDiv canvas{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
