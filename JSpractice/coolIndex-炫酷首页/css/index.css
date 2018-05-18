@@ -1,0 +1,329 @@
+/* 初始化界面 */
+body,p,ul,ol,h1,h2,h3,h4{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+img{
+	border: none;
+	vertical-align: top;
+}
+a{
+	text-decoration: none;
+}
+.clear{
+	-ms-zoom: 1;
+}
+.clear::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+html,body{
+	height: 100%;
+	font-size: 14px;
+	font-family: '微软雅黑';
+	background-image: url('../img/bg.jpg');
+	background-size: contain;
+	overflow: hidden;
+}
+
+/* 头部导航栏设置 */
+.header{
+	width: 100%;
+	height: 100px;
+}
+
+.header .headerMain{
+	width: 1100px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.header .headerMain a{
+	float: left;
+	line-height: 100px;
+}
+
+.header .headerMain .logo{
+	width: 200px;
+	height: 80px;
+	vertical-align: bottom;
+}
+
+.header .headerMain nav{
+	position: relative;
+	float: right;
+	color: blue;
+	font-size: 25px;
+	line-height: 25px;
+	margin-top: 50px;
+	cursor: pointer;
+}
+
+.header .headerMain nav .arrow{
+	position: absolute;
+	left: 35px;
+	bottom: -25px;
+	width: 25px;
+	height: 25px;
+	background-image: url('../img/arrow.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 1000;
+	transition: 0.5s;
+}
+
+.header .headerMain nav ul li{
+	position: relative;
+	float: left;
+	margin: 0 20px;
+}
+
+.header .headerMain nav ul li .up{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0%;
+	color: black;
+	overflow: hidden;
+	transition: 1s;
+}
+
+.header .headerMain nav ul li:hover .up{
+	width: 100%;
+}
+
+/* 主体部分设置 */
+main{
+	width: 100%;
+	height: 694px;
+	overflow: hidden;
+}
+
+main ul{
+	transition: 0.5s;
+}
+
+main ul .liList{
+	display: flex;
+	height: 694px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+main ul .liList:nth-of-type(1){
+	background-image: url('../img/bg1.jpg');
+}
+
+main ul .liList:nth-of-type(2){
+	background-image: url('../img/bg2.jpg');
+}
+
+main ul .liList:nth-of-type(3){
+	background-image: url('../img/bg3.jpg');
+}
+
+main ul .liList:nth-of-type(4){
+	background-image: url('../img/bg4.jpg');
+}
+
+main ul .liList .divList{
+	width: 80%;
+	height: 80%;
+	margin: auto;
+	overflow: hidden;
+}
+
+main ul .liList .divList ul li{
+	float: left;
+	margin-left: 200px;
+	margin-top: 10px;
+}
+
+/* 第一版 */
+main ul .liList .divList .divPic{
+	position: relative;
+	width: 288px;
+	height: 180px;
+	perspective: 200px;
+}
+
+main ul .liList .divList .divPic::before,
+main ul .liList .divList .divPic::after{
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+main ul .liList .divList li .divPic::before{
+	backface-visibility: hidden;
+	transform: rotateY(-180deg);
+	transition: 1s;
+}
+
+main ul .liList .divList li .divPic::after{
+	backface-visibility: hidden;
+	transition: 1s;
+}
+
+main ul .liList .divList li:nth-of-type(2) .divPic::before{
+	backface-visibility: hidden;
+	transform: rotateY(180deg);
+	transition: 1s;
+}
+
+main ul .liList .divList li:nth-of-type(1) .divPic::before{
+	background-image: url('../img/1.jpg');
+}
+
+main ul .liList .divList li:nth-of-type(1) .divPic::after{
+	background-image: url('../img/2.jpg');
+}
+
+main ul .liList .divList li:nth-of-type(2) .divPic::before{
+	background-image: url('../img/3.jpg');
+}
+
+main ul .liList .divList li:nth-of-type(2) .divPic::after{
+	background-image: url('../img/4.jpg');
+}
+
+main ul .liList .divList li:nth-of-type(3) .divPic::before{
+	background-image: url('../img/5.jpg');
+	backface-visibility: hidden;
+	transform: rotateY(90deg);
+	transition: 1s;
+	opacity: 0;
+}
+
+main ul .liList .divList li:nth-of-type(3) .divPic::after{
+	background-image: url('../img/6.jpg');
+}
+
+main ul .liList .divList li:nth-of-type(4) .divPic::before{
+	background-image: url('../img/7.jpg');
+	backface-visibility: hidden;
+	transform: rotateY(-90deg);
+	transition: 1s;
+	opacity: 0;
+}
+
+main ul .liList .divList li:nth-of-type(4) .divPic::after{
+	background-image: url('../img/8.jpg');
+}
+
+main ul .liList .divList .divPic:hover::before{
+	transform: rotateY(0deg);
+}
+
+main ul .liList .divList .divPic:hover::after{
+	transform: rotateY(180deg);
+}
+
+main ul .liList .divList li:nth-of-type(3) .divPic,
+main ul .liList .divList li:nth-of-type(4) .divPic{
+	perspective: 1000px;
+}
+
+main ul .liList .divList li:nth-of-type(3) .divPic:hover::before,
+main ul .liList .divList li:nth-of-type(4) .divPic:hover::before{
+	opacity: 1;
+}
+
+main ul .liList .divList li:nth-of-type(2) .divPic:hover::before,
+main ul .liList .divList li:nth-of-type(3) .divPic:hover::before,
+main ul .liList .divList li:nth-of-type(4) .divPic:hover::before{
+	transform: rotateY(0deg);
+}
+
+main ul .liList .divList li:nth-of-type(2) .divPic:hover::after{
+	transform: rotateY(-180deg);
+}
+
+main ul .liList .divList li:nth-of-type(3) .divPic:hover::after{
+	transform: rotateY(90deg);
+}
+
+main ul .liList .divList li:nth-of-type(4) .divPic:hover::after{
+	transform: rotateY(-90deg);
+}
+
+/* 第三版 */
+main ul .liList .divList .aboutImg{
+	position: relative;
+	width: 384px;
+	height: 240px;
+	border: 5px solid #666666;
+	border-radius: 5px;
+	margin-left: 200px;
+	margin-top: 100px;
+	overflow: hidden;
+}
+main ul .liList .divList .down{
+	width: 100%;
+	height: 100%;
+	transform: scale(1.5);
+	transition: 1s;
+}
+
+main ul .liList .divList .down img{
+	width: 100%;
+	height: 100%;
+}
+
+main ul .liList .divList .aboutImg:hover .down{
+	transform: scale(1);
+}
+
+main ul .liList .divList .up{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 384px;
+	height: 240px;
+	z-index: 10;
+}
+
+main ul .liList .divList .up li{
+	position: relative;
+	float: left;
+	margin-left: 0px;
+	margin-top: 0px;
+	overflow: hidden;
+}
+
+main ul .liList .divList .up li img{
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition: 1s;
+}
+
+/* 导航 */
+.container aside ul{
+	position: fixed;
+	right: 0;
+	top: 50%;
+	z-index: 1000;
+}
+
+.container aside ul li{
+	width: 10px;
+	height: 10px;
+	background-color: yellow;
+	border: 1px solid;
+	border-radius: 50%;
+	margin-top: 3px;
+}
+
+.container aside ul li.active{
+	background-color: green;
+}
