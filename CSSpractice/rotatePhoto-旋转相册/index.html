@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		.wrapper{
+			position: fixed;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: 280px;
+			height: 400px;
+			margin: auto;
+			transform-style: preserve-3d;
+			transform: rotateX(0deg) rotateY(0deg);
+			animation: go 45s linear infinite;
+		}
+
+		.wrapper img{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 280px;
+			height: 280px;
+		}
+
+		.wrapper img:nth-of-type(1){
+			transform: rotateY(0deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(2){
+			transform: rotateY(36deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(3){
+			transform: rotateY(72deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(4){
+			transform: rotateY(108deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(5){
+			transform: rotateY(144deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(6){
+			transform: rotateY(180deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(7){
+			transform: rotateY(216deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(8){
+			transform: rotateY(252deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(9){
+			transform: rotateY(288deg) translateZ(650px);
+		}
+
+		.wrapper img:nth-of-type(10){
+			transform: rotateY(324deg) translateZ(650px);
+		}
+
+		@keyframes go{
+			0%{
+				transform: rotateX(0deg) rotateY(0deg);
+			}
+
+			25%{
+				transform: rotateX(20deg) rotateY(180deg);
+			}
+
+			50%{
+				transform: rotateX(0deg) rotateY(360deg);
+			}
+
+			75%{
+				transform: rotateX(-20deg) rotateY(540deg);
+			}
+
+			100%{
+				transform: rotateX(0deg) rotateY(720deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<img src="./img/1.jpg">
+		<img src="./img/2.jpg">
+		<img src="./img/3.jpg">
+		<img src="./img/4.jpg">
+		<img src="./img/5.jpg">
+		<img src="./img/6.jpg">
+		<img src="./img/7.jpg">
+		<img src="./img/8.jpg">
+		<img src="./img/9.jpg">
+		<img src="./img/10.jpg">
+	</div>
+</body>
+</html>
