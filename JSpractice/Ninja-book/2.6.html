@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.pass{
+		color: green;
+	}
+
+	.fail{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript">
+		(function(){
+			let results, queue = [], paused = false;
+			this.assert = function(value, desc){
+				let li = document.createElement('li');
+				li.className = value ? 'pass' : 'fail';
+				li.appendChild(document.createTextNode(desc));
+				results.appendChild(li);
+				if (!value) {
+					li.parentNode.parentNode.className = 'fail';
+				}
+				return li;
+			};
+
+			this.test = function(name, fn){
+				queue.push(function(){
+					results = document.getElementById('test');
+					results = assert(true, name).appendChild(document.createElement('ul'));
+					fn();
+				});
+				runTest();
+			};
+
+			this.pause = function(){
+				paused = true;
+			};
+
+			this.resume = function(){
+				paused = false;
+				setTimeout(runTest, 1);
+			};
+
+			this.runTest = function(){
+				if (!paused && queue.length) {
+					queue.shift()();
+					if (!paused) {
+						resume();
+					}
+				}
+			};
+		})();
+
+		window.onload = function(){
+			test('first', function(){
+				pause();
+				setTimeout(function(){
+					assert(true, 'first');
+					assert(false, 'second');
+					assert(true, 'third');
+					resume();
+				}, 1000);
+			});
+
+			test('second', function(){
+				pause();
+				setTimeout(function(){
+					assert(false, 'first');
+					assert(false, 'second');
+					assert(true, 'third');
+					resume();
+				}, 1000);
+			});
+		};
+	</script>
+</body>
+</html>

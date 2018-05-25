@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.pass{
+		color: green;
+	}
+
+	.fail{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript">
+		(function(){
+			let results;
+			this.assert = function(value, desc){
+				let li = document.createElement('li');
+				li.className = value ? 'pass' : 'fail';
+				li.appendChild(document.createTextNode(desc));
+				results.appendChild(li);
+				if (!value) {
+					li.parentNode.parentNode.className = 'fail';
+				}
+				return li;
+			};
+
+			this.test = function(name, fn){
+				results = document.getElementById('test');
+				results = assert(true, name).appendChild(document.createElement('ul'));
+				fn();
+			};
+		})();
+
+		window.onload = function(){
+			test('first', function(){
+				assert(true, 'first');
+				assert(false, 'second');
+				assert(true, 'third');
+			});
+
+			test('second', function(){
+				assert(false, 'first');
+				assert(false, 'second');
+				assert(true, 'third');
+			});
+		};
+	</script>
+</body>
+</html>
