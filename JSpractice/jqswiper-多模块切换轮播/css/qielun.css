@@ -1,0 +1,117 @@
+.bigbox{
+    padding: 50px;
+}
+.city-lists {
+	background: #E7E2DF; 
+	height: 408px; 
+	width: 916px;
+	 border: 1px solid #CCC; 
+	 position: relative; 
+	 margin: 0px auto; 
+	}
+/*标题*/
+.list-title {
+	font: 18px/45px "微软雅黑"; 
+	color: #FFF;
+	padding: 0px 14px 14px; 
+	height: 45px; 
+	position: absolute; 
+	left: -1px; 
+	top: -1px; 
+	background: url(../images/bd_bg1.jpg) no-repeat; 
+	width: 610px; 
+	z-index: 100; 
+}
+/*左模块*/
+.list-left {
+	background: #F9F1E6; 
+	float: left; 
+	height: 344px; 
+	width: 552px; 
+	padding-top: 64px; 
+	padding-left: 25px; 
+	position: absolute; 
+}
+.list-left ul li { 
+	font: 18px/107px "微软雅黑"; 
+	color: #FFF; 
+	text-align: center; 
+	height: 84px; 
+    line-height: 84px;
+	width: 122px; 
+	cursor: pointer; 
+	background: #707070; 
+	margin: 0px 3px 3px 0px; 
+	float: left; 
+}
+.list-left ul .list_cutLi { 
+	background: #6B0904; 
+}
+.list-right { 
+	float: right; 
+	width: 336px; 
+}
+.list-right-t { 
+	height: 333px;
+}
+.left-btn { 
+	padding: 0px 0px 0px 5px; 
+	float: left; 
+	width: 23px; 
+	background: url(../images/bd_lbtn.jpg) no-repeat; 
+	display: block; 
+	height: 21px; 
+	margin-top: 145px; 
+}
+.right-btn { 
+	float: right; 
+	width: 19px; 
+	padding-top: 0px; 
+	padding-right: 9px; 
+	display: block; 
+	height: 21px; 
+	margin-top: 145px; 
+	background: url(../images/bd_rbtn.jpg) no-repeat; 
+}
+.left-btn:hover { 
+	background: url(../images/hbd_lbtn.jpg) no-repeat; 
+}
+.right-btn:hover { 
+	background: url(../images/hbd_rbtn.jpg) no-repeat; 
+}
+/*右模块*/
+.right-box { 
+	float: left; 
+	height: 333px; 
+	width: 268px; 
+	overflow:hidden; 
+	position:relative;
+}
+.right-main { 
+	width: 3216px; 
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	height:333px; 
+}
+.right-main ul li { 
+	height: 333px; 
+	width: 268px; 
+	float: left; 
+	font-family: "微软雅黑"; 
+}
+.bc_chgTitle { 
+	height: 54px; 
+	text-align: center; 
+	width: 268px; 
+	padding-top: 9px; 
+	font: bold 16px/54px "微软雅黑"; 
+}
+.left-btn img,.right-btn img{
+	cursor:pointer
+}
+.right-main ul li p { 
+	font-size: 14px; 
+	line-height: 22px; 
+	padding-top: 12px; 
+}

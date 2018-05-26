@@ -1,0 +1,68 @@
+body{
+    line-height:150%;
+    margin:0;
+    padding:0;
+    font-size:12px;
+    font-family:"宋体";
+    color:#333;}
+body, ul, li{
+    margin:0; padding:0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color:#000;
+}
+h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,li,p,span,i,em{
+    margin:0;
+    padding:0;
+    font-style:normal; 
+    font-weight:normal;}
+h1,h2,h3,h4,h5,h6,ul,li,p,ol,span,em,i,strong,div,input,form{
+    box-sizing: border-box;
+    margin:0; padding:0;
+}
+dl,dt,dd,ul,li{
+    list-style-type:none;
+    display:block;}
+img{border:0;}
+table{
+    border-collapse:collapse;
+    border-spacing:0}
+from,select,input{
+    margin:0;
+    padding:0;
+    vertical-align:middle;
+}
+header,footer,aside,nav,article,section{
+    display: block
+}
+a{
+	color:#000;
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:underline;
+}
+.clear{
+    clear:both;
+    visibility:hidden;
+    height:0;
+    line-height:0;
+    font-size:0;
+}
+.clearfix:after{
+    clear:both;
+    content:".";
+    height:0;
+    display:block;
+    visibility:hidden;
+}
+.clearfix{
+    *zoom:1;
+}
+
+
+
+
+
