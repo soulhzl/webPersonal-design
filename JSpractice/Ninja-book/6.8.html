@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function Njnj(){
+
+		}
+
+		Njnj.prototype.dance = function(){
+			return 'dance';
+		}
+
+		function subNj(){
+
+		}
+
+		subNj.prototype = new Njnj();
+
+		var sub = new subNj();
+		assert(sub.dance() == 'dance', 'success?');
+	</script>
+</body>
+</html>

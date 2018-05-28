@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function Njnj(){
+			this.swung = true;
+
+		}
+		var a = new Njnj();
+		Njnj.prototype.swordJian = function(){
+			return this.swung;
+		}
+		
+		assert(a.swordJian(), 'success?');
+	</script>
+</body>
+</html>

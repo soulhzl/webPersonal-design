@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		Function.prototype.memorized = function(key){
+			this._values = this._values || {};
+			return this._values[key] !== undefined ? this._values[key] : this._values[key] = this.apply(this, arguments);
+		};
+
+		Function.prototype.memory = function(){
+			var fn = this;
+			return function(){
+				return fn.memorized.apply(fn, arguments);
+			}
+		}
+
+		var isPrime = (function(num){
+			var prime = num != 1;
+			for (var i = 2; i < num; i++) {
+				if (num % i ==0) {
+					prime = false;
+					break;
+				}
+			}
+
+			return prime;
+		}).memory();
+
+		assert(isPrime(17), 'success?');
+	</script>
+</body>
+</html>

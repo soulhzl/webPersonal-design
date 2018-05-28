@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function myArr(){}
+		myArr.prototype.length = 0;
+
+		(function(){
+			var method = ['push', 'pop', 'shift', 'unshift', 'slice', 'splice', 'join'];
+
+			for (var i = 0; i < method.length; i++) {
+				(function(name){
+					myArr.prototype[name] = function(){
+						return Array.prototype[name].apply(this, arguments);
+					}
+				})(method[i]);
+			}
+		})();
+
+		var mi = new myArr();
+		mi.push(1, 2, 3);
+		assert(mi.length == 3, 'success?');
+	</script>
+</body>
+</html>
