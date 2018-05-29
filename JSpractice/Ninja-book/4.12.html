@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<div id="first"></div>
+	<div id="second"></div>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function merge(root){
+			for (var i = 0; i < arguments.length; i++) {
+				for(var key in arguments[i]){
+					root[key] = arguments[i][key];
+				}
+			}
+
+			return root;
+		}
+
+		var merged = merge({
+			name : 'hello'
+		}, {
+			value : 'world'
+		});
+
+		assert(merged.name == 'hello', 'success');
+	</script>
+</body>
+</html>

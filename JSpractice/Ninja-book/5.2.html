@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		var outer = 'nj1';
+
+		var later;
+
+		function outerFun(){
+			var inner = 'nj2';
+
+			function innerFun(paramValue){
+				assert(outer, 'success1');
+				assert(inner, 'success2');
+				assert(paramValue, 'success3');
+				assert(toLate, 'success4');
+			}
+
+			later = innerFun;
+		}
+		assert(!toLate, 'success5');
+		var toLate = 'nj3'
+
+		outerFun();
+
+		later('para');
+	</script>
+</body>
+</html>

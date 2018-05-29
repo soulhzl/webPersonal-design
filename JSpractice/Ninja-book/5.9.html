@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		Function.prototype.myBind = function(){
+			var fn = this,args = Array.prototype.slice.call(arguments),
+			object = args.shift();
+
+			return function(){
+				return fn.apply(object, args.concat(Array.prototype.slice.call(arguments)));
+			}
+		};
+
+		var myObj = {};
+
+		function myFunction(){
+			return this == myObj;
+		}
+
+		assert(myFunction(), 'success?');
+
+		var afun = myFunction.myBind(myObj);
+
+		assert(afun(), 'success?');
+	</script>
+</body>
+</html>

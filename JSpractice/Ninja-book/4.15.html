@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function addMethod(obj, name, fn){
+			var old = obj[name];
+			obj[name] = function(){
+				if (fn.length == arguments.length) {
+					return fn.apply(this, arguments);
+				}
+				else if(typeof old == 'function'){
+					return old.apply(this, arguments);
+				}
+			};
+		}
+
+		var nj = {
+			values : ['first', 'second', 'third']
+		};
+
+		addMethod(nj, 'find', function(){
+			return this.values;
+		});
+
+		addMethod(nj, 'find', function(name){
+			var ret = [];
+			for (var i = 0; i < this.values.length; i++) {
+				if (this.values[i].indexOf(name) == 0) {
+					ret.push(this.values[i]);
+				}
+
+				return ret;
+
+			}
+		});
+
+		console.log(nj.find());
+	</script>
+</body>
+</html>

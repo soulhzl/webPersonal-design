@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+		#box{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function aniIt(box){
+			var div = document.querySelector(box),
+			tick = 0;
+			var timer = setInterval(function(){
+				if (tick < 100) {
+					div.style.left = div.style.top = tick + 'px';
+					tick++;
+				}
+				else{
+					clearInterval(timer);
+					assert(tick == 100, 'success?');
+				}
+			}, 20);
+		}
+
+		aniIt('#box');
+	</script>
+</body>
+</html>

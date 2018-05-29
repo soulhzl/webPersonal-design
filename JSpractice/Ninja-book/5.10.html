@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		Function.prototype.curry = function(){
+			var fn = this,
+			args = Array.prototype.slice.call(arguments);
+
+			return function(){
+				return fn.apply(this, args.concat(Array.prototype.slice.call(arguments)));
+			};
+		};
+
+		Function.prototype.partial = function(){
+			var fn = this,
+			args = Array.prototype.slice.call(arguments);
+
+			return function(){
+				var arg = 0;
+				for (var i = 0; i < args.length && arg < arguments.length; i++) {
+					if (args[i] === undefined) {
+						args[i] = arguments[arg++];
+					}
+				}
+
+				return fn.apply(this, args);
+			};
+		};
+
+		String.prototype.csv = String.prototype.split.partial(/,\s*/);
+
+		var results = ('mugan, jin, fuu').csv();
+
+		assert(results[0] == 'mugan', 'success?');
+		assert(results[1] == 'jin', 'success?');
+		assert(results[2] == 'fuu', 'success?');
+	</script>
+</body>
+</html>

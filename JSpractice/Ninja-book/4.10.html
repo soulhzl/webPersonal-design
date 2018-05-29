@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<div id="first"></div>
+	<div id="second"></div>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		let elem = {
+			length : 0,
+
+			add : function(elem){
+				Array.prototype.push.call(this, elem);
+			},
+
+			gather : function(id){
+				this.add(document.getElementById(id));
+			}
+		};
+
+		elem.gather('first');
+
+		assert(elem.length == 1 && elem[0].nodeType, 'success?');
+
+		elem.gather('second');
+
+		assert(elem.length == 2 && elem[1].nodeType, 'success?');
+
+		function smallest(arr){
+			return Math.min.apply(Math, arr);
+		}
+
+		function biggest(arr){
+			return Math.max.apply(Math, arr);
+		}
+
+		assert(smallest([1,2,3,4]) == 1, 'success');
+		assert(biggest([1,2,3,4]) == 4, 'success');
+	</script>
+</body>
+</html>

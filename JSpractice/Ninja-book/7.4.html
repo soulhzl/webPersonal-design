@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		var html = "<b class='ceshi'>hellow</b> <i>world</i>";
+
+		var pattern = /<(\w+)([^>]*)>(.*?)<\/\1/g;
+		var match = pattern.exec(html);
+
+		for (var i = 0; i < match.length; i++) {
+			console.log(match[i]);
+		}
+
+		matchh = pattern.exec(html);
+		for (var i = 0; i < matchh.length; i++) {
+			console.log(matchh[i]);
+		}
+	</script>
+</body>
+</html>

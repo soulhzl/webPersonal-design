@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		var str = 'foo=1&foo=2&blash=a&blash=b&foo=3';
+
+		var keys = {};
+
+		str.replace(/([^=&]+)=([^&]*)/g, function(full, first, second){
+			keys[first] = (keys[first] ? keys[first] + ',' : '') + second;
+			console.log(first);
+			console.log(second);
+			return '';
+		});
+
+		var results = [];
+		for(var key in keys){
+			results.push(key + '=' + keys[key]);
+		}
+
+		var last = results.join('&');
+		console.log(last);
+	</script>
+</body>
+</html>

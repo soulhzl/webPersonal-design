@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		var use = 'other';
+
+		var katana = {
+			isKa : true,
+			use : function(){
+				this.isKa = !this.isKa;
+			}
+		};
+
+		with(katana){
+			isKa = false;
+
+			assert(katana.isKa === false, 'success');
+
+			cut = function(){
+				isKa = false;
+			};
+
+		};
+
+		assert(typeof katana.cut =='undefined', 'katana');
+		assert(typeof window.cut =='undefined', 'window');
+	</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+		#box{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">hello</div>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		var timers = {
+			timerId : 0,
+			timer : [],
+
+			add : function(fn){
+				this.timer.push(fn);
+			},
+
+			strat : function(){
+				if (this.timerId) {return;}
+				(function runNext(){
+					if (timers.timer.length > 0) {
+						for (var i = 0; i < timers.timer.length; i++) {
+							if (timers.timer[i]() === false) {
+								timers.timer.splice(i, 1);
+								i--;
+							}
+						}
+						timers.timerId = setTimeout(runNext, 0);
+					}
+				})();
+			},
+
+			stop : function(){
+				clearTimeout(this.timerId);
+				this.timerId = 0;
+			}
+		}
+
+		var box = document.getElementById('box'),
+		x = 0,
+		y = 20;
+
+		timers.add(function(){
+			box.style.left = x + 'px';
+			if (++x > 200) {return false;}
+		});
+
+		timers.add(function(){
+			box.style.top = y + 'px';
+			y += 2;
+			if (y > 400) {return false;}
+		});
+
+		timers.strat();
+	</script>
+</body>
+</html>

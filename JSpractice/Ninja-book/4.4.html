@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.pass{
+		color: blue;
+	}
+
+	.fail{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		var nj1 = {
+			test : function(n){
+				 return n > 1 ? this.test(n - 1) + '-test' : 'test';
+			}
+		};
+
+		var nj2 = {
+			test : nj1.test
+		};
+
+		var nj1 = {};
+
+		try{
+			assert(nj2.test(2) == 'test-test', 'success?');
+		}
+		catch(e){
+			assert(false, 'success?');
+		}
+
+
+		/* 命名内联函数 */
+		var nj3 = {
+			test : function nn(n){
+				 return n > 1 ? nn(n - 1) + '-test' : 'test';
+			}
+		};
+
+		var nj4 = {
+			test : nj3.test
+		};
+
+		var nj3 = {};
+
+		try{
+			assert(nj4.test(2) == 'test-test', 'success?');
+		}
+		catch(e){
+			assert(false, 'success?');
+		}
+
+
+
+		var nj5 = {
+			test : function(n){
+				 return n > 1 ? arguments.callee(n - 1) + '-test' : 'test';
+			}
+		};
+
+		var nj6 = {
+			test : nj5.test
+		};
+
+		var nj5 = {};
+
+		try{
+			assert(nj6.test(2) == 'test-test', 'success?');
+		}
+		catch(e){
+			assert(false, 'success?');
+		}
+	</script>
+</body>
+</html>

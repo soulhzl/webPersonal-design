@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		let re1 = /test/i;
+
+		let re2 = new RegExp('test', 'i');
+
+		assert(re1.toString() == '/test/i', "success?");
+		assert(re1.test('TESt'), "success?");
+		assert(re1.test('tESt'), "success?");
+		assert(re1.toString() == re2.toString(), "success?");
+		assert(re1 != re2, "success?");
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.pass{
+		color: blue;
+	}
+
+	.fail{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function myForEach(arr, callback){
+			for (var i = 0; i < arr.length; i++) {
+				callback.call(arr[i], i);
+			}
+		}
+
+		var myarr = ['first', 'second', 'third'];
+
+		myForEach(myarr, function(item){
+			assert(this == myarr[item], item);
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<table><tbody></tbody></table>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		var rowCount = 20000,
+		divide = 4;
+
+		var chunk = rowCount/divide,
+		iteration = 0;
+
+		var tbody = document.getElementsByTagName('tbody')[0];
+
+		setTimeout(function generateRow(){
+			var base = (chunk) * iteration;
+
+			for (var i = 0; i < chunk; i++) {
+			var tr = document.createElement('tr');
+			for (var j = 0; j < 6; j++) {
+				var td = document.createElement('td');
+				td.appendChild(document.createTextNode(i + ':' + j));
+				tr.appendChild(td);
+			}
+			tbody.appendChild(tr);
+		}
+
+		iteration++;
+		if (iteration < divide) {
+			setTimeout(generateRow, 0);
+		}
+
+		}, 0);
+		
+	</script>
+</body>
+</html>

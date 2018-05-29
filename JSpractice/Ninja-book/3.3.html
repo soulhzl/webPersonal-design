@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function ceshi(){
+			return this;
+		}
+
+		assert(ceshi() === window, '函数调用1');
+
+		let ceshi1 = ceshi;
+
+		assert(ceshi1() === window, '函数调用2');
+
+		let ceshi2 = {
+			ccshi: ceshi
+		};
+
+		assert(ceshi2.ccshi() === ceshi2, '方法调用1');
+
+		let ceshi3 = {
+			ccshi: ceshi
+		};
+
+		assert(ceshi3.ccshi() === ceshi3, '方法调用2');
+
+		function Ninja(){
+			this.shulk = function(){
+				return this;
+			}
+		}
+
+		let ceshi4 = new Ninja();
+
+		assert(ceshi4.shulk() === ceshi4, '构造器对象调用1');
+
+		let ceshi5 = new Ninja();
+
+		assert(ceshi5.shulk() === ceshi5, '构造器对象调用2');
+
+		function jungle(){
+			var result = 0;
+			for (var i = 0; i < arguments.length; i++) {
+				result += arguments[i];
+			}
+			this.result = result;
+		}
+
+		var nj1 = {},
+		nj2 = {};
+
+		jungle.call(nj1, 1, 2, 3, 4, 5);
+		jungle.apply(nj2, [1, 2, 3]);
+
+		assert(nj1.result == 15, 'call调用');
+		assert(nj2.result == 6, 'apply调用');
+	</script>
+</body>
+</html>

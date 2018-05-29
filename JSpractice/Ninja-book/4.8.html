@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.pass{
+		color: blue;
+	}
+
+	.fail{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		var store = {
+			nextId : 1,
+			cache : [],
+			add : function(fn){
+				if (!fn.id) {
+					fn.id = store.nextId++;
+					return !!(store.cache[fn.id] = fn);
+				}
+			}
+		}
+
+		function nj(){
+
+		}
+
+		assert(store.add(nj), 'success?');
+		assert(!store.add(nj), 'success?');
+	</script>
+</body>
+</html>

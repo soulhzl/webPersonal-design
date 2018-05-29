@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.pass{
+		color: blue;
+	}
+
+	.fail{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript">
+		function isPrime(value){
+			if (!isPrime.answers) {
+				isPrime.answers = {};
+			}
+			if (isPrime.answers[value] != null) {
+				return isPrime.answers[value];
+			}
+
+			var prime = value != 1;
+
+			for (var i = 2; i < value; i++) {
+				if (value % i == 0) {
+					prime = false;
+					break;
+				}
+			}
+
+			return isPrime.answers[value] = prime;
+		}
+
+		assert(isPrime(5), 'success?');
+		assert(isPrime.answers[5], 'success?');
+	</script>
+</body>
+</html>
