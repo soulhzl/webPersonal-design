@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="mydiv"></div>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		(function(){
+			var translations = {
+				'for' : 'htmlFor',
+				'class' : 'className',
+				'readonly' : 'readOnly',
+				'maxlength' : 'maxLength',
+				'cellspacing' : 'cellSpacing',
+				'rowspan' : 'rowSpan',
+				'colspan' : 'colSpan',
+				'tabindex' : 'tabIndex',
+				'cellpadding' : 'cellPadding',
+				'usemap' : 'useMap',
+				'frameborder' : 'frameBorder',
+				'contenteditable' : 'contentEditable'
+			};
+
+			window.attr = function(element, name, value){
+				var property = translations[name] || name,
+				propertyExist = element[property] !== 'undefined';
+
+				if (typeof value !== 'undefined') {
+					if (propertyExist) {
+						element[property] = value;
+					}
+					else{
+						element.setAttribute(name, value);
+					}
+				}
+
+				return propertyExist ? element[property] : element.getAttribute(name);
+			};
+		})();
+
+		var div = document.getElementById('mydiv');
+		attr(div, 'id');
+		assert(attr(div, 'id') === 'mydiv', "success?");
+		attr(div, 'id', 'myy');
+		assert(attr(div, 'id') === 'myy', "success?");
+	</script>
+</body>
+</html>

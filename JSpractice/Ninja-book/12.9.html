@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<div>
+		asdasdasdasdasdasda<br />
+		asdasdasdasdasdasda<br />
+		asdasdasdasdasdasda<br />
+		asdasdasdasdasdasda<br />
+		asdasdasdasdasdasda<br />
+		asdasdasdasdasdasda<br />
+	</div>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		(function(){
+			var Properties = {
+				'display' : 'block',
+				'visibility' : 'hidden',
+				'position' : 'absolute'
+			};
+
+			window.getDimentions = function(ele){
+				var previous = {};
+
+				for(var key in Properties){
+					previous[key] = ele.style[key];
+					ele.style[key] = Properties[key];
+				}
+
+				var results = {
+					width : ele.offsetWidth,
+					height : ele.offsetHeight
+				};
+
+				for(var key in Properties){
+					ele.style[key] = previous[key];
+				}
+
+				return results;
+			}
+		})();
+	</script>
+</body>
+</html>

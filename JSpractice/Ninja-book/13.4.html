@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		(function(){
+			var cache = {},
+			guideCounter = 1,
+			expando = 'data' + (new Date).getTime();
+
+			this.getData = function(elem){
+				var guid = elem[expando];
+				if (!guid) {
+					guid = elem[expando] = guideCounter++;
+					cache[guid] = {};
+				}
+
+				return cache[guid];
+			};
+
+			this.removeData = function(elem){
+				var guid = elem[expando];
+				if (!guid) {return;}
+				delete cache[guid];
+				try{
+					delete elem[expando];
+				}
+				catch(e){
+					if (elem.removeAttribute) {
+						elem.removeAttribute(expando);
+					}
+				}
+			};
+		})();
+	</script>
+</body>
+</html>

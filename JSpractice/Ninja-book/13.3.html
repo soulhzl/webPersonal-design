@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.pass{
+		color: blue;
+	}
+
+	.fail{
+		color: red;
+	}
+	
+	.mydiv{
+		width: 100px;
+		height: 100px;
+		background-color: red;
+		margin: 20px;
+	}
+</style>
+</head>
+<body>
+	<div class="mydiv"></div>
+	<div class="mydiv"></div>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		function fixEvent(event){
+			function returnTrue(){
+				return true;
+			}
+
+			function returnFalse(){
+				return false;
+			}
+
+			if (!event || event.stopPropagation()) {
+				var old = event || window.event;
+
+				event = {};
+
+				for(var prop in old){
+					event[prop] = old[prop];
+				}
+
+				if (!event.target) {
+					event.target = event.srcElement || document;
+				}
+
+				event.relatedTarget = event.fromElement === event.target ? event.toElement : event.fromElement;
+
+				event.preventDefault = function(){
+					event.returnValue = false;
+					event.isDefaultPrevented = returnTrue;
+				};
+
+				event.isDefaultPrevented = returnFalse;
+
+				event.stopPropagation = function(){
+					event.cancelBubble = true;
+					event.isPropagationStopped = returnTrue;
+				};
+
+				event.isPropagationStopped = returnTrue;
+
+				event.stopImmediatePropagation = function(){
+					this.isImmediatePropagationStopped = returnTrue;
+					this.stopPropagation();
+				};
+
+				event.isImmediatePropagationStopped = returnFalse;
+
+				if (event.clientX != null) {
+					var doc = document.documentElement,
+					body = document.body;
+
+					event.pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+
+					event.pageY = event.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);
+				}
+
+				event.which = event.charCode || event.keyCode;
+
+				if (event.button != null) {
+					event.button = (event.button & 1 ? 0 : (event.button & 4 ? 1 : (event.button & 2 ? 2 : 0)));
+				}
+			}
+
+			return event;
+		}
+	</script>
+</body>
+</html>

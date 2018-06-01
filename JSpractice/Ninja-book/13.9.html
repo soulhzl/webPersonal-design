@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		function triggerEvent(elem, event){
+			var elemData = getData(elem),
+			parent = elem.parentNode || elem.ownerDocument;
+
+			if (typeof event === 'string') {
+				event = {
+					type : event,
+					target : elem
+				};
+			}
+
+			event = fixEvent(event);
+
+			if (elemData.dispatcher) {
+				elemData.dispatcher.call(elem, event);
+			}
+
+			if (parent && !event.isPropagationStopped()) {
+				triggerEvent(parent, event);
+			}
+
+			else if(!parent && !event.isDefaultPrevented()){
+				var targetData = getData(event.target);
+
+				if (event.target[event.type]) {
+					targetData.disabled = true;
+
+					event.target[event.type]();
+
+					targetData.disabled = false;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

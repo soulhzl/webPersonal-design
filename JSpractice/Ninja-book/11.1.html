@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		Object.prototype.myFirst = 'first';
+
+		var obj = {
+			nj : 'value'
+		};
+
+		obj.nn = 'mymy';
+
+		assert(obj.hasOwnProperty('myFirst'), 'success');
+		assert(obj.hasOwnProperty('nj'), 'success');
+		assert(obj.hasOwnProperty('nn'), 'success');
+		for(var a in obj){
+			if (obj.hasOwnProperty(a)) {
+				console.log('zishen:' + a);
+				console.log('zishen:' + obj[a]);
+			}
+			else{
+			console.log('yuanxing:' + a);
+			console.log('yuanxing:' + obj[a]);
+		}
+		}
+	</script>
+</body>
+</html>

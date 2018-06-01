@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<div style="color:red; font-size: 14px;background-color: blue;"></div>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		function style(elem, name, value){
+			name = name.replace(/-([a-z])/ig, function(all,letter){
+				return letter.toUpperCase();
+			});
+
+			if (value !== 'undefined') {
+				elem.style[name] = value;
+			}
+
+			return elem.style[name];
+		}
+
+		window.onload = function(){
+			var div = document.getElementsByTagName('div')[0];
+			assert(true, style(div, 'color'));
+			assert(true, style(div, 'background-color'));
+		};
+	</script>
+</body>
+</html>

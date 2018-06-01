@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+		
+		div{
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		function fetchComputedStyle(ele, pro){
+			if (window.getComputedStyle) {
+				var computedStyle = window.getComputedStyle(ele);
+				
+				if (computedStyle) {
+					pro = pro.replace(/([A-Z])/g, '-$1').toLowerCase();
+					return computedStyle.getPropertyValue(pro);
+				}
+			}
+
+			else if(ele.currentStyle){
+				pro = pro.replace(/-([a-z])/ig, function(all, letter){return letter.toUpperCase();});
+				return ele.currentStyle[pro];
+			}
+		}
+		var div = document.getElementsByTagName('div')[0];
+		console.log(fetchComputedStyle(div, 'display'));
+		console.log(getComputedStyle(div)['display']);
+		console.log(getComputedStyle(div).getPropertyValue('display'));
+	</script>
+</body>
+</html>

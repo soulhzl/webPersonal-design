@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		function tidyUp(elem, type){
+			function isEmpty(obj){
+				for(var prop in obj){
+					return false;
+				}
+
+				return true;
+			}
+
+			var data = getData(elem);
+
+			if (data.handlers[type].length === 0) {
+				delete data.handlers[type];
+
+				if (document.removeEventListner) {
+					elem.removeEventListner(type, data.dispatcher, false);
+				}
+				else if(document.detachEvent){
+					elem.detachEvent('on' + type, data.dispatcher);
+				}
+			}
+
+			if (isEmpty(data.handlers)) {
+				delete data.handlers;
+				delete data.dispatcher;
+			}
+
+			if (isEmpty(data)) {
+				removeData(elem);
+			}
+		}
+
+		this.removeEvent = function(elem, type, fn){
+			var data = getData(elem);
+
+			if (!data.handlers) {return;}
+
+			var removeType = function(t){
+				data.handlers[t] = [];
+				tidyUp(elem, t);
+			};
+
+			if (!type) {
+				for(var t in data.handlers){
+					removeType(t);
+				}
+
+				return;
+			}
+
+			var handlers = data.handlers[type];
+			if (!handlers) {
+				return;
+			}
+
+			if (!fn) {
+				removeType(type);
+				return;
+			}
+
+			if (fn.guid) {
+				for (var i = 0; i < handlers.length; i++) {
+					if (handlers[i].guid === fn.guid) {
+						handlers.splice(n--, 1);
+					}
+				}
+			}
+
+			tidyUp(elem, type);
+		}
+	</script>
+</body>
+</html>

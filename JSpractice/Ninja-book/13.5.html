@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		(function(){
+			var nextGuid = 1;
+
+			this.addEvent = function(elem, type, fn){
+				var data = getDate(elem);
+
+				if (!data.handlers) {
+					data.handlers = {};
+				}
+
+				if (!data.handlers[type]) {
+					data.handlers[type] = [];
+				}
+
+				if (!fn.guid) {
+					fn.guid = nextGuid++;
+				}
+
+				data.handlers[type].push(fn);
+
+				if (!data.dispatcher) {
+					data.disabled = false;
+					data.dispatcher = function(event){
+						if (data.disabled) {
+							return;
+						}
+						event = fixEvent(event);
+
+						var handlers = data.handlers[event.type];
+						if (handlers) {
+							for (var i = 0; i < handlers.length; i++) {
+								handlers[i].call(elem, event);
+							}
+						}
+					};
+				}
+
+				if (date.handlers[type].length == 1) {
+					if (document.addEventListener) {
+						elem.addEventListener(type, data.dispatcher, false);
+					}
+					else if (document.attachEvent) {
+						elem.attachEvent('on' + type, data.dispatcher);
+					}
+				}
+			};
+		})();
+	</script>
+</body>
+</html>

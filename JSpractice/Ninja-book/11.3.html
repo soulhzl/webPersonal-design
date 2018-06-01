@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.pass{
+			color: blue;
+		}
+
+		.fail{
+			color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<div><!-- test --></div>
+	<div><!-- test --></div>
+	<div><!-- test --></div>
+	<div><!-- test --></div>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		function getAllElements(name){
+			if (!window.findByTag) {
+				window.findByTag = (function(){
+					var div = document.createElement('div');
+					div.appendChild(document.createComment('test'));
+					return div.getElementsByTagName('*').length === 0;
+				})();
+			}
+
+			var allEle = document.getElementsByTagName('*');
+
+			if (!window.findByTag) {
+				for (var i = allEle.length - 1; i >= 0; i--) {
+					if (allEle[i].nodeType === 1) {
+						allEle.splice(n, 1);
+					}
+				}
+			}
+
+			return allEle;
+		}
+
+		var ele = getAllElements();
+		var elelen = ele.length;
+		for (var i = 0; i < elelen; i++) {
+			if (ele[i].nodeType === 1) {
+				console.log(ele[i].nodeName);
+			}
+		}
+	</script>
+</body>
+</html>
