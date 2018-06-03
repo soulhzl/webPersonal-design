@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="test"></ul>
+	<script type="text/javascript" src="./util.js"></script>
+	<script type="text/javascript">
+		var tags = /^(abbr|br|col|img|input|link|meta|param|hr|area|embed)$/i;
+
+		function convert(html){
+			return html.replace(/(<(\w+)[^>]*?)\/>/g, function(all, front, tag){
+				console.log(front);
+				console.log(tag);
+				return tags.test(tag) ? all : front + '></' + tag + '>';
+			});
+		}
+
+		convert('<a />');
+		convert('<hr />');
+	</script>
+</body>
+</html>
