@@ -101,13 +101,13 @@
 				let tOf = e.wheelDelta > 0 ? true : false;
 
 				if (tOf) {
-					if (now != 0) {
-						myUl.style.transform = 'translateX(-' + (now * nowchazhi) + 'px)';
+					if (now > 0) {
 						now--;
+						myUl.style.transform = 'translateX(-' + (now * nowchazhi) + 'px)';
 					}
 				}
 				else{
-					if (now != 5) {
+					if (now < 5) {
 						myUl.style.transform = 'translateX(-' + (now * nowchazhi)  + 'px)';
 						now++;
 					}

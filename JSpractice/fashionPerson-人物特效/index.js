@@ -43,7 +43,7 @@ window.onload = function(){
 				ctx.closePath();
 				ctx.fill();
 			}
-		}, 200);
+		}, 50);
 
 		setInterval(function(){
 			let x = Math.random() * canvas.width;
@@ -71,7 +71,7 @@ window.onload = function(){
 				starX : starX,
 				starY : starY
 			});
-		}, 200);
+		}, 50);
 	}
 
 	
