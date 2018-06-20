@@ -1,0 +1,35 @@
+/* page.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.img{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+}
+
+.usn{
+  display: block;
+}
+
+.kuang{
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.hello{
+  display: block;
+  padding: 20px;
+}

@@ -1,0 +1,81 @@
+/* page/detail/detail.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-top{
+  width: 100%;
+  height: 500rpx;
+}
+
+.music{
+  position: absolute;
+  left: 50%;
+  top: 170rpx;
+  width: 108rpx;
+  height: 110rpx;
+  margin-left: -54rpx;
+  opacity: 0.6;
+}
+
+.newtitle{
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.headicon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 10rpx;
+}
+
+.newtitle text{
+  font-size: 12px;
+  color: #adadad;
+}
+
+.marlr{
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+}
+
+.biaoti{
+  font-size: 20px;
+  font-weight: bold;
+  text-indent: 1em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.middle{
+  width: 675rpx;
+  margin: 0 auto;
+}
+
+.detailicon image{
+  float: right;
+  width: 65rpx;
+  height: 65rpx;
+}
+
+.righticon{
+  margin-left: 10rpx;
+}
+
+.xiantiao{
+  width: 100%;
+  height: 1px;
+  background-color: #adadad;
+  position: relative;
+  top: 30rpx;
+  z-index: -20;
+}
+
+.zhengwen{
+  width: 675rpx;
+  margin: 5px auto;
+  text-indent: 1em;
+  font-size: 16px;
+}

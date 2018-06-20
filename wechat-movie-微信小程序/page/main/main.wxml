@@ -1,0 +1,17 @@
+<!--page/main/main.wxml-->
+<import src='./template/template.wxml' />
+<view>
+  <swiper autoplay='true' indicator-dots='true'>
+    <swiper-item>
+      <image src='../../img/bg1.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='../../img/bg2.jpg'></image>
+    </swiper-item>
+  </swiper>
+  <block wx:for='{{ndata}}' wx:key='first'>
+    <view bindtap='tapItem' data-dataid='{{item.dataid}}'>
+      <template is='list' data='{{...item}}' />
+    </view>
+  </block>
+</view>

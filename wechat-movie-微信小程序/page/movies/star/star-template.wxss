@@ -1,0 +1,16 @@
+/* page/movies/star/star-template.wxss */
+.star-container{
+  display: flex;
+  align-items: center;
+}
+
+.star-container image{
+  width: 17rpx;
+  height: 17rpx;
+  margin: 0 5rpx;
+}
+
+.star-container text{
+  font-size: 20rpx;
+  margin-left: 10rpx;
+}

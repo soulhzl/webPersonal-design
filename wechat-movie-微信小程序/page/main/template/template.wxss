@@ -1,0 +1,50 @@
+
+.new-container{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+}
+
+.newtitle{
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.headicon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 10rpx;
+}
+
+.newdate{
+  font-size: 12px;
+}
+
+.newsbg{
+  width: 100%;
+  height: 450rpx;
+  margin-top: 10px;
+}
+
+.new-bottom{
+  display: flex;
+  align-items: center;
+}
+
+.newcontext{
+  margin: 10px 0 10px 10rpx;
+}
+
+.new-bottom image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+
+.new-bottom text{
+  font-size: 12px;
+  margin-left: 5rpx;
+}

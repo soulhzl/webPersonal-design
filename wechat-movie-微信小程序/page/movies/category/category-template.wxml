@@ -1,0 +1,10 @@
+<import src='../movie/movie-template.wxml' />
+<template name='category'>
+  <scroll-view class='category-scroll' scroll-x='false' scroll-y='true' bindscrolltolower='onScrollEvent'>
+    <block wx:key='fourth' wx:for='{{movies}}' wx:for-item='movie'>
+      <view class='category-single-container'>
+        <template is='movie' data='{{...movie}}' />
+      </view>
+    </block>
+  </scroll-view>
+</template>

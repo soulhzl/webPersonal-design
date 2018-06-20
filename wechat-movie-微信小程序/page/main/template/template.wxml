@@ -1,0 +1,18 @@
+<template name='list'>
+  <view class='new-container'>
+    <view class='newtitle'>
+      <image src='{{img1}}' class='headicon'></image>
+      <text class='newdate'>{{data}}</text>
+    </view>
+
+    <image src='{{img2}}' class='newsbg'></image>
+    <text class='newcontext'>{{content}}</text>
+
+    <view class='new-bottom'>
+      <image src='../../img/icon/chat.png'></image>
+      <text>92</text>
+      <image src='../../img/icon/chat1.png'></image>
+      <text>65</text>
+    </view>
+  </view>
+</template>

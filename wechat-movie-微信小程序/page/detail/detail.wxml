@@ -1,0 +1,21 @@
+<!--page/detail/detail.wxml-->
+<view class='container'>
+  <image class='detail-top' src='{{isPlay ? detail.img2 : "../../img/bg1.jpg"}}'></image>
+  <image catchtap='onMusicTap' class='music' src='{{isPlay ? "../../img/music/music-start.png" : "../../img/music/music-stop.png"}}'></image>
+  <view class='newtitle'>
+    <image class='headicon' src='{{detail.img1}}'></image>
+    <text>{{detail.name}}</text>
+    <text class='marlr'>发布于</text>
+    <text>{{detail.pastdata}}</text>
+  </view>
+  <text class='biaoti'>{{detail.biaoti}}</text>
+  <view class='middle'>
+    <view class='detailicon'>
+      <image catchtap='onShareTap' class='righticon' src='../../img/icon/share.png'></image>
+      <image catchtap='onCollectTap' wx:if='{{collected}}' src='../../img/icon/collection.png'></image>
+      <image catchtap='onCollectTap' wx:else src='../../img/icon/collection-anti.png'></image>
+    </view>
+    <view class='xiantiao'></view>
+  </view>
+  <text class='zhengwen'>{{detail.zhengwen}}</text>
+</view>

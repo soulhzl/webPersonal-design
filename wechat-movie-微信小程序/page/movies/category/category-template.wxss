@@ -1,0 +1,10 @@
+@import '../movie/movie-template.wxss';
+
+.category-scroll{
+  height: 2800rpx;
+}
+
+.category-single-container{
+  float: left;
+   margin: 20rpx 40rpx 40rpx 10rpx;
+}

@@ -1,0 +1,11 @@
+<!--page.wxml-->
+<view class='container'>
+<view>
+<image src='../../img/1.jpg' class='img'></image>
+  <text class='usn'>My Name</text>
+  </view>
+  
+  <view class='kuang' bindtap='ontap'>
+    <text class='hello'>走进不可思议的世界</text>
+  </view>
+</view>

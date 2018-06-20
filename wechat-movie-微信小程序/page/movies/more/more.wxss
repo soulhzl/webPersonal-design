@@ -1,0 +1,6 @@
+/* page/movies/more/more.wxss */
+@import '../category/category-template.wxss';
+
+.container{
+  margin-top: 40rpx;
+}

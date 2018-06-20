@@ -1,0 +1,26 @@
+/* page/movies/movielist/movielist-template.wxss */
+@import '../movie/movie-template.wxss';
+
+.movielist-template{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.movielist-template .movielist-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 20rpx 22rpx;
+  font-size: 34rpx;
+}
+
+.movielist-template .movielist-header image{
+  width: 20rpx;
+  height: 24rpx;
+  margin-left: 5rpx;
+}
+
+.movielist-template .movies{
+  display: flex;
+  justify-content: space-around;
+}
