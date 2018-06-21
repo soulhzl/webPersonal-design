@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="file" name="file" id="file">
+	<div id="div"></div>
+	<script type="text/javascript">
+		let oFile = document.getElementById('file');
+		let oDiv = document.getElementById('div');
+		
+		oFile.addEventListener('change', function(){
+			let src = URL.createObjectURL(oFile.files[0]);
+			let img = new Image();
+			img.src = src;
+			oDiv.appendChild(img);
+		}, false);
+
+		
+	</script>
+</body>
+</html>
