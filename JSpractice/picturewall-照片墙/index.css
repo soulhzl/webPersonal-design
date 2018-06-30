@@ -1,0 +1,42 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+body{
+    background-color:#e8e3da;
+}
+.wrapper{
+    width:100%;
+}
+#wrap-ul{
+    width: 80%;
+    height: 80%;
+    position:absolute;
+    margin:auto;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    perspective:700px;
+}
+.wrapper li{
+    transform-style: preserve-3d;            
+    position:absolute;
+    left:0;
+    top:0;
+    background-color:#fff;
+    /* transition: transform 1500 ease-out; */
+    /* border:1px solid black; */
+}
+.box{
+    width:100%;
+    height:100%;
+    /* transition: transform 1500 ease-out; */
+    /* background-size:cover; */
+    transform:scale(0.9);
+}
+img{
+    height:100%;
+    width:100%;
+}
