@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Scroll</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 18px;
+    }
+
+    /* body{
+        overflow: hidden;
+    } */
+
+    .container {
+        position: relative;
+        width: 380px;
+        height: 400px;
+        margin: 100px auto;
+        border: 1px solid black;
+        overflow: hidden;
+    }
+
+    ul {
+
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 28px;
+        height: 398px;
+        border: 1px solid #cccccc;
+    }
+
+    .contants {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 350px;
+        background: #cccccc;
+
+
+    }
+
+    .ico {
+        width: 28px;
+        height: 28px;
+        background: #cccccc;
+    }
+    .ico img{
+        width: 100%;
+        height: 100%;
+    }
+    .duration {
+        position: relative;
+        width: 100%;
+        height: 342px;
+    }
+
+    .drag {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 0;
+        background: black;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="contants">渡一教育,渡一教育,,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+            ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育 ,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育,渡一教育
+        </div>
+        <ul>
+            <li class="ico up"><img src="up.png" alt=""></li>
+            <li class="duration">
+                <div class="drag"></div>
+            </li>
+            <li class="ico down"><img src="down.png" alt="">
+            </li>
+        </ul>
+    </div>
+    <script>
+        (function () {
+            var drag = document.getElementsByClassName('drag')[0],
+                container = document.getElementsByClassName('container')[0],
+                duration = document.getElementsByClassName('duration')[0],
+                contants = document.getElementsByClassName('contants')[0],
+                containerHeight = document.getElementsByClassName('container')[0].offsetHeight,
+                contantsHeight = document.getElementsByClassName('contants')[0].offsetHeight;
+            var drageHeight = Math.floor(containerHeight / contantsHeight * duration.offsetHeight);
+            drag.style.height = drageHeight + 'px';
+            init()
+            function init() {
+
+                starDrag(drag, duration);
+                scrollWheen(drag, container);
+                btnScoll(drag)
+            }
+            function starDrag(item, duration) {//拖拽滑动条
+
+                addEvent(item, 'mousedown', function (e) {
+                    e = e || window.event;
+                    var topY = e.pageY;
+                    document.onmousemove = function (e) {
+                        e = e || window.event;
+                        var chay = e.pageY - topY;
+                        //console.log(chay);
+                        if (chay > 0) {
+                            // console.log('往下走') ;
+                            item.style.top = chay + item.offsetTop + 'px';
+                            if ((chay + item.offsetHeight + item.offsetTop) > duration.offsetHeight) {
+                                item.style.top = duration.offsetHeight - item.offsetHeight + 'px';
+                            }
+                        } else {
+                            //console.log('往上走');
+                            item.style.top = chay + item.offsetTop + 'px';
+                            if ((chay + item.offsetTop) <= 0) {
+                                item.style.top = 0 + 'px';
+                            }
+                        }
+                        topY = e.pageY;
+                        gunScoll(item);
+                    }
+
+                    document.onmouseup = function () {
+                        document.onmousemove = null;
+                    }
+
+                })
+
+            }
+
+
+            function scrollWheen(item, box) {//滑轮滚动
+                var t = 0;
+                addEvent(box, 'mousewheel', fnwheel)
+                function fnwheel(e) {
+                    // console.log(e.wheelDeltaY);
+                    e.preventDefault();
+                    if (e.wheelDeltaY > 0) {
+                        // console.log('往下走') ;
+                        item.style.top = item.offsetTop + 10 + 'px';
+                        if ((item.offsetHeight + item.offsetTop) > duration.offsetHeight) {
+                            item.style.top = duration.offsetHeight - item.offsetHeight + 'px';
+                        }
+                    } else {
+                        //console.log('往上走');
+                        item.style.top = -10 + item.offsetTop + 'px';
+                        if ((item.offsetTop) <= 0) {
+                            item.style.top = 0 + 'px';
+                        }
+                    }
+
+                    gunScoll(item);
+                }
+
+            }
+
+
+            function gunScoll(item) {
+                var scale = item.offsetTop / (duration.offsetHeight - item.offsetHeight);
+                var scollContents = scale * (contantsHeight - containerHeight);
+                // console.log(contantsHeight-contantsHeight);
+                contants.style.top = -scollContents + 'px';
+            }
+
+            //点击上下按钮
+            function btnScoll(item) {
+                var btnUl = document.getElementsByTagName('ul')[0];
+                addEvent(btnUl, 'click', function (e) {
+                    // console.log(e.target.parentNode.className);
+                    if (e.target.parentNode.className == 'ico up') {
+                        console.log('上');
+                        item.style.top = -10 + item.offsetTop + 'px';
+                        if ((item.offsetTop) <= 0) {
+                            item.style.top = 0 + 'px';
+                        }
+
+                    } else if (e.target.parentNode.className == 'ico down') {
+                        console.log('下');
+                        item.style.top = item.offsetTop + 10 + 'px';
+                        if ((item.offsetHeight + item.offsetTop) > duration.offsetHeight) {
+                            item.style.top = duration.offsetHeight - item.offsetHeight + 'px';
+                        }
+
+                    }
+                    gunScoll(item);
+                })
+
+
+            }
+
+
+            //兼容添加事件库
+            function addEvent(obj, type, fn, bool) {
+                bool = bool || false;//默认冒泡
+                //一般情况
+                if (obj.addEventListener) {
+                    obj.addEventListener(type, handle, bool);
+                    //火狐下的滚轮事件
+                    if (type == 'mousewheel') {
+                        obj.addEventListener('DOMMouseScroll', handle, bool);
+                    }
+                } else {
+                    obj.attachEvent('on' + type, handle);
+                }
+                //兼容函数
+                function handle(e) {
+                    e = e || window.event;//event兼容
+                    e.wheel = e.wheelDelta || e.detail * -40;//滚轮方向兼容；
+                    fn.call(obj, e); //统一this指向
+                    e.preventDefault ? e.preventDefault() : e.returnValue = false;//阻止默认；
+                }
+
+            }
+            //兼容移除事件库
+            function removeEvent(obj, type, fn, bool) {
+                bool = bool || false;//默认冒泡
+                //一般情况
+                if (obj.removeEventListener) {
+                    obj.removeEventListener(type, fn, bool);
+                    // alert('yichu')
+                    //火狐下的滚轮事件
+                    if (type == 'mousewheel') {
+                        obj.removeEventListener('DOMMouseScroll', fn, bool);
+                    }
+                } else {
+                    obj.detachEvent('on' + type, fn);
+                }
+
+            }
+
+
+        })()
+
+
+    </script>
+</body>
+
+</html>
