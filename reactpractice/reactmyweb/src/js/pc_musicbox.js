@@ -74,7 +74,7 @@ export default class PcMusicbox  extends React.Component{
       return (
          <div class="wrapper">
          <audio id="audio" autoplay loop>
-         <source src="./src/audio/music.mp3"></source>
+         <source src="./reactmyweb/src/audio/music.mp3"></source>
          </audio>
          <div class="title">拖动地球远近来控制音乐播放~调节声音大小~</div>
          <div class="circle sun"></div>
