@@ -4,6 +4,10 @@ import PcPerson from './pc_person.js';
 import PcResume from './pc_resume.js';
 
 export default class PcMain extends React.Component{
+	componentDidMount(){
+		document.body.style.backgroundColor = 'white';
+	}
+	
 	render(){
 		const setting = {
 			dots: true,

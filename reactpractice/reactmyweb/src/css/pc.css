@@ -17,6 +17,11 @@
 	padding-left: 10px;
 }
 
+.ant-menu-horizontal{
+	background-color: transparent !important;
+	border-bottom: 0 !important;
+}
+
 
 /*脚部*/
 .footer{
