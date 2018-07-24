@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script language="javascript" src="js/jquery-1.8.2.min.js"></script>
+<title>撞球游戏</title>
+<style>
+
+* {
+   padding: 0; margin: 0;  background: #446644;
+  }
+canvas {
+  background: #cc99cc;
+  display: block;
+  margin: 0 auto;
+  padding:20px auto;
+  border:1px solid #8f63cc ;
+  margin-top: 10px
+}
+.title{
+  color: #0000cc;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 30px;
+  background: #ccffcc;
+  width: 480px;
+  margin:0 auto;
+  margin-top: 20px;
+}
+.start{
+  color: #0000cc;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+  background: #ccffcc;
+  width: 100px;
+  margin:0 auto;
+  margin-top: 20px;
+  cursor: pointer;
+}
+strong {
+  color:#0000cc;
+  text-align:center;
+  font-size:24px;
+  width:100px;
+  margin:0 auto;
+  display:block;
+}
+</style>
+</head>
+
+<body>
+  <div class="title">撞球游戏</div>
+  <canvas id="briksCanvas" width="480" height="460"></canvas>
+  <div class="start" flage="flage">开始游戏</div>
+  <strong>空格暂停</strong>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script>
+  var canvas = $("#briksCanvas")[0];
+  var ctx = canvas.getContext("2d");//创建画布上的绘图环境
+  var stop_status=true;   //停止键是否有效，用来判断游戏结束后不能按停止键；
+  var stop;   //停止动画
+  var canvas_status=true;  //初始未按停止键
+  //初始化
+  //球
+  var ballRadius = 10;//小球的尺寸
+  var ballColor = "#f44280";//小球颜色
+
+  var x = canvas.width/2;
+  var y = canvas.height-25;
+  //球移动速度（初始往左移动）
+  var dx = -2;        //往左走
+  var dy = -2;       //往上走
+  //接盘
+  var paddleHeight = 15;//接盘的高度
+  var paddleWidth = 75;//接盘的宽度
+  var paddleX = (canvas.width-paddleWidth)/2;//接盘位置
+
+  var rightPressed = false;//开始之后 键盘控制接盘右移动
+  var leftPressed = false;//开始之后 键盘控制接盘左移动
+
+  //bricks     顶部砖块
+
+  var brickRowCount = 5;//砖块行数
+  var brickColumnCount = 6;//砖块列数
+  var brickWidth = 70;//每一个砖块的宽度
+  var brickHeight = 20;//每一个装快的高度
+  var brickPadding = 6;//每一个砖块之间的距离
+  var brickOffsetTop = 35;//砖块整体距离顶部的距离
+  var brickOffsetLeft = 15;//砖块整体距离左侧的距离
+
+  var score = 0; //分数初始化
+  var lives = 3;    //生命
+  //初始化二维数组 ，存储砖块信息   status:1砖块显示，0砖块消失
+  var bricks = [];
+  for(c=0; c<brickColumnCount; c++) {
+    bricks[c] = [];//存储列
+      for(r=0; r<brickRowCount; r++) {
+      bricks[c][r] = { x: 0, y: 0, status: 1 };
+    }
+  }
+  //画球
+  function drawBall() {
+    ctx.beginPath();//beginPath() 方法在一个画布中开始子路径的一个新的集合。
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2);//创建一个圆形 底部剧中
+    ctx.fillStyle = ballColor;//规定小球颜色
+    ctx.fill();//填充当前图像  
+    ctx.closePath();//创建当前点到开始点的路径（绘制一条路径，形式是字母 L，然后绘制线条以返回开始点：）
+  }
+  //滑盘
+  function drawPaddle() {
+    ctx.beginPath();//beginPath() 方法在一个画布中开始子路径的一个新的集合。
+    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight); //绘制矩形 居中底部
+    ctx.fillStyle = "#0000ff";//规定颜色
+    ctx.fill();//填充颜色
+    ctx.closePath();//规定画盘路径
+  }
+  //砖块放置排列    画砖块
+  function drawBricks() {
+    for(c=0; c<brickColumnCount; c++) {
+      for(r=0; r<brickRowCount; r++) {
+        if(bricks[c][r].status == 1) {
+          var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;//创建一个砖块所占的宽度
+          var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;//创建一个砖块所占的高度
+          bricks[c][r].x = brickX;//砖块x轴的位置
+          bricks[c][r].y = brickY;//砖块的y轴位置
+          ctx.beginPath();//在一个画布中开始子路径的一个新的集合。
+          ctx.rect(brickX, brickY, brickWidth, brickHeight); //绘制矩形
+          ctx.fillStyle = "#8f63cc";//规定颜色
+          ctx.fill();//填充颜色
+          ctx.closePath();//路径
+        }
+      }
+    }
+  }
+  //分数
+  function drawScore() {
+    ctx.font = "16px Arial";//文字大小
+    ctx.fillStyle = "#f44280";//文字颜色
+    ctx.fillText("Score: "+score, 15, 20);//文字内容和 x轴 y轴 位置
+  }
+  //生命
+  function drawLives() {
+    ctx.font = "16px Arial";//文字大小
+    ctx.fillStyle = "#f44280";//文字颜色
+    ctx.fillText("Lives: "+lives, canvas.width-70, 20);//文字内容和 x轴 y轴 位置
+  }
+  //Game over
+  function drawGO() {//游戏结束
+    ctx.font = "16px Arial";//字号
+    ctx.fillStyle = "#f44280";//颜色
+    ctx.fillText("GAME OVER",200,200);//文字内容 和坐标
+  }
+
+  
+  // //砖块消失，球与砖块撞击时的条件判断     x,y表示球的位置
+  function collisionDetection() {
+    for(c=0; c<brickColumnCount; c++) {
+      for(r=0; r<brickRowCount; r++) {
+        var b = bricks[c][r];
+        if(b.status == 1) {//如果开始时全部显示
+          if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+            //改变垂直方向
+            dy = -dy;//往下走
+            b.status = 0;//砖块消失
+            score++;//分数+1
+            //全部撞击完成，重新开始
+            if(score == brickRowCount*brickColumnCount) {
+              document.location.reload();//方法用于重新加载当前文档。
+              //加快速度
+              x = canvas.width/2;
+              y = canvas.height-30;
+              dx = 3;
+              dy = -3;
+              paddleX = (canvas.width-paddleWidth)/2;
+            }
+          }
+        }
+      }
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);//清空canvas
+    drawBall();//球
+    drawPaddle();//滑盘
+    drawBricks();//砖块
+    drawScore();//分数
+    drawLives();//生命
+    collisionDetection();//当球与砖块碰撞时候的条件
+    //碰左右墙壁换方向
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    //到达顶部,
+    if(y + dy < ballRadius) {
+        dy = -dy;
+    }
+    else if(y + dy > canvas.height-(ballRadius+paddleHeight)) {//底部
+      if(x > paddleX && x < paddleX + paddleWidth) {//盘子接住了球，改变方向
+        dy = -dy;
+      }
+      //如果盘子接不住小球
+      else {
+        lives--;//生命减少一个
+        if(lives==0) {
+          //游戏结束，重置参数
+          drawGO();     //结束游戏
+          $(".start").attr("flage","flage");//设置或返回被选元素的属性值。
+          lives=4;//生命回归四条
+          score=0;//分数变为0
+          stop_status=false;
+          return;
+        }
+        else {
+          x = canvas.width/2;
+          y = canvas.height-30;
+          dx = 3;
+          dy = -3;
+          paddleX = (canvas.width-paddleWidth)/2;//接盘位置回归中间
+        }
+      }
+    }
+    //键盘控制接盘移动
+    if(rightPressed && paddleX < canvas.width-paddleWidth) {//如果右移接盘的位置小于canvas宽度-接盘宽度
+      paddleX += 5;
+    }
+    else if(leftPressed && paddleX > 0) {//否则如果左移的位置大于0
+      paddleX -= 5;
+    }
+    x += dx;
+    y += dy;
+    stop=requestAnimationFrame(draw);//动画继续
+  }
+  //移动鼠标控制接盘
+  function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas.offsetLeft;// e.clientX 事件属性返回当事件被触发时鼠标指针向对于浏览器页面（或客户区）的水平坐标。
+    if(relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth/2;//接盘滑动的位置
+    }
+  }
+  //键盘右键，左键控制接盘移动开关
+  function keyDownHandler(e) {
+    if(e.keyCode == 39) {//键盘右箭头数字
+      rightPressed = true;
+    }
+    else if(e.keyCode == 37) {//键盘左箭头数字
+      leftPressed = true;
+    }
+    else if(e.keyCode == 32){//键盘空客数字
+      if(stop_status){//停止键是否有效，用来判断游戏结束后不能按停止键；
+        if(canvas_status){
+          window.cancelAnimationFrame(stop);//可以取消该次动画。
+          canvas_status=false;
+        }
+        else{
+          stop=requestAnimationFrame(draw);//动画继续
+          canvas_status=true;
+        }
+      }
+    }
+  }
+  function keyUpHandler(e) {
+    if(e.keyCode == 39) {
+      rightPressed = false;
+    }
+    else if(e.keyCode == 37) {
+      leftPressed = false;
+    }
+  }
+  $(function(){
+    drawBall();//球
+    drawPaddle();//滑盘
+    drawBricks();//砖块
+    drawScore();//分数
+    drawLives();//生命
+    $(".start").click(function(){//点击开始时
+      stop_status=true;//停止键是否有效，用来判断游戏结束后不能按停止键；
+      if($(".start").attr("flage")=="flage"){//设置或返回被选元素的属性值。//判断是否游戏结束之后可以继续点击开始游戏
+        //重新开始之后重置砖块
+        for(c=0; c<brickColumnCount; c++) {//循环列
+          for(r=0; r<brickRowCount; r++) {//循环行
+            bricks[c][r].status =1;//判断砖块是否显示
+          }
+        }
+        $(".start").attr("flage","");
+        draw();
+        //实时监听操作键盘和鼠标事件
+        document.addEventListener("keydown", keyDownHandler, false);
+        document.addEventListener("keyup", keyUpHandler, false);
+        document.addEventListener("mousemove", mouseMoveHandler, false);//事件监听 滑盘鼠标跟随事件
+      }
+    })
+  })
+</script>
+</html>
