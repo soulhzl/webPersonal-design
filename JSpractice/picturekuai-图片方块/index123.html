@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rotate the cube</title>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="cube noting">
+            <img class="cube-images img1" src="img/1.jpg" alt="">
+            <img class="cube-images img2" src="img/2.jpg" alt="">
+            <img class="cube-images img3" src="img/3.jpg" alt="">
+            <img class="cube-images img4" src="img/4.jpg" alt="">
+            <img class="cube-images img5" src="img/5.jpg" alt="">
+            <img class="cube-images img6" src="img/6.jpg" alt="">
+        </div>
+    </div>
+    <h2>点击下面的图片方块</h2>
+    <div class="image-buttons">
+        <input type="image" class="show-image-1" src="img/1.jpg" alt="">
+        <input type="image" class="show-image-2" src="img/2.jpg" alt="">
+        <input type="image" class="show-image-3" src="img/3.jpg" alt="">
+        <input type="image" class="show-image-4" src="img/4.jpg" alt="">
+        <input type="image" class="show-image-5" src="img/5.jpg" alt="">
+        <input type="image" class="show-image-6" src="img/6.jpg" alt="">
+    </div>
+    <script>
+        (function () {
+            var imgBtns = document.getElementsByClassName('image-buttons')[0],
+                cubes = document.getElementsByClassName('cube')[0];
+            var cubesIamgeClass = cubes.classList[1];
+            imgBtns.addEventListener('click', function (e) {
+                var targetNode = e.target.nodeName,
+                    targetClass = e.target.className;
+                     console.log(cubes.classList[0])
+                if (targetNode === 'INPUT' && targetClass !== cubesIamgeClass) {
+                    console.log(targetClass.charAt(11));
+                    cubes.classList.replace(cubesIamgeClass, targetClass);
+                    cubesIamgeClass = targetClass;
+                }
+
+            }, false)
+        })()
+
+
+
+    </script>
+</body>
+
+</html>
