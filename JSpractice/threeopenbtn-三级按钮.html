@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.zl_openbtn{
+		position: relative;
+		width: 300px;
+		height: 98px;
+		padding: 2px;
+		box-shadow: 1px 1px 1px 1px #bbb;
+	}
+
+	.zl_openbtn_block{
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 100px;
+		height: 98px;
+		background-color: green;
+		transition: 1s all;
+	}
+</style>
+</head>
+<body>
+	<div class="zl_openbtn">
+		<div class="zl_openbtn_block"></div>
+	</div>
+	<script type="text/javascript">
+		var openbtn = document.getElementsByClassName('zl_openbtn')[0];
+		var openbtnblock = document.getElementsByClassName('zl_openbtn_block')[0];
+		addEvent(openbtn, 'click', operateBtn);
+
+		function operateBtn(e){
+			var ev = e || window.event;
+			var realPageX = 0;
+			// 适配手机端
+			if (ev.pageX == 0 || ev.pageX == undefined) {
+				realPageX = ev.changedTouches[0].pageX;
+			}
+			else{
+				realPageX = ev.pageX;
+			}
+			
+			var distance = realPageX-this.offsetLeft;
+			if (distance >= 0 && distance <= 100) {
+				openbtnblock.style.left = '2px';
+				openbtnblock.style.backgroundColor = 'green';
+			}else if (distance > 100 && distance <= 200) {
+				openbtnblock.style.left = '102px';
+				openbtnblock.style.backgroundColor = 'orange';
+			}else if (distance > 200 && distance <= 300) {
+				openbtnblock.style.left = '202px';
+				openbtnblock.style.backgroundColor = 'red';
+			}
+		}
+
+		function addEvent(elem, type, callback){
+			if (elem.addEventListener) {
+				elem.addEventListener(type, callback, false);
+			}
+			else if (elem.attachEvent) {
+				elem.attachEvent('on' + type, function(){
+					callback.call(elem);
+				});
+			}else{
+				elem['on' + type] = callback;
+			}
+		}
+	</script>
+</body>
+</html>
