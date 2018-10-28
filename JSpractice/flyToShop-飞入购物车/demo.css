@@ -1,0 +1,104 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+html,body{
+    height:100%;
+    width:100%;
+}
+.wrapper{
+    width:100%;
+}
+.wrapper .imgBox ul{
+    width:100%;
+    text-align: center;
+    margin-top:50px;
+}
+.wrapper .imgBox ul li{
+    display:inline-block;
+    height:300px;
+    width:300px;
+    margin-left:20px;
+}
+.wrapper .imgBox ul li img{
+    width:100%;
+}
+.wrapper .imgBox button{
+    width:100px;
+    height:35px;
+    color:#fff;
+    font-weight:bolder;
+    margin-left:20px;
+    border:none;
+    cursor: pointer;
+}
+.shop{
+    background-color:#f40;
+}
+.like{
+    background-color:#ed145b;
+}
+.rightBox{
+    height:100%;
+    width:42px;
+    background-color: #444851;
+    position: fixed;
+    top:0;
+    right: 0;
+}
+.rightBox ul{
+    margin-top:150px;
+}
+.rightBox ul li{
+    position: relative;
+}
+.rightBox ul li a{
+    display:block;
+    width:40px;
+    min-height:50px;
+    text-decoration: none;
+}
+.fir i,
+.thir i{
+    display:block;
+    width: 40px;
+    height:40px;
+}
+.fir i{
+    background:url('./img/index.png') 0px -60px no-repeat;    
+}
+.thir i{
+    background:url('./img/index.png') 0px -278px no-repeat;        
+}
+.fir span,
+.thir span{
+    display:block;
+    height:21px;
+    width:21px;
+    border-radius:100%;
+    background-color:#ed145b;
+    color:#fff;
+    margin:15px 0 0 10px;
+    text-align:center;
+    line-height:21px;
+}
+.fir span{
+    background-color:#f40;    
+}
+.leftBox{
+    width:92px;
+    height:38px;
+    background-color:#444851;
+    position:absolute;
+    left:-121px;
+    top:10px;
+    display:none;
+    color:#fff;
+    line-height:38px;
+    text-align:center;
+    font-size:14px;
+}
+.show{
+    display:block;
+}
