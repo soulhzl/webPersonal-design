@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style>body{overflow: hidden;}canvas { width: 100%; height: 100% }</style>
+	<script src="./three.min.js"></script>
+</head>
+<body>
+	<div id="Stats-output"></div>
+	<script type="text/javascript">
+        var point1 = 0;
+        var point2 = 0;
+        var point3 = 0;
+        var point4 = 0;
+        var point5 = 0;
+        var point6 = 0;
+        window.addEventListener('keydown', function(e) {
+          switch(e.keyCode){
+            case 65:
+            point1 -= 0.1;
+            break;
+            case 68:
+            point1 += 0.1;
+            break;
+            case 81:
+            point2 -= 0.1;
+            break;
+            case 69:
+            point2 += 0.1;
+            break;
+            case 87:
+            point3 -= 0.1;
+            break;
+            case 83:
+            point3 += 0.1;
+            break;
+            case 84:
+            point4 += 0.1;
+            break;
+            case 71:
+            point4 -= 0.1;
+            break;
+            case 89:
+            point5 += 0.1;
+            break;
+            case 72:
+            point5 -= 0.1;
+            break;
+            case 85:
+            point6 += 0.1;
+            break;
+            case 74:
+            point6 -= 0.1;
+            break;
+        }
+    }, false);
+        // 创建三维图
+        var scene = new THREE.Scene();
+
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+        var renderer = new THREE.WebGLRenderer();
+
+        renderer.setClearColor(new THREE.Color(0xfcfcfc ));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        var group = new THREE.Group();
+        var xgroup = new THREE.Group();
+        var ygroup = new THREE.Group();
+        var zgroup = new THREE.Group();
+
+        // 地板
+        var geometry = new THREE.BoxGeometry( 30, 1, 30 );
+        var material = new THREE.MeshLambertMaterial( {color: 0xcccccc} );
+        var cube = new THREE.Mesh( geometry, material );
+        group.add( cube );
+
+        // 蓝色支架
+        var geometry1 = new THREE.BoxGeometry( 3, 7, 3 );
+        var material1 = new THREE.MeshLambertMaterial( {color: 0x7d7dff} );
+        var cube1 = new THREE.Mesh( geometry1, material1 );
+        group.add( cube1 );
+        cube1.position.x = -13;
+        cube1.position.y = 4;
+        cube1.position.z = -13;
+
+        var geometry2 = new THREE.BoxGeometry( 3, 7, 3 );
+        var material2 = new THREE.MeshLambertMaterial( {color: 0x7d7dff} );
+        var cube2 = new THREE.Mesh( geometry2, material2 );
+        group.add( cube2 );
+        cube2.position.x = 13;
+        cube2.position.y = 4;
+        cube2.position.z = -13;
+
+        // 蓝色支架上横条
+        var geometry3 = new THREE.BoxGeometry( 29, 2, 3 );
+        var material3 = new THREE.MeshLambertMaterial( {color: 0xffff37} );
+        var cube3 = new THREE.Mesh( geometry3, material3 );
+        group.add( cube3 );
+        cube3.position.x = 0;
+        cube3.position.y = 8.5;
+        cube3.position.z = -13;
+
+        // Y轴滚动条
+        var geometry4 = new THREE.BoxGeometry( 3, 2, 29 );
+        var material4 = new THREE.MeshLambertMaterial( {color: 0x82d900} );
+        var cube4 = new THREE.Mesh( geometry4, material4 );
+        ygroup.add( cube4 );
+        cube4.position.x = 13;
+        cube4.position.y = 10.5;
+        cube4.position.z = 0;
+
+        // X轴滚动条
+        var geometry5 = new THREE.BoxGeometry( 3, 14, 3 );
+        var material5 = new THREE.MeshLambertMaterial( {color: 0xff9224} );
+        var cube5 = new THREE.Mesh( geometry5, material5 );
+        xgroup.add( cube5 );
+        cube5.position.x = 10;
+        cube5.position.y = 13;
+        cube5.position.z = -10;
+
+        // 圆筒装饰
+        var geometry6 = new THREE.CylinderGeometry( 1, 1, 3, 64 );
+        var material6 = new THREE.MeshLambertMaterial( {color: 0xebd3e8} );
+        var cylinder = new THREE.Mesh( geometry6, material6 );
+        cylinder.position.x = 10;
+        cylinder.position.y = 21.5;
+        cylinder.position.z = -10;
+        xgroup.add( cylinder );
+
+        var geometry7 = new THREE.CylinderGeometry( 0.8, 0.8, 2.5, 64 );
+        var material7 = new THREE.MeshLambertMaterial( {color: 0xebd3e8} );
+        var cylinder1 = new THREE.Mesh( geometry7, material7 );
+        cylinder1.rotation.x = 1.6;
+        cylinder1.position.x = 13;
+        cylinder1.position.y = 10.5;
+        cylinder1.position.z = -15.7;
+        ygroup.add( cylinder1 );
+
+        // 框住Z轴动的板子
+        var geometry8 = new THREE.BoxGeometry( 6, 1, 4 );
+        var material8 = new THREE.MeshLambertMaterial( {color: 0xff9224} );
+        var cube8 = new THREE.Mesh( geometry8, material8 );
+        xgroup.add( cube8 );
+        cube8.position.x = 8.5;
+        cube8.position.y = 5.5;
+        cube8.position.z = -10;
+
+        // Z轴滚动模块1
+        var geometry9 = new THREE.CylinderGeometry( 1, 1, 3, 64 );
+        var material9 = new THREE.MeshLambertMaterial( {color: 0xff9224} );
+        var cube9 = new THREE.Mesh( geometry9, material9 );
+        zgroup.add( cube9 );
+        cube9.position.x = 7;
+        cube9.position.y = 6;
+        cube9.position.z = -10;
+
+        // Z轴滚动模块2
+        var geometry10 = new THREE.CylinderGeometry( 1, 0, 2, 64 );
+        var material10 = new THREE.MeshLambertMaterial( {color: 0xff9224} );
+        var cube10 = new THREE.Mesh( geometry10, material10 );
+        zgroup.add( cube10 );
+        cube10.position.x = 7;
+        cube10.position.y = 3.5;
+        cube10.position.z = -10;
+
+        scene.add(group);
+        scene.add(ygroup);
+        scene.add(xgroup);
+        scene.add(zgroup);
+
+
+        
+        camera.position.x = -50;
+        camera.position.y = 45;
+        camera.position.z = 0;
+        camera.lookAt(scene.position);
+
+        var spotLight = new THREE.SpotLight("#ffffff");
+        spotLight.position.set(-30, 60, -10);
+        spotLight.castShadow = true;
+        spotLight.shadow.mapSize.width = 2048;
+        spotLight.shadow.mapSize.height = 2048;
+        scene.add(spotLight);
+
+        document.body.appendChild(renderer.domElement);
+        var step = 0.01;
+        function updateScene(){
+           requestAnimationFrame(updateScene);
+           renderer.render(scene, camera);
+           // x轴动
+           xgroup.position.z = point1;
+           zgroup.position.z = point1;
+           // y轴动
+           xgroup.position.x = point3;
+           ygroup.position.x = point3;
+           zgroup.position.x = point3;
+           // z轴动
+           zgroup.position.y = point2;
+          /* // x轴动
+           xgroup.position.z += step;
+           zgroup.position.z += step;
+           // y轴动
+           xgroup.position.x -= step;
+           ygroup.position.x -= step;
+           zgroup.position.x -= step;
+           // z轴动
+           zgroup.position.y += step/10000;*/
+       }
+
+       updateScene();
+
+
+
+
+   </script>
+</body>
+</html>

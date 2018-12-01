@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <meta name="author" content="Author">
+        <title>LZL & HY</title>
+    </head>
+
+    <body>
+        <canvas id="main" class="main"></canvas>
+        <img id="img" src="./img/story/20180220-min.jpg" style="opacity: 0;" />
+        <script>
+            function circleImg(ctx, img, x, y, r) {
+                ctx.save();
+                var d = 2 * r;
+                var cx = x + r;
+                var cy = y + r;
+                ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+                ctx.clip();
+                ctx.drawImage(img, x, y, d, d);
+                ctx.restore();
+            }
+
+            window.onload = () => {
+                const mainCanvas = document.querySelector('#main');
+                const ctx = mainCanvas.getContext('2d');
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                mainCanvas.width = windowWidth;
+                mainCanvas.height = windowHeight;
+                const item = {
+                    imgX: 100,
+                    imgY: 100,
+                    width: 50,
+                    img: document.querySelector('#img')
+                };
+
+                // circleImg(ctx, item.img, 100, 20, 50);
+                circleImg(ctx, item.img, item.imgX, item.imgY, item.width);
+
+                // ctx.beginPath();
+                // ctx.arc(item.imgX, item.imgY, item.width, 0, 2 * Math.PI, false);
+                // ctx.stroke();
+
+                const pattern = ctx.createPattern(item.img, 'repeat');
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(item.imgX, item.imgY, item.width, 0, 2 * Math.PI, false);
+                ctx.fillStyle = pattern;
+                ctx.fill();
+                ctx.restore();
+
+                // ctx.save();
+                // ctx.beginPath();
+                // ctx.arc(item.imgX, item.imgY, item.width, 0, 2 * Math.PI, false);
+                // ctx.clip();
+                // ctx.drawImage(item.img, 0, 0, item.width, item.height, 0, 0, item.width, item.height);
+                // ctx.restore();
+            };
+        </script>
+    </body>
+</html>

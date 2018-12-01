@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+
+</style>
+</head>
+<body>
+	<form class="qzsk_form_rol">
+		<div class="qzsk_form_login">
+			<input type="text" name="lusername" placeholder="用户名" />
+			<input type="password" name="lpassword" placeholder="密码" />
+			<button>登录</button>
+		</div>
+		<div class="qzsk_form_register">
+			<input type="text" name="rusername" placeholder="用户名" />
+			<input type="password" name="rpassword" placeholder="密码" />
+			<input type="password" name="rrpassword" placeholder="再输一次密码" />
+			<button>注册</button>
+		</div>
+		<button class="form_close">关闭</button>
+	</form>
+
+	<script type="text/javascript">
+		var btn = document.getElementsByTagName('button');
+		btn[0].addEventListener('click', function(e){
+			e.preventDefault();
+			var usn = document.getElementsByTagName('input')[0].value;
+			var pwd = document.getElementsByTagName('input')[1].value;
+			var str = 'usn=' + usn + '&pwd=' + pwd;
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if (xhr.status == 200 && xhr.readyState == 4) {
+					console.log(xhr.responseText);
+				}
+			}
+
+			xhr.open('post', 'http://localhost:8080/form_post', true);
+			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			xhr.send(str);
+		}, false);
+	</script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	div{
+		width: 440px;
+		overflow: hidden;
+	}
+
+	div:after{
+		content: "";
+		display: block;
+		clear: both;
+		height: 0;
+		visibility: hidden;
+	}
+
+	ul{
+		position: relative;
+		width: 440px;
+		height: 100px;
+		list-style: none;
+	}
+
+	li{
+		position: absolute;
+	}
+
+	img{
+		width: 100px;
+		height: 100px;
+	}
+
+	li:nth-of-type(2){
+		left: 110px;
+	}
+
+	li:nth-of-type(3){
+		left: 220px;
+	}
+
+	li:nth-of-type(4){
+		left: 330px;
+	}
+
+	li:nth-of-type(5){
+		left: 440px;
+	}
+
+	li:nth-of-type(6){
+		left: 550px;
+	}
+
+	li:nth-of-type(7){
+		left: 660px;
+	}
+
+	li:nth-of-type(8){
+		left: 770px;
+	}
+
+	li:nth-of-type(9){
+		left: 880px;
+	}
+
+	li:nth-of-type(10){
+		left: 990px;
+	}
+
+	li:nth-of-type(11){
+		left: 1100px;
+	}
+
+	li:nth-of-type(12){
+		left: 1210px;
+	}
+
+	.open{
+		width: 200px;
+		height: 200px;
+	}
+
+	.open img{
+		width: 100%;
+		height: 100%;
+	}
+
+	#mydiv{
+		position: absolute;
+	}
+
+	#mydiv img{
+		width: 100%;
+		height: 100%;
+	}
+
+	.odd{
+		background-color: yellow;
+	}
+
+	.even{
+		background-color: blue;
+	}
+</style>
+<link rel="stylesheet" type="text/css" href="" id="mycss">
+</head>
+<body>
+	<table id="t1">
+		<tr>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>4</td>
+		</tr>
+	</table>
+
+	<table id="t2">
+		<tr>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>4</td>
+		</tr>
+	</table>
+	<form>
+		<input type="text" name="txt">
+		<input type="checkbox" name="quanxuan" class="quanxuan">全选/全不选
+		<input type="checkbox" name="ckb" value="1"/>1
+		<input type="checkbox" name="ckb" value="2"/>2
+		<input type="checkbox" name="ckb" value="3"/>3
+		<input type="checkbox" name="ckb" value="4"/>4
+		<input type="checkbox" name="ckb" value="5"/>5
+		<input type="checkbox" name="ckb" value="6"/>6
+		<input type="checkbox" name="ckb" value="7"/>7
+		<input type="checkbox" name="ckb" value="8"/>8
+		<input type="submit" name="submit" value="submit">
+	</form>
+	<button class="left">左边</button>
+	<button class="right">右边</button>
+	<div>
+		<ul>
+			<li><img src="./1.jpg"></li>
+			<li><img src="./2.jpg"></li>
+			<li><img src="./3.jpg"></li>
+			<li><img src="./4.jpg"></li>
+			<li><img src="./1.jpg"></li>
+			<li><img src="./2.jpg"></li>
+			<li><img src="./3.jpg"></li>
+			<li><img src="./4.jpg"></li>
+			<li><img src="./1.jpg"></li>
+			<li><img src="./2.jpg"></li>
+			<li><img src="./3.jpg"></li>
+			<li><img src="./4.jpg"></li>
+		</ul>
+	</div>
+	<h1>插件</h1>
+	<div class="open"><img src="./1.jpg"/><div>
+		<script type="text/javascript" src="./jquery.js"></script>
+		<script type="text/javascript" src="./jquery.alterBgColor.js"></script>
+		<script type="text/javascript" src="./jquery.color.js"></script>
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+				$('form').appendTo($('div'));
+				var page = 1;
+				var pagecount = 3;
+				var ulwidth = $('ul').width();
+				$('.right').click(function(){
+					if (!$('ul').is(':animated')) {
+						if (page == 3) {
+							$('ul').animate({
+								'left' : '+=' + ulwidth*(page-1)
+							}, 500);
+							page = 1;
+						}
+						else{
+							$('ul').animate({
+								'left' : '-=' + ulwidth
+							}, 500);
+							page++;
+						}
+					}
+				});
+
+				$('.left').click(function(){
+					if (!$('ul').is(':animated')) {
+						if (page == 1) {
+							$('ul').animate({
+								'left' : '-=' + ulwidth*(pagecount-1)
+							}, 500);
+							page = 3;
+						}
+						else{
+							$('ul').animate({
+								'left' : '+=' + ulwidth
+							}, 500);
+							page--;
+						}
+					}
+				});
+
+				$('.open').mouseover(function(e){
+					var tooltip = '<div id="mydiv"><img src="' + e.target.src + '"/></div>'
+					$('body').append(tooltip);
+					$('#mydiv').css({
+						'left' :  e.pageX + 10 + 'px',
+						'top' : e.pageY + 10 + 'px',
+						'width' : '500px',
+						'height' : '500px',
+					});
+				});
+
+
+				$('.open').mouseout(function(){
+					$('#mydiv').remove();
+				});
+
+				$('.open').mousemove(function(e){
+					$('#mydiv').css({
+						'left' :  e.pageX + 10 + 'px',
+						'top' : e.pageY + 10 + 'px'
+					});
+				});
+
+				$('.quanxuan').click(function(){
+					$(':checkbox').prop('checked', this.checked);
+				});
+
+				$('[name=ckb]:checkbox').click(function(){
+					var flag = true;
+					$('[name=ckb]:checkbox').each(function(){
+						if(!this.checked){
+							flag = false;
+						}
+					});
+					$('.quanxuan').prop('checked', flag);
+				});
+
+				$('ul li').click(function(){
+					var index = $('ul li').index(this);
+					$('#mycss').attr('href', 'jq' + index + '.css');
+					console.log($('#mycss').attr('href'));
+				});
+
+				$('.quanxuan').trigger('click');
+				$('input[type=submit]').click(function(e){
+					alert($('form').serialize());
+				});
+
+				$('h1').click(function(){
+					$('h1').color('red');
+				});
+
+				$('#t1').alterBgColor({
+					odd: "even",
+					even: "odd"
+				}).find('tbody>tr:odd').color('red');
+
+				$.extend({
+					'glo': function(){
+						alert('$.extend哦！');
+					}
+				});
+
+				$.glo();
+			});
+
+		</script>
+	</body>
+	</html>

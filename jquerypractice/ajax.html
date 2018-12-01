@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">ajax</button>
+	<div id="show"></div>
+	<script type="text/javascript" src="./jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#btn').click(function(){
+				$.post('test.php', {
+					'ceshi' : 'hahaha'
+				}, function(res){
+					console.log(res);
+				});
+			});
+		});
+	</script>
+</body>
+</html>

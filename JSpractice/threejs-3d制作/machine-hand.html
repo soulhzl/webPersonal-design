@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style>body{overflow: hidden;}canvas { width: 100%; height: 100% }</style>
+	<script src="./three.min.js"></script>
+</head>
+<body>
+	<div id="Stats-output"></div>
+	<script type="text/javascript">
+        // 创建三维图
+        var scene = new THREE.Scene();
+
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+        var renderer = new THREE.WebGLRenderer();
+
+        renderer.setClearColor(new THREE.Color(0x000000));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        var group = new THREE.Mesh();
+      
+        var cubeGeo1 = new THREE.BoxGeometry(2, 6, 2);
+        var cubeMat1 = new THREE.MeshLambertMaterial({color: 0xffffff});
+        var cube1 = new THREE.Mesh(cubeGeo1, cubeMat1);
+        cube1.position.x = -4;
+        cube1.position.y = 4;
+        cube1.position.z = 0;
+        group.add(cube1);
+
+
+        var sphereGeometry1 = new THREE.SphereGeometry(1, 20, 20);
+        var sphereMaterial1 = new THREE.MeshLambertMaterial({color: 0xffffff});
+        var sphere1 = new THREE.Mesh(sphereGeometry1, sphereMaterial1);
+
+        sphere1.position.x = -4;
+        sphere1.position.y = 0;
+        sphere1.position.z = 0;
+        group.add(sphere1);
+
+         var cubeGeo2 = new THREE.BoxGeometry(2, 4, 2);
+        var cubeMat2 = new THREE.MeshLambertMaterial({color: 0xffffff});
+        var cube2 = new THREE.Mesh(cubeGeo2, cubeMat2);
+        cube2.position.x = -4;
+        cube2.position.y = -3;
+        cube2.position.z = 0;
+        group.add(cube2);
+
+        var sphereGeometry2 = new THREE.SphereGeometry(1, 20, 20);
+        var sphereMaterial2 = new THREE.MeshLambertMaterial({color: 0xffffff});
+        var sphere2 = new THREE.Mesh(sphereGeometry2, sphereMaterial2);
+
+        sphere2.position.x = -4;
+        sphere2.position.y = -6;
+        sphere2.position.z = 0;
+        group.add(sphere2);
+
+        var cylinderGeo = new THREE.CylinderGeometry(1, 0, 4, 10, 10);
+        var cylindMat = new THREE.MeshLambertMaterial({color: 0xffffff});
+        var cylinder = new THREE.Mesh(cylinderGeo, cylindMat);
+        cylinder.position.x = -4;
+        cylinder.position.y = -9;
+        cylinder.position.z = 0;
+        group.add(cylinder);
+
+        scene.add(group);
+
+        function createSpriteShape(){
+       /*1、创建一个画布，记得设置画布的宽高，否则将使用默认宽高，有可能会导致图像显示变形*/
+        let canvas = document.createElement("canvas");
+        canvas.width = 120;
+        canvas.height = 120;
+        /*2、创建图形，这部分可以去看w3c canvas教程*/
+        let ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#ff0000";
+        ctx.arc(50,50,50,0,2*Math.PI);
+        ctx.fill();
+        /*3、将canvas作为纹理，创建Sprite*/
+        let texture = new THREE.Texture(canvas);
+        texture.needsUpdate = true; //注意这句不能少
+        let material = new THREE.SpriteMaterial({map:texture});
+        let mesh = new THREE.Sprite(material);
+        /*4、放大图片，每个精灵有自己的大小，默认情况下都是很小的，如果你不放大，基本是看不到的*/
+        mesh.scale.set(100,100,1);
+        return mesh;
+}
+
+function createSpriteText(){
+        //先用画布将文字画出
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#ffff00";
+        ctx.font = "Bold 100px Arial";
+        ctx.lineWidth = 4;
+        ctx.fillText("12345",4,104);
+        let texture = new THREE.Texture(canvas);
+        texture.needsUpdate = true;
+
+        //使用Sprite显示文字
+        let material = new THREE.SpriteMaterial({map:texture, transparent: true});
+        let textObj = new THREE.Sprite(material);
+         textObj.scale.set(1.6, 1.6, 1.6);
+        textObj.position.set(0,0,0);
+        return textObj;
+}
+
+var txt = createSpriteText();
+scene.add(txt);
+
+        
+        camera.position.x = -30;
+        camera.position.y = 40;
+        camera.position.z = 30;
+        camera.lookAt(scene.position);
+
+        var spotLight = new THREE.SpotLight("#ffffff");
+        spotLight.position.set(-30, 60, -10);
+        spotLight.castShadow = true;
+        spotLight.shadow.mapSize.width = 2048;
+        spotLight.shadow.mapSize.height = 2048;
+        scene.add(spotLight);
+
+        document.body.appendChild(renderer.domElement);
+        var step = 0.01;
+        function updateScene(){
+             requestAnimationFrame(updateScene);
+             renderer.render(scene, camera);
+             group.rotation.x += step;
+             group.rotation.y += step;
+             group.rotation.z += step;
+     }
+
+     updateScene();
+
+     
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="http://localhost:8080/process_post" method="post">
+		First Name: <input type="text" name="first_name">
+		<br/>
+		Last Name: <input type="text" name="last_name">
+		<input type="submit" value="Submit">
+	</form>
+	<button>ajax</button>
+	<script type="text/javascript">
+		var btn = document.getElementsByTagName('button')[0];
+
+		btn.onclick = function(){
+			var xhr = new XMLHttpRequest();
+			xhr.open('get','http://localhost:8080/hellow');
+			xhr.onreadystatechange =function(){
+				if (xhr.status == 200 && xhr.readyState == 4) {
+					console.log(xhr.responseText);
+				}
+			}
+			xhr.send();
+		};
+		
+		
+	</script>
+</body>
+</html>

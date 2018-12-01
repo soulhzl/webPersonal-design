@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.container{
+		width:400px;
+		height:400px;
+		margin:100px auto;
+		transform-style:preserve-3d;
+		transform:rotateX(30deg) rotateY(30deg) rotateZ(0deg);
+		position:relative;
+
+	}
+
+	.container div{
+		width:200px;
+		height:200px;
+		border:1px solid black;
+		position:absolute;
+		margin:auto;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		opacity:0.5;
+	}
+	.one{
+		background-color:blue;
+		transform:rotateY(0) translateZ(100px);
+	}
+	.two{
+		background-color:yellow;
+		transform:rotateY(90deg) translateZ(100px);
+	}
+	.three{
+		background-color:red;
+		transform:rotateY(180deg) translateZ(100px);
+	}
+	.four{
+		background-color:hotpink;
+		transform:rotateY(270deg) translateZ(100px);
+	}
+	.five{
+		background-color:green;
+		transform:rotateX(90deg) translateZ(100px);
+	}
+	.six{
+		background-color:orange;
+		transform:rotateX(90deg) translateZ(-100px);
+	}
+
+	.container div.fangkuai{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 50px;
+		height: 50px;
+		background-color: red;
+		transition: all 1s linear;
+		animation-fill-mode: forwards;
+		transform-style: preserve-3d;
+	}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="one"></div>
+		<div class="two"></div>
+		<div class="three"></div>
+		<div class="four"></div>
+		<div class="five"></div>
+		<div class="six"></div>
+		<div class="fangkuai"></div>
+	</div>
+	<script type="text/javascript">
+		var container = document.getElementsByClassName('container')[0];
+		var fangkuai = document.getElementsByClassName('fangkuai')[0];
+		var lastX, lastY, nowX, nowY, disx = 0, disy = 0;
+		var roY = 30, roX = 30;
+		var timer;
+		container.addEventListener('mousedown', function(e){
+			var event = e || window.event;
+			clearInterval(timer);
+			lastX = event.clientX;
+			lastY = event.clientY;
+			container.addEventListener('mousemove', moveContainer, false);
+			container.addEventListener('mouseup', function(e){
+				container.removeEventListener('mousemove', moveContainer, false);
+				clearInterval(timer);
+				timer = setInterval(function () {
+					disx *= 0.98;
+					disy *= 0.98;
+					roY += disx * 0.2;
+					roX -= disy * 0.2;
+					container.style.transform = 'rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)';
+					if (Math.abs(disx) < 0.1 && Math.abs(disy) < 0.1) {
+						clearInterval(timer);
+					}
+				}, 20);
+			}, false);
+		}, false);
+
+
+		function moveContainer(e){
+			var event = e || window.event;
+			var nowX = event.clientX;
+			var nowY = event.clientY;
+			disx = nowX - lastX;
+			disy = nowY - lastY;
+			roY += disx * 0.2;
+			roX -= disy * 0.2;
+			container.style.transform = 'rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)';
+			lastX = nowX;
+			lastY = nowY;
+		}
+
+		setInterval(function(){
+			var x = 70-Math.floor(Math.random()*140);
+			var y = 70-Math.floor(Math.random()*140);
+			var z = 70-Math.floor(Math.random()*140);
+			var deg = Math.floor(Math.random()*360);
+			console.log(x);
+			console.log(y);
+			console.log(z);
+			console.log(deg);
+			fangkuai.style.transform = 'translate3d('+x+'px, '+y+'px, '+z+'px) rotate3d(1, 1, 1, '+ deg +'deg)';
+		}, 1000);
+
+	</script>
+</body>
+</html>

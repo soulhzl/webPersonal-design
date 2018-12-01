@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style>body{overflow: hidden;}canvas { width: 100%; height: 100% }</style>
+	<script src="./three.min.js"></script>
+</head>
+<body>
+	<div id="Stats-output"></div>
+	<script type="text/javascript">
+        // 创建三维图
+        var scene = new THREE.Scene();
+
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+        var renderer = new THREE.WebGLRenderer();
+
+        renderer.setClearColor(new THREE.Color(0xFFFFFF));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        var group = new THREE.Mesh();
+        var cubeGeo1 = new THREE.BoxGeometry(16, 2, 16);
+        var cubeMat1 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cube1 = new THREE.Mesh(cubeGeo1, cubeMat1);
+        cube1.position.x = -4;
+        cube1.position.y = 3;
+        cube1.position.z = 7;
+        group.add(cube1);
+
+        var cubeGeo2 = new THREE.BoxGeometry(2, 16, 2);
+        var cubeMat2 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cube2 = new THREE.Mesh(cubeGeo2, cubeMat2);
+        cube2.position.x = 5;
+        cube2.position.y = 10;
+        cube2.position.z = 0;
+        group.add(cube2);
+
+        var cubeGeo3 = new THREE.BoxGeometry(2, 16, 2);
+        var cubeMat3 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cube3 = new THREE.Mesh(cubeGeo3, cubeMat3);
+        cube3.position.x = -13  ;
+        cube3.position.y = 10;
+        cube3.position.z = 0;
+        group.add(cube3);
+
+         var cubeGeo4 = new THREE.BoxGeometry(20, 2, 2);
+        var cubeMat4 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cube4 = new THREE.Mesh(cubeGeo4, cubeMat4);
+        cube4.position.x = -4;
+        cube4.position.y = 19;
+        cube4.position.z = 0;
+        group.add(cube4);
+
+        var cubeGeo5 = new THREE.BoxGeometry(2, 6, 2);
+        var cubeMat5 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cube5 = new THREE.Mesh(cubeGeo5, cubeMat5);
+        cube5.position.x = -4;
+        cube5.position.y = 20;
+        cube5.position.z = 2;
+        group.add(cube5);
+
+        var cylinderGeo = new THREE.CylinderGeometry(0.5, 0.5, 3, 10, 10);
+        var cylindMat = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cylinder = new THREE.Mesh(cylinderGeo, cylindMat);
+        cylinder.position.x = -4.5;
+        cylinder.position.y = 16;
+        cylinder.position.z = 2;
+        group.add(cylinder);
+
+        var cubeGeo5 = new THREE.BoxGeometry(3, 1, 2);
+        var cubeMat5 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cube5 = new THREE.Mesh(cubeGeo5, cubeMat5);
+        cube5.position.x = -4;
+        cube5.position.y = 14;
+        cube5.position.z = 2;
+        group.add(cube5);
+
+        var cylinderGeo1 = new THREE.CylinderGeometry(0.5, 0.5, 2, 10, 10);
+        var cylindMat1 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cylinder1 = new THREE.Mesh(cylinderGeo1, cylindMat1);
+        cylinder1.position.x = -3.5;
+        cylinder1.position.y = 13;
+        cylinder1.position.z = 2;
+        group.add(cylinder1);
+
+        var cylinderGeo2 = new THREE.CylinderGeometry(0.5, 0, 2, 10, 10);
+        var cylindMat2 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+        var cylinder2 = new THREE.Mesh(cylinderGeo2, cylindMat2);
+        cylinder2.position.x = -3.5;
+        cylinder2.position.y = 11;
+        cylinder2.position.z = 2;
+        group.add(cylinder2);
+
+
+
+        // var sphereGeometry = new THREE.SphereGeometry(2, 20, 20);
+        // var sphereMaterial = new THREE.MeshLambertMaterial({color: 0x7777ff});
+        // var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+
+        // sphere.position.x = -4;
+        // sphere.position.y = 0;
+        // sphere.position.z = 0;
+        // group.add(sphere);
+
+        scene.add(group);
+
+
+        camera.position.x = -30;
+        camera.position.y = 40;
+        camera.position.z = 30;
+        camera.lookAt(scene.position);
+
+        var spotLight = new THREE.SpotLight("#ffffff");
+        spotLight.position.set(-30, 60, -10);
+        spotLight.castShadow = true;
+        spotLight.shadow.mapSize.width = 2048;
+        spotLight.shadow.mapSize.height = 2048;
+        scene.add(spotLight);
+
+        document.body.appendChild(renderer.domElement);
+        var step = 0.01;
+        function updateScene(){
+             requestAnimationFrame(updateScene);
+             renderer.render(scene, camera);
+             group.rotation.x += step;
+             group.rotation.y += step;
+             group.rotation.z += step;
+     }
+
+     updateScene();
+
+
+</script>
+</body>
+</html>

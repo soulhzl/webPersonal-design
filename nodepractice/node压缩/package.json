@@ -1,0 +1,16 @@
+{
+  "name": "mynode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mynode.js",
+  "dependencies": {
+    "html-minifier": "^3.5.20",
+    "uglifyjs": "^2.4.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

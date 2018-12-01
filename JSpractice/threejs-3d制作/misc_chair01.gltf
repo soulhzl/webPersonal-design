@@ -1,0 +1,267 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 738,
+            "max" : [
+                493
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 494,
+            "max" : [
+                0.5667638182640076,
+                2.1282668113708496,
+                0.645225465297699
+            ],
+            "min" : [
+                -0.5667638182640076,
+                -0.003992438316345215,
+                -0.6655752658843994
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 494,
+            "max" : [
+                1.0,
+                0.9999999403953552,
+                0.9999999403953552
+            ],
+            "min" : [
+                -1.0,
+                -0.9910175800323486,
+                -0.9999999403953552
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 494,
+            "max" : [
+                0.9628593921661377,
+                0.9973504543304443,
+                0.9910176396369934,
+                1.0
+            ],
+            "min" : [
+                -1.0,
+                -0.9910178184509277,
+                -1.0,
+                -1.0
+            ],
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 494,
+            "max" : [
+                0.9889291524887085,
+                0.9880999764427543
+            ],
+            "min" : [
+                -0.03314631059765816,
+                0.0014256834983825684
+            ],
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 494,
+            "max" : [
+                0.9889291524887085,
+                0.9880999764427543
+            ],
+            "min" : [
+                0.008871585130691528,
+                0.008085012435913086
+            ],
+            "type" : "VEC2"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 1476,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5928,
+            "byteOffset" : 1476,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5928,
+            "byteOffset" : 7404,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7904,
+            "byteOffset" : 13332,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3952,
+            "byteOffset" : 21236,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3952,
+            "byteOffset" : 25188,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 29140,
+            "uri" : "misc_chair01.bin"
+        }
+    ],
+    "images" : [
+        {
+            "name" : "misc_chair01_col",
+            "uri" : "misc_chair01_col.jpg"
+        }
+    ],
+    "materials" : [
+        {
+            "name" : "misc_chair01",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.5313261151313782,
+                    0.2507416307926178,
+                    0.14791952073574066,
+                    1.0
+                ],
+                "baseColorTexture" : {
+                    "index" : 0
+                },
+                "metallicFactor" : 0.0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "misc_chair01",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1,
+                        "TANGENT" : 3,
+                        "TEXCOORD_0" : 4,
+                        "TEXCOORD_1" : 5
+                    },
+                    "indices" : 0,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "name" : "ext_bounce",
+            "rotation" : [
+                0.9999845027923584,
+                -2.64701898093676e-23,
+                -2.2204116385368309e-16,
+                -0.005566731095314026
+            ],
+            "translation" : [
+                0.0,
+                2.287322759628296,
+                -0.0
+            ]
+        },
+        {
+            "name" : "ext_fill",
+            "rotation" : [
+                0.5461768507957458,
+                0.20619851350784302,
+                -0.1408492922782898,
+                0.7995840907096863
+            ],
+            "scale" : [
+                1.0,
+                1.0,
+                0.9999999403953552
+            ],
+            "translation" : [
+                0.0,
+                3.487856388092041,
+                -0.0
+            ]
+        },
+        {
+            "name" : "ext_sun",
+            "rotation" : [
+                0.4437752068042755,
+                -0.5096853971481323,
+                0.3481539487838745,
+                0.6496716141700745
+            ],
+            "scale" : [
+                1.0,
+                1.0,
+                0.9999999403953552
+            ],
+            "translation" : [
+                0.0,
+                2.9571738243103027,
+                -0.0
+            ]
+        },
+        {
+            "mesh" : 0,
+            "name" : "misc_chair01",
+            "translation" : [
+                -0.2256765365600586,
+                -0.21105407178401947,
+                0.2256777286529541
+            ]
+        }
+    ],
+    "samplers" : [
+        {}
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                3,
+                0,
+                1,
+                2
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ]
+}

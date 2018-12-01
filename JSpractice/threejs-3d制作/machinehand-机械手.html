@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+
+	body{
+		overflow: hidden;
+	}
+
+	.container{
+		position: absolute;
+		top: 30%;
+		left: 25%;
+		margin: 0 auto;
+		transform-style:preserve-3d;
+		transform:rotateX(30deg) rotateY(30deg) rotateZ(0deg);
+	}
+
+	.container>.tangle{
+		width:800px;
+		height:800px;
+		border:1px solid black;
+		position:absolute;
+		margin:auto;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		opacity:0.5;
+	}
+
+	.container>.tangle:nth-of-type(1){
+		background-color:blue;
+		transform:rotateY(0) translateZ(400px);
+	}
+	.container>.tangle:nth-of-type(2){
+		background-color:yellow;
+		transform:rotateY(90deg) translateZ(400px);
+	}
+	.container>.tangle:nth-of-type(3){
+		background-color:red;
+		transform:rotateY(180deg) translateZ(400px);
+	}
+	.container>.tangle:nth-of-type(4){
+		background-color:hotpink;
+		transform:rotateY(270deg) translateZ(400px);
+	}
+	.container>.tangle:nth-of-type(5){
+		background-color:green;
+		transform:rotateX(90deg) translateZ(400px);
+	}
+	.container>.tangle:nth-of-type(6){
+		background-color:orange;
+		transform:rotateX(90deg) translateZ(-400px);
+	}
+
+	.container>.first_block,
+	.container>.first_block>.second_block{
+		transform-style:preserve-3d;
+		transition: all 1s linear;
+	}
+
+	.container>.first_block>.second_block{
+		transform-origin: 20px -25px;
+	}
+
+	.container>.first_block>.first,
+	.container>.first_block>.second_block>.second,
+	.container>.first_block>.second_block>.third_block,
+	.container .yuan{
+		transform-style:preserve-3d;
+		position:relative;
+		margin: 0 auto;
+	}
+
+
+
+	.container>.first_block>.first>div,
+	.container>.first_block>.second_block>.second>div,
+	.container>.first_block>.second_block>.third_block>div,
+	.container .yuan>div{
+		border:1px solid black;
+		position:absolute;
+		margin:auto;
+		left:0;
+		right:0;
+		top:-10%;
+		bottom:0;
+	}
+
+	/*绘制关节点圆*/
+	.container .yuan{
+		height: 50px;
+	}
+
+	.container .yuan>.yuan1{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: black;
+		transform: rotateY(90deg) translateZ(10px);
+	}
+
+	.container .yuan>.yuan2{
+		width: 20px;
+		background-color: yellow;
+		transform: translateZ(10px);
+		opacity: 0.5;
+	}
+
+	.container .yuan>.yuan3{
+		width: 20px;
+		background-color: green;
+		transform: translateZ(-10px);
+		opacity: 0.5;
+	}
+
+	.container .yuan>.yuan4{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: black;
+		transform: rotateY(90deg) translateZ(-11px);
+
+	}
+	
+	/*第一关节*/
+	.container>.first_block>.first{
+		width: 50px;
+		height: 100px;
+	}
+
+	.container>.first_block>.first>div{
+		width:50px;
+		height:100px;
+	}
+
+	.one{
+		background-color:blue;
+		transform:rotateY(0) translateZ(25px);
+	}
+	.two{
+		background-color:yellow;
+		transform:rotateY(90deg) translateZ(25px);
+	}
+	.three{
+		background-color:red;
+		transform:rotateY(180deg) translateZ(25px);
+	}
+	.four{
+		background-color:hotpink;
+		transform:rotateY(270deg) translateZ(25px);
+	}
+	.five{
+		width: 50px !important;
+		height: 50px !important;
+		background-color:green;
+		transform:rotateX(90deg) translateZ(50px);
+	}
+	.six{
+		width: 50px !important;
+		height: 50px !important;
+		background-color:orange;
+		transform:rotateX(90deg) translateZ(-50px);
+	}
+
+	/*第二关节*/
+	.container>.first_block>.second_block>.second{
+		width: 40px;
+		height: 80px;
+	}
+
+	.container>.first_block>.second_block>.second>div{
+		width: 40px;
+		height: 80px;
+	}
+
+	.second_block>.second>.one{
+		transform:rotateY(0) translateZ(20px);
+	}
+	.second_block>.second>.two{
+		transform:rotateY(90deg) translateZ(20px);
+	}
+	.second_block>.second>.three{
+		transform:rotateY(180deg) translateZ(20px);
+	}
+	.second_block>.second>.four{
+		transform:rotateY(270deg) translateZ(20px);
+	}
+	.second_block>.second>.five{
+		width: 40px !important;
+		height: 40px !important;
+		transform:rotateX(90deg) translateZ(40px);
+	}
+	.second_block>.second>.six{
+		width: 40px !important;
+		height: 40px !important;
+		transform:rotateX(90deg) translateZ(-40px);
+	}
+
+	/*第三关节*/
+	.container>.first_block>.second_block>.third_block{
+		width: 40px;
+		height: 60px;
+		transform-origin: 20px -25px;
+		transition: all 1s linear;
+	}
+
+	.container>.first_block>.second_block>.third_block>div{
+		width:60px;
+		height:60px;
+		background-color: transparent;
+		border: none !important;
+		transform-style:preserve-3d;
+	}
+
+	.container>.first_block>.second_block>.third_block>.one{
+		transform:rotateY(0) translate3d(0, -3px, 5px);
+	}
+	.container>.first_block>.second_block>.third_block>.two{
+		margin-left: -10px;
+		transform:rotateY(90deg) translate3d(10px, -3px, 5px);
+	}
+	.container>.first_block>.second_block>.third_block>.three{
+		margin-left: -10px;
+		transform:rotateY(180deg) translate3d(10px, -3px, 5px);
+	}
+	.container>.first_block>.second_block>.third_block>.four{
+		margin-left: -10px;
+		transform:rotateY(270deg) translate3d(10px, -3px, 5px);
+	}
+	
+	/*绘制三角形*/
+	.container>.first_block>.second_block>.third_block>.one:before,
+	.container>.first_block>.second_block>.third_block>.two:before,
+	.container>.first_block>.second_block>.third_block>.three:before,
+	.container>.first_block>.second_block>.third_block>.four:before{
+		content: '';
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-width: 60px 20px 20px;
+		border-style: solid;
+		border-color:#333 transparent transparent;/*透明 透明  灰*/
+		transform:rotateX(-20deg);
+	}
+	
+	.container>.first_block>.second_block>.third_block>.five{
+		width: 40px !important;
+		height: 40px !important;
+		transform:rotateX(90deg) translateZ(30px);
+		background-color: black;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="tangle"></div>
+		<div class="tangle"></div>
+		<div class="tangle"></div>
+		<div class="tangle"></div>
+		<div class="tangle"></div>
+		<div class="tangle"></div>
+		<div class="first_block">
+			<div class="first">
+				<div class="one"></div>
+				<div class="two"></div>
+				<div class="three"></div>
+				<div class="four"></div>
+				<div class="five"></div>
+				<div class="six"></div>
+			</div>
+			<div class="yuan">
+				<div class="yuan1"></div>
+				<div class="yuan2"></div>
+				<div class="yuan3"></div>
+				<div class="yuan4"></div>
+			</div>
+			<div class="second_block">
+				<div class="second">
+					<div class="one"></div>
+					<div class="two"></div>
+					<div class="three"></div>
+					<div class="four"></div>
+					<div class="five"></div>
+					<div class="six"></div>
+				</div>
+				<div class="yuan">
+					<div class="yuan1"></div>
+					<div class="yuan2"></div>
+					<div class="yuan3"></div>
+					<div class="yuan4"></div>
+				</div>
+				<div class="third_block">
+					<div class="one"></div>
+					<div class="two"></div>
+					<div class="three"></div>
+					<div class="four"></div>
+					<div class="five"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var container = document.getElementsByClassName('container')[0];
+
+		var lastX, lastY, nowX, nowY, disx = 0, disy = 0;
+		var roY = 30, roX = 30;
+		var timer;
+		document.addEventListener('mousedown', downContainer, false);
+
+		function downContainer(e){
+			var event = e || window.event;
+			clearInterval(timer);
+			lastX = event.clientX;
+			lastY = event.clientY;
+			document.addEventListener('mousemove', moveContainer, false);
+			document.addEventListener('mouseup', function(e){
+				document.removeEventListener('mousemove', moveContainer, false);
+				clearInterval(timer);
+				timer = setInterval(function () {
+					disx *= 0.98;
+					disy *= 0.98;
+					roY += disx * 0.2;
+					roX -= disy * 0.2;
+					container.style.transform = 'rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)';
+					if (Math.abs(disx) < 0.1 && Math.abs(disy) < 0.1) {
+						clearInterval(timer);
+					}
+				}, 20);
+			}, false);
+		}
+
+		function moveContainer(e){
+			var event = e || window.event;
+			var nowX = event.clientX;
+			var nowY = event.clientY;
+			disx = nowX - lastX;
+			disy = nowY - lastY;
+			roY += disx * 0.2;
+			roX -= disy * 0.2;
+			container.style.transform = 'rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)';
+			lastX = nowX;
+			lastY = nowY;
+		}
+
+		var first_block = document.getElementsByClassName('first_block')[0];
+		var second_block = document.getElementsByClassName('second_block')[0];
+		var third_block = document.getElementsByClassName('third_block')[0];
+
+		setInterval(function(){
+			var x = Math.floor(Math.random()*700);
+			var y = 220-Math.floor(Math.random()*440);
+			var z = 350-Math.floor(Math.random()*700);
+			var fdeg = Math.floor(Math.random()*360);
+			var sdeg = 90-Math.floor(Math.random()*180);
+			var tdeg = 90-Math.floor(Math.random()*180);
+			first_block.style.transform = 'translate3d('+x+'px, '+y+'px, '+z+'px)';
+			second_block.style.transform = 'rotate3d(1, 1, 1, '+ sdeg +'deg)';
+			third_block.style.transform = 'rotate3d(1, 1, 1, '+ tdeg +'deg)';
+		}, 1000);
+	</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../reset.css">
+	<style>body{overflow: hidden;}canvas { width: 100%; height: 100% }</style>
+	<script src="./three.min.js"></script>
+	<script src="./stats.js"></script>
+</head>
+<body>
+	<div id="Stats-output"></div>
+	<script type="text/javascript">
+		var point1 = 4.7;
+		var point2 = 0;
+		var point3 = 0;
+		window.addEventListener('keydown', function(e) {
+			switch(e.keyCode){
+				case 65:
+				point1 -= 0.01;
+				break;
+				case 68:
+				point1 += 0.01;
+				break;
+				case 81:
+				point2 -= 0.1;
+				break;
+				case 69:
+				point2 += 0.1;
+				break;
+				case 87:
+				point3 -= 0.1;
+				break;
+				case 83:
+				point3 += 0.1;
+				break;
+			}
+		}, false);
+
+			// 加载帧数
+			var stats = initStats();
+
+			function initStats() {
+
+				var stats = new Stats();
+
+				stats.setMode(0);
+
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.left = '0px';
+				stats.domElement.style.top = '0px';
+
+				document.getElementById("Stats-output").appendChild(stats.domElement);
+
+				return stats;
+			}
+
+			// 创建三维图
+			var scene = new THREE.Scene();
+
+			var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+			var renderer = new THREE.WebGLRenderer();
+
+			renderer.setClearColor(new THREE.Color(0xffffff));
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.shadowMap.enabled = true;
+			renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+			// 绘制方格
+			var xianGroup = new THREE.Group();
+			var geometry = new THREE.Geometry();
+			geometry.vertices.push(new THREE.Vector3(-500, 0, 0));
+			geometry.vertices.push(new THREE.Vector3(500, 0, 0));
+
+			for (var i = 0; i <= 40; i++) {
+				//画横线
+				var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+					color: 0x000000
+				}));
+				if (i == 15) {
+					line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+						color: 0xff0000
+					}));
+				}
+				line.position.z = (i * 5) - 90;
+				xianGroup.add(line);
+
+
+				var line1 = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+					color: 0x000000
+				}));
+				if (i == 18) {
+					line1 = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+						color: 0xff0000
+					}));
+				}
+				line1.position.x = (i * 5) - 90;
+				line1.rotation.y = 90 * Math.PI / 180; //转90度
+				xianGroup.add(line1);
+
+			}
+
+			scene.add(xianGroup);
+
+			// 字体
+
+			/* var zitiGroup = new THREE.Group();
+                var loader = new THREE.FontLoader();
+
+			loader.load( './helvetiker_regular.typeface.json', function ( font ) {
+
+    var zitig = new THREE.TextGeometry( '10', {
+        font: font,
+        size: 0.5,
+        height: 0.1,
+        curveSegments: 20
+    } );
+
+    var zitim = new THREE.MeshLambertMaterial({color: 0x0c0c0c});
+        
+        for (var i = 0; i < 21; i++) {
+            var ziti = new THREE.Mesh(zitig, zitim);
+             ziti.position.z = -4.4;
+            ziti.position.x = i*5 - 49.7;
+            zitiGroup.add(ziti);
+
+            var ziti = new THREE.Mesh(zitig, zitim);
+             ziti.position.z = i*5 -50.5;
+            ziti.position.x = -1;
+            zitiGroup.add(ziti);
+        }
+   
+
+    scene.add(zitiGroup);
+} );*/
+
+			// 绘制实际点
+			/* var realPointMat = new THREE.LineBasicMaterial({color: 0x000000});
+			 var linePointGeo = new THREE.Geometry();
+			 linePointGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+			 linePointGeo.vertices.push(new THREE.Vector3(1, 0, 0));
+			 linePointGeo.vertices.push(new THREE.Vector3(0.5, 0, 0));
+			 linePointGeo.vertices.push(new THREE.Vector3(0.5, -0.5, 0));
+			 linePointGeo.vertices.push(new THREE.Vector3(0.5, 0.5, 0));
+			 var realPoint = new THREE.Line(linePointGeo, realPointMat);
+			 scene.add(realPoint);*/
+
+			// 绘制模型
+			var group = new THREE.Group();
+
+			var cubeGeo1 = new THREE.BoxGeometry(1.8, 1.8, 1.8);
+			var cubeMat1 = new THREE.MeshLambertMaterial({
+				color: 0xffffff
+			});
+			var cube1 = new THREE.Mesh(cubeGeo1, cubeMat1);
+			cube1.position.x = -4;
+			cube1.position.y = 1;
+			cube1.position.z = 0;
+			group.add(cube1);
+
+			var sphereGeometry1 = new THREE.SphereGeometry(0.9, 20, 20);
+			var sphereMaterial1 = new THREE.MeshLambertMaterial({
+				color: 0xffffff
+			});
+			var sphere1 = new THREE.Mesh(sphereGeometry1, sphereMaterial1);
+
+			sphere1.position.x = -4;
+			sphere1.position.y = 0;
+			sphere1.position.z = 0;
+			group.add(sphere1);
+
+			var cubeGeo2 = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+			var cubeMat2 = new THREE.MeshLambertMaterial({
+				color: 0xffffff
+			});
+			var cube2 = new THREE.Mesh(cubeGeo2, cubeMat2);
+			cube2.position.x = -4;
+			cube2.position.y = -1.5;
+			cube2.position.z = 0;
+			group.add(cube2);
+
+			var sphereGeometry2 = new THREE.SphereGeometry(0.5, 20, 20);
+			var sphereMaterial2 = new THREE.MeshLambertMaterial({
+				color: 0xffffff
+			});
+			var sphere2 = new THREE.Mesh(sphereGeometry2, sphereMaterial2);
+
+			sphere2.position.x = -4;
+			sphere2.position.y = -2.5;
+			sphere2.position.z = 0;
+			group.add(sphere2);
+
+			var cylinderGeo = new THREE.CylinderGeometry(0.8, 0, 1.8, 10, 10);
+			var cylindMat = new THREE.MeshLambertMaterial({
+				color: 0xffffff
+			});
+			var cylinder = new THREE.Mesh(cylinderGeo, cylindMat);
+			cylinder.position.x = -4;
+			cylinder.position.y = -3.8;
+			cylinder.position.z = 0;
+			group.add(cylinder);
+			scene.add(group);
+
+			// 画点
+			/* var sphereGeometry3 = new THREE.SphereGeometry(0.15, 10, 10);
+			 var sphereMaterial3 = new THREE.MeshLambertMaterial({color: 0x00ff00});
+			 var sphere3 = new THREE.Mesh(sphereGeometry3, sphereMaterial3);
+
+			 sphere3.position.x = 10;
+			 sphere3.position.y = 10;
+			 sphere3.position.z = 10;
+			 scene.add(sphere3);*/
+
+			// 画弧
+			/*var curve = new THREE.QuadraticBezierCurve3(new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, 10), new THREE.Vector3( 20, 0, 0 ));
+
+			var geometry = new THREE.Geometry();
+			geometry.vertices = curve.getPoints( 50 );
+			// console.log(curve.getPoints( 50 ));
+			var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+
+			var curveObject = new THREE.Line( geometry, material );
+			curveObject.position.y = 4.5;
+			scene.add(curveObject);*/
+
+			// 平面圆
+			// var curve1 = new THREE.EllipseCurve(
+			//     10,  0,            // ax, aY
+			//     10, 10,           // xRadius, yRadius
+			//     0,  2 * Math.PI,  // aStartAngle, aEndAngle
+			//     false,            // aClockwise
+			//     0                 // aRotation 
+			//     );
+
+			// var points = curve1.getPoints(50);
+			// var geometry = new THREE.Geometry().setFromPoints( points );
+			// var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+
+			// var ellipse = new THREE.Line( geometry, material );
+			// ellipse.position.z = -13.5;
+			// scene.add(ellipse);
+            // var geometry = new THREE.CircleGeometry( 10, 32 );
+            // var material = new THREE.MeshLambertMaterial( { color: 0x000000,wireframe :true } );
+            // var circle = new THREE.Mesh( geometry, material );
+            // circle.rotation.x = 4.7;
+            // circle.position.x = -0;
+            // circle.position.y = 0;
+            // circle.position.z = -15;
+            // console.log(circle);
+            // scene.add( circle );
+
+            var geometry = new THREE.RingGeometry( 10.25, 10, 64, 64, 0, 6.3 );
+            var material = new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.BackSide } );
+            var mesh = new THREE.Mesh( geometry, material );
+            mesh.position.z = -15;
+            mesh.rotation.x = 0;
+            mesh.position.y = 10;
+            scene.add( mesh );
+
+//             let points = [],length = 100,circle1 = 10;
+// for (let i = 0; i <= length; i++) {
+// 　　points.push(new THREE.Vector3(circle1 * Math.cos(Math.PI * 2 * i / length), circle1 * Math.sin(Math.PI * 2 * i / length)))
+// }
+// let shape = new THREE.Shape(points);
+// let arcGeometry = shape.makeGeometry()
+// let arcMaterial = new THREE.LineBasicMaterial({ color: 0x38d3f5 });
+// let arc = new THREE.Line(arcGeometry, arcMaterial);
+// arc.rotation.x = 4.7;
+// arc.position.x = -0;
+//             arc.position.y = 0;
+//             arc.position.z = -15;
+// scene.add(arc);
+
+
+
+camera.position.x = 0;
+camera.position.y = 45;
+camera.position.z = 45;
+camera.lookAt(scene.position);
+
+var ambientLight = new THREE.AmbientLight(0x404040);
+var directionalLight1 = new THREE.DirectionalLight(0xC0C090);
+var directionalLight2 = new THREE.DirectionalLight(0xC0C090);
+
+directionalLight1.position.set(-100, -50, 100);
+directionalLight2.position.set(100, 50, -100);
+var lightGroup = new THREE.Group();
+lightGroup.add(directionalLight1);
+lightGroup.add(directionalLight2);
+lightGroup.add(ambientLight);
+scene.add(lightGroup);
+document.body.appendChild(renderer.domElement);
+
+var pos = 0,
+groupx = 4;
+
+function move() {
+	if (pos < 1) {
+		group.position.x = parseFloat(curve.getPointAt(pos).x + groupx).toFixed(2);
+		realPoint.position.x = parseFloat(curve.getPointAt(pos).x - 0.5).toFixed(2);
+
+		group.position.y = parseFloat(curve.getPointAt(pos).y + 4.5).toFixed(2);
+		realPoint.position.y = parseFloat(curve.getPointAt(pos).y + 4.5).toFixed(2);
+
+		realPoint.position.z = parseFloat(curve.getPointAt(pos).z.toFixed(2));
+		group.position.z = parseFloat(curve.getPointAt(pos).z - 5).toFixed(2);
+		console.log("x组别：" + group.position.x);
+					// console.log("x点："+realPoint.position.x);
+					// console.log("x："+curve.getPointAt(pos).x);
+					// console.log("z组别："+group.position.z);
+					// console.log("z点："+realPoint.position.z);
+					pos += 0.001;
+					groupx += 0.002;
+				} else {
+					pos = 0;
+					groupx = 4;
+				}
+
+			}
+
+			function updateScene() {
+				requestAnimationFrame(updateScene);
+				group.position.x = point1;
+				// circle.position.x = point1;
+				// realPoint.position.x = point1-4.5;
+				group.position.y = point2;
+				// circle.position.y = point2;
+				// realPoint.position.y = point2-5;
+				// realPoint.position.z = point3;
+				group.position.z = point3;
+				// circle.position.z = point3;
+				// console.log(point1);
+				// console.log(point3);
+				// move();
+				mesh.rotation.x = point1;
+				mesh.rotation.y = point2;
+				mesh.rotation.z = point3;
+				console.log(mesh.rotation.x);
+				stats.update();
+				renderer.render(scene, camera);
+			}
+
+			updateScene();
+			console.log(scene.children);
+			console.log(window.innerWidth);
+		</script>
+	</body>
+	</html>
