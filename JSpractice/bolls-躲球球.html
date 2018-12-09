@@ -1,0 +1,238 @@
+<!DOCTYPE html >
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="keywords" content="js游戏" />
+    <meta name="Description" content="看你能坚持多久" />
+    <title>是男人就坚持30秒</title>
+    <link rel="shortcut icon" type="image/png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #326B86;
+            color: #FFFFFF;
+            font: 14px Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+        #div1 {
+            position: relative;
+            width: 450px;
+            height: 400px;
+            background: #222;
+            margin: 30px auto;
+            padding-top: 50px;
+        }
+
+
+        .son {
+            position: absolute;
+            left: 0px;
+            top: 0;
+            background: #008040;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            filter: alpha(opacity=60);
+            opacity: 0.6;
+            z-index: 99;
+        }
+
+
+
+        #move {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: red;
+            filter: alpha(opacity=60);
+            border-radius: 50%;
+            opacity: 0.6;
+            cursor: move;
+            top: 195px;
+            left: 195px;
+        }
+        p{
+            width:500px;
+            margin:0 auto;
+            font-size:14px;
+            line-height:18px;
+        }
+    </style>
+</head>
+
+<body>
+ 
+    <span id="timer">马上开始</span>
+    <div id="div1">
+         <div id="move"></div>
+    </div>
+    <p>游戏规则：鼠标移动到红色部分，拖动红块，避免碰到绿色部分，不要碰到黑色区域，坚持的时间越长你越牛X！是男人就至少坚持30秒，本游戏支持IE，Chrome，Firefox，safari等浏览器！
+
+</body>
+<script>
+    (function () {
+
+        var game = {
+            ball: document.getElementById('move'),
+            time: document.getElementById('timer'),
+            num:0,
+            movePlus: {
+                outer: document.getElementById('div1'),
+                iWidth:document.getElementById('div1').offsetWidth,
+                iHeight:document.getElementById('div1').offsetHeight,
+                ispeedY: 10,
+                ispeedX: 10,
+            },
+            init: function () {
+
+                this.creatBall(this.movePlus);//创建小球
+                this.dragBoll(this.movePlus);//小球拖拽
+                this.timerRun();//时间计时
+
+            },
+            timerRun: function () {
+                var self = this;
+                var self = this;
+                this.timer = setInterval(function () {
+                    self.num++;
+                    self.time.innerHTML = '已完成' + self.num + '秒';
+                }, 1000)
+            },
+            dragBoll: function (obj) {
+                var self = this;
+                this.ball.onmousedown = function (e) {
+                    var e = e || event;
+
+                    var on_x = e.pageX;
+                    var on_y = e.pageY;
+                    document.onmousemove = function (e) {
+                        var e = e || event;
+                        // console.log(self.ball.offsetLeft);
+                        self.ball.style.left = self.ball.offsetLeft + (e.pageX - on_x) + 'px';
+                        self.ball.style.top = self.ball.offsetTop + (e.pageY - on_y) + 'px';
+                        on_x = e.pageX;
+                        on_y = e.pageY;
+                        //检测拖动边界碰撞
+                        if((self.ball.offsetWidth + self.ball.offsetLeft)>obj.iWidth){
+                            alert('游戏结束 ! 共坚持'+self.num + '秒');
+                            window.location.reload()
+                        }else if(self.ball.offsetLeft<0){
+                            alert('游戏结束 ! 共坚持'+self.num + '秒');
+                            window.location.reload()
+                        }else if(self.ball.offsetTop<0){
+                            alert('游戏结束 ! 共坚持'+self.num + '秒');
+                            window.location.reload()
+                        }else if((self.ball.offsetHeight + self.ball.offsetTop)>obj.iHeight){
+                            alert('游戏结束 ! 共坚持'+self.num + '秒');
+                            window.location.reload()
+                        }
+
+
+                    };
+                    document.onmouseup = function () {
+                        document.onmousemove = null;
+                        //    this.onmousedown = null;
+                    }
+                }
+            },
+            creatBall: function (obj) {
+                var self = this;
+                var movePlus = obj;
+                function Ball(movePlus) {
+                    this.ball = document.createElement('div');
+                    this.ball.className = 'son';
+                    this.ball.style.top = 0;
+                    this.iWidthCurrent = Math.floor(Math.random() * movePlus.iWidth);
+                    movePlus.outer.appendChild(this.ball);
+                    this.ispeedX = Math.floor(Math.random() * movePlus.ispeedX);
+                    this.ispeedY = Math.floor(Math.random() * movePlus.ispeedY);
+                    this.iWidth = movePlus.iWidth;
+                    this.iHeight = movePlus.iHeight;
+                }
+
+                for (var i = 0; i < 1; i++) {
+                    var newBoll = new Ball(movePlus);
+                    var current = newBoll.iWidthCurrent - newBoll.ball.offsetWidth;
+                    if (current < 0) {
+                        current = 0;
+                    }
+                    newBoll.ball.style.left = current + 'px';
+                    self.moveBoll(newBoll, self.ball);
+
+                }
+                var timer = setInterval(function () {
+                    var newBoll = new Ball(movePlus);
+                    var current = newBoll.iWidthCurrent - newBoll.ball.offsetWidth;
+                    if (current < 0) {
+                        current = 0;
+                    }
+                    newBoll.ball.style.left = current + 'px';
+                    self.moveBoll(newBoll, self.ball);
+
+                }, 2000)
+
+            },
+            crashCheck: function (obj, boll) {
+
+                obj.x = obj.ball.offsetLeft + Math.floor(obj.ball.offsetWidth / 2);
+                obj.y = obj.ball.offsetTop + Math.floor(obj.ball.offsetHeight / 2);
+                var box_x = boll.offsetLeft + Math.floor(boll.offsetWidth / 2);
+                var box_y = boll.offsetTop + Math.floor(boll.offsetHeight / 2);
+                console.log(box_x,box_y)
+                //确定两点
+                //x公式
+                var dx = Math.abs(box_x - obj.x);
+                var dy = Math.abs(box_y - obj.y);
+                var dis = Math.floor(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
+                console.log(dis)
+                if (dis < 55) {
+                    console.log('crash');
+                    boll.style.background = 'green';
+                    alert('游戏结束 ! 共坚持'+this.num + '秒');
+                    window.location.reload()
+
+                } else {
+                    boll.style.background = 'red';
+                }
+
+            },
+            moveBoll: function (obj, boll) {
+
+                var self = this;
+                obj.timer = setInterval(function () {
+                    self.crashCheck(obj, boll);
+                    var newLeft = obj.ispeedX + obj.ball.offsetTop;
+                    var newTop = obj.ispeedY + obj.ball.offsetLeft;
+                    if (newTop > obj.iHeight - obj.ball.offsetHeight) {
+                        obj.ispeedY *= -1;
+                    }
+                    if (newTop < 0) {
+                        obj.ispeedY *= -1;
+                    }
+                    if (newLeft > obj.iWidth - obj.ball.offsetWidth) {
+                        obj.ispeedX *= -1;
+                    }
+                    if (newLeft < 0) {
+                        obj.ispeedX *= -1;
+                    }
+
+                    obj.ball.style.top = newLeft + 'px';
+                    obj.ball.style.left = newTop + 'px';
+
+
+                }, 50);
+            }
+        };
+        game.init();
+
+    })()
+
+</script>
+
+</html>

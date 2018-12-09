@@ -1,0 +1,96 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;    
+}
+body{
+    background:#f6f6f8;
+    font-size: 14px;
+}
+.search{
+    width: 250px;
+    height: 44px;
+    background: #ffffff;
+    margin: 100px auto; 
+}
+.citySelect{
+    width: 100px;
+    height: 42px;
+    position: relative;
+    cursor: pointer;
+}
+.citySelect span{
+    display:block;
+    width: 70px;
+    font-size: 13px;
+    padding: 10px 0 0 10px;
+
+}
+.citySelect i{
+    /* display:inline-block; */
+    width: 16px;
+    height: 16px;
+    background: url(../images/icons.png) 0 -2044px no-repeat;
+    /* background: url(../images/icons.png) 0 -2067px no-repeat; */
+    position: absolute;
+    top:15px;
+    right: 7px;
+}
+/* .cityBac{
+    background: #f6f6f8;
+} */
+
+.drapDown div{
+    width:120px;
+    height:300px;
+    float: left;
+    display: none;
+    /* margin-right: 5px; */
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+.drapDown div.cityBac{
+ width: 130px;
+}
+.drapDown div ul{
+    width: 100%;
+    height: 300px;
+   overflow: scroll;
+   background: #ffffff;
+}
+.drapDown div.proBac ul li{
+    width: 120px;
+    height: 50px;
+    padding-left: 20px;
+    color: #9fa3b0;
+    background: #ffffff;
+    cursor: pointer;
+    line-height: 50px;
+}
+
+.drapDown div.cityBac ul{
+    background: #f6f6f8;;
+   }
+   .drapDown div.cityBac ul li{
+    width: 120px;
+    height: 50px;
+    padding-left: 20px;
+    color: #9fa3b0;
+    cursor: pointer;
+    line-height: 50px;
+}
+.drapDown div ul::-webkit-scrollbar{/*滚动条整体样式*/
+    width:5px;/*高宽分别对应横竖滚动条的尺寸*/
+    height: 0;
+}
+.drapDown div ul::-webkit-scrollbar-thumb{/*滚动条里面小方块*/
+    border-radius: 2px;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.2);/*内投影*/
+    background: #d1d4db;
+}
+.drapDown div ul::-webkit-scrollbar-track{/*滚动条里的轨道*/
+    box-shadow: none;
+    border-radius: 0px;
+}
+.drapDown div ul li:hover{
+    background-color:#f1f3f6;
+}
