@@ -1,0 +1,142 @@
+*{
+    margin:0;
+    padding:0;
+}
+html,body{
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+.wrapper{
+    position: relative;
+    width:100%;
+    height:100%;
+    background-color: #e74c3c;
+    background-image:url('./img/bg.png');
+    background-repeat: repeat-x;
+    background-position: 100% 100%;
+}
+.box{
+    width: 300px;
+    height: 255px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -150px;
+    z-index: 10;
+    cursor: pointer;
+    /* border:1px solid #000; */
+    text-align: center;
+}
+.box .boxTop{
+    width:100%;
+    height:35%;
+    background-image: url('./img/hegai.png');
+    background-size:100% 100%; 
+}
+.box .boxBottom{
+    display: inline-block;
+    width:90%;
+    height:65%;
+    background-image: url('./img/hezi.png');
+    background-size:100% 100%; 
+    color:#fff;
+  
+}
+.shake.box {
+	animation: shake 0.5s linear infinite forwards;
+}
+.box.shake .boxTop{
+	animation: shake 0.5s 0.1s linear infinite forwards;
+}
+.fly .boxTop{
+    animation: flyUp 0.4s ease-out forwards;
+}
+.fly .boxBottom{
+	animation: fallDown 0.2s 0.05s ease-in forwards;
+}
+@keyframes flyUp {
+	75% { opacity: 1;}
+	100% { transform: translateY(-1000px) rotate(20deg); opacity: 0;}
+}
+@keyframes fallDown {
+	75% { opacity: 1;}
+	100% { transform: translateY(100%); opacity: 0;}
+}
+.bell{
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-top:-225px;
+    margin-left:-275px;
+    width:550px;
+    height:450px;
+    /* bordeR:1px solid #000; */
+    background:url('./img/lingdang.png') no-repeat;
+    opacity: 0; 
+}
+.show .bell{
+    opacity: 1;
+    transition:all 0.7s ease-in;
+}
+.merry{
+    position: absolute;
+    left:0;
+    top:25%;
+    width:100%;
+    height:100px;
+    /* bordeR:1px solid #000; */
+    text-align: center;
+}
+.christmas{
+    position: absolute;
+    width:100%;
+    height:100px;
+    left:0;
+    top:50%;
+    /* bordeR:1px solid #000; */
+    text-align: center;
+}
+.con{
+    display:inline-block;
+}
+.con span{
+    display:inline-block;
+    opacity: 0;
+    font-size:70px;
+    color:#2c3e50;
+    text-shadow: 5px 5px 0 #ca3121;
+    margin:20px;
+}
+
+.show .con span{
+    opacity: 1;
+    transition:all 1s 0.5s ease-in;
+}
+
+.show .con span{
+	animation: shake 0.5s 0s linear infinite forwards;
+}
+
+.show .con span:nth-child(even){
+    animation-duration: 1s;
+}
+@keyframes shake {
+	25% { transform: rotate(4deg); }
+	75% { transform: rotate(-2deg); }
+}
+.snow {
+    position: fixed;
+    top: -50px;
+    animation: drop ease-in-out infinite;
+}
+@keyframes drop {
+    0% {
+        transform: translate(0px, -50px);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0px, 750px);
+        opacity: 0.2;
+    }
+}

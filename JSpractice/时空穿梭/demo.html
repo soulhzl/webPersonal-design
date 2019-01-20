@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #myCanvas {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        var myCanvas = document.getElementById('myCanvas');
+        var ctx = myCanvas.getContext("2d");
+        var starlist = [];
+        function init() {
+            // 设置canvas区域的范围为整个页面
+            myCanvas.width = window.innerWidth;
+            myCanvas.height = window.innerHeight;
+        };
+        init();
+        // 监听屏幕大小改变 重新为canvas大小赋值
+        window.onresize = init;
+
+        var list = [];
+        // 将页面上每一个小圆点的信息存在list数组中
+        // 数组中的每一位是一个对象  对象中存着每一个小点的信息
+        // 利用构造函数生成数组
+
+        function Star(x, y, radius, disX, disY) {
+            // 将传入的参数设置为对象的属性
+            // 位置坐标
+            this.x = x;
+            this.y = y;
+            // 半径
+            this.radius = radius;
+            // 变化距离
+            this.disX = disX;
+            this.disY = disY;
+        }
+
+        for (var i = 0; i < 800; i++) {
+            // 设置位随机值
+            var x = Math.random() * myCanvas.width;
+            var y = Math.random() * myCanvas.height;
+            var radius = Math.random() * 2;
+            var disX = x - myCanvas.width / 2;
+            var disY = y - myCanvas.height / 2;
+            // 每一个的信息存在对象中  所有小点存在list数组中
+            list.push(new Star(x, y, radius, disX, disY));
+        }
+
+        // 绘制并且运动函数
+        function animate() {
+            // 在每次渲染前清除一下屏幕
+            ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+            // 下一次渲染  根据存放在数组中的信息进行画小星星
+            for (var i = 0; i < 800; i++) {
+                // 取出每一个信息点信息
+                var a = list[i];
+
+                // a的坐标在改变  根据disx disy进行改变  /50改变值设置的小一点
+                a.x += a.disX / 50;
+                a.y += a.disY / 50;
+
+                // 如果小圆点运动到边界之外
+                if (a.x < 0 || a.y < 0 || a.x > myCanvas.width || a.y > myCanvas.height) {
+                    // 重新出现一个小星星的位置
+                    a.x = Math.random() * myCanvas.width;
+                    a.y = Math.random() * myCanvas.height;
+                    // 同时根据 当前新出现的位置设置移动距离
+                    a.disX = a.x - myCanvas.width / 2;
+                    a.disY = a.y - myCanvas.height / 2;
+                }
+
+                // 开始画每一个点
+                ctx.beginPath();
+                // 设置填充颜色
+                ctx.fillStyle = "#B200FF";
+                // 每一小星星为一个小圆
+                ctx.arc(a.x, a.y, a.radius, 0, Math.PI * 2, false);
+                // 进行填充
+                ctx.fill();
+            }
+            // 不断绘制canvas  根据disx与disy的位置变化  更新坐标  视觉上位运动状态
+            setTimeout(animate, 40);
+        }
+        animate();
+    </script>
+</body>
+
+</html>
