@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="base.css">
+</head>
+<body>
+	{{ include './head.html'}}
+	<div>{{title}}</div>
+	<ul>
+		{{each list}}
+		<li>{{$index}} {{$value}}</li>
+		{{/each}}
+	</ul>
+
+	<form action="/add" method="post">
+		<input type="input" name="name" />
+		<input type="submit" name="submit" value="提交" />
+	</form>
+
+	<button id="btn">请求数据</button>
+	<script type="text/javascript">
+		document.getElementById('btn').onclick = function(){
+		var xhr = new XMLHttpRequest();
+
+		xhr.open('get', 'http://localhost:3333/news?id=233&asd=哈哈', true);
+		xhr.onreadystatechange = function(){
+			if (xhr.status == 200 && xhr.readyState == 4) {
+				console.log(xhr.responseText);
+			}
+		};
+		xhr.send();
+	};
+	</script>
+</body>
+</html>
