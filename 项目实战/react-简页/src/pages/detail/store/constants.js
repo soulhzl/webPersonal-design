@@ -1,0 +1,1 @@
+export const INIT_DETAIL_LIST = 'detail/INIT_DETAIL_LIST'

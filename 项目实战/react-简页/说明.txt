@@ -1,0 +1,167 @@
+一.redux
+1.创建store
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import reducer from './reducer';
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+export default store;
+（redux-thunk）actionCreator只能返回对象。导入此后可以返回可执行函数
+
+2.创建组件reducer
+import * as constants from './constants';
+import { fromJS } from 'immutable';
+const defaultState = fromJS({
+数据名： 数据
+});
+export default (state = defaultState, action) => {
+switch(action.type){
+case constants.常量名:
+return state.set('组件', action.传来的变量);
+default:
+return state;
+}
+};
+
+3.导出组件里的store
+import reducer from './reducer';
+import * as actionCreators from './actionCreators';
+import * as constants from './constants';
+export { reducer, actionCreators, constants };
+
+4.创建reducer
+import { combineReducers } from 'redux-immutable';
+import { reducer as headerReducer } from '../common/header/store';
+const reducer = combineReducers({
+header: headerReducer
+});
+export default reducer;
+combineReducers用于合并各组件的reducer
+
+5.创建actionCreator
+用于导出行为
+export const 行为名 = () => {
+return{
+type: constants.常量名
+}
+};
+
+6.创建constants
+用于创建常量
+例如：export const 常量名 = '组件/常量名';
+
+
+二.react-redux
+1.import { Provider } from 'react-redux';
+引入Provider包裹元素
+
+2.import { connect } from 'react-redux';
+用export导出用connect连接的组件
+例如：export default connect(mapState, mapDispatch)(Header);
+mapState返回redux存储的数据
+例如：const mapState = (state) => {
+return {
+名称: state.getIn(['组件', '数据名'])
+};
+};
+mapDispatch返回action
+例如：
+const mapDispatch = (dispatch) => {
+return {
+函数名(){
+执行体
+}
+};
+};
+
+
+三.react-router-dom
+1.import { BrowserRouter, Route } from 'react-router-dom';
+引入BrowserRouter包裹不同的路由
+例如：<BrowserRouter>
+<Fragment>
+<Header />
+<Route path='/' exact component={Home}/>
+<Route path='/login' exact component={Login}/>
+<Route path='/detail/:id' exact component={Detail}/>
+</Fragment>
+</BrowserRouter>
+
+2.import { Link } from 'react-router-dom';
+引入Link包裹元素，前往不同路由
+<Link to="对应Route的path"></Link>
+
+3.import { Redirect } from 'react-router-dom';
+引入Redirect元素，重定向回指定路由
+<Redirect to='对应Route的path'/>
+
+
+四.immutable
+1.import { fromJS } from 'immutable';
+引入fromJS包裹数据，若使用默认值时用其包裹，则传给reducer时也要包裹
+例如：
+const defaultState = fromJS({
+数据名： 数据
+});
+const initList = (data) => ({
+type: constants.常量名,
+数据名：fromJS(数据),
+});
+
+2.获取其包裹的数据时用getIn,设置数据时用set,也有merge方法
+例如：state.getIn(['组件', '数据名'])
+state.set('数据名', action.传来的变量)
+state.merge({
+数据名: action.传来的变量,
+数据名: action.传来的变量
+})
+
+
+五.axios
+1.异步获取数据
+例如：axios.get('URL').then((res) => {
+执行体
+}).catch(() => {
+console.log('error');
+});
+
+
+六.react-transition-group
+1.import { CSSTransition } from 'react-transition-group';
+动画，参考github
+
+
+七.styled-components
+1.import { createGlobalStyle } from 'styled-components';
+export const GlobalStyle = createGlobalStyle`CSS代码`;
+创建全局样式，然后将组建导出，在总组件下引入调用即可
+
+2.import styled from 'styled-components';
+export const HomeWrapper = styled.div`CSS代码`;
+创建组件样式，使用方法与全局样式一样
+
+
+八.react-loadable
+1.优化，防止全部加载延迟展示
+import React from 'react';
+import Loadable from 'react-loadable';
+const LoadableComponent = Loadable({
+  loader: () => import('./'),
+  loading(){
+  	return <div>临时内容</div>
+  }
+});
+export default () => <LoadableComponent/>;
+
+2.import { withRouter } from 'react-router-dom';
+export default connect(mapState, mapDispatch)(withRouter(Detail));
+导入时倒入loadable.js使用即可
+
+
+九.iconfont使用
+1.将eot,svg,ttf,woff复制进statics然后复制css里的代码，再创建全局样式，把css代码放进去导入用即可
+
+
+十.优化
+this.props.变量将全部转换为const {变量} = this.props;
+extends PureComponent优化

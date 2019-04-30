@@ -1,0 +1,75 @@
+{"success": true, "data": {
+	"navList": [{
+		"id": 1,
+		"svgFirst": "<use xlink:href='#icon-rat'></use>",
+		"text": "鼠",
+		"svgSecond": "<use xlink:href='#icon-rat_zi'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180404/1522846291654.jpg"
+	},{
+		"id": 2,
+		"svgFirst": "<use xlink:href='#icon-ox'></use>",
+		"text": "牛",
+		"svgSecond": "<use xlink:href='#icon-ox_chou'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180404/1522846306937.jpg"
+	},{
+		"id": 3,
+		"svgFirst": "<use xlink:href='#icon-tiger'></use>",
+		"text": "虎",
+		"svgSecond": "<use xlink:href='#icon-tiger_yin'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180404/1522846333406.jpg"
+	},{
+		"id": 4,
+		"svgFirst": "<use xlink:href='#icon-rabbit'></use>",
+		"text": "兔",
+		"svgSecond": "<use xlink:href='#icon-rabbit_mao'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932004698.jpg"
+	},{
+		"id": 5,
+		"svgFirst": "<use xlink:href='#icon-dragon'></use>",
+		"text": "龙",
+		"svgSecond": "<use xlink:href='#icon-dragon_chen'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932059255.jpg"
+	},{
+		"id": 6,
+		"svgFirst": "<use xlink:href='#icon-snake'></use>",
+		"text": "蛇",
+		"svgSecond": "<use xlink:href='#icon-snake_si'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932092777.jpg"
+	},{
+		"id": 7,
+		"svgFirst": "<use xlink:href='#icon-horse'></use>",
+		"text": "马",
+		"svgSecond": "<use xlink:href='#icon-horse_wu'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932134045.jpg"
+	},{
+		"id": 8,
+		"svgFirst": "<use xlink:href='#icon-goat'></use>",
+		"text": "羊",
+		"svgSecond": "<use xlink:href='#icon-goat_wei'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932302768.jpg"
+	},{
+		"id": 9,
+		"svgFirst": "<use xlink:href='#icon-monkey'></use>",
+		"text": "猴",
+		"svgSecond": "<use xlink:href='#icon-monkey_shen'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932315893.jpg"
+	},{
+		"id": 10,
+		"svgFirst": "<use xlink:href='#icon-rooster'></use>",
+		"text": "鸡",
+		"svgSecond": "<use xlink:href='#icon-rooster_you'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932350549.jpg"
+	},{
+		"id": 11,
+		"svgFirst": "<use xlink:href='#icon-dog'></use>",
+		"text": "狗",
+		"svgSecond": "<use xlink:href='#icon-dog_xu'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932386329.jpg"
+	},{
+		"id": 12,
+		"svgFirst": "<use xlink:href='#icon-boar'></use>",
+		"text": "猪",
+		"svgSecond": "<use xlink:href='#icon-boar_hai'></use>",
+		"bgSrc": "http://img4.a0bi.com/upload/ttq/20180405/1522932397024.jpg"
+	}]
+}}
