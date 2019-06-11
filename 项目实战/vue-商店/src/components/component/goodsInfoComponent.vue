@@ -1,7 +1,7 @@
 <template>
     <div class="goods-info">
         <div class="goods-image">
-            <img v-lazy="goodsImage" width="90%" />
+            <img v-lazy="goodsImage" />
         </div>
         <div class="goods-name">{{goodsName}}</div>
         <div class="goods-price">￥{{goodsPrice | moneyFilter }}</div>
@@ -23,9 +23,13 @@ export default {
 
 <style scoped>
 .goods-name{
-    padding: 0 0.5rem;
     overflow: hidden;
+    padding: 0 0.5rem;
     text-overflow: ellipsis;
     white-space:nowrap; 
+}
+
+.goods-image img{
+    width: 90%;
 }
 </style>

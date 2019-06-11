@@ -102,28 +102,26 @@ export default {
 			return toMoney(money)
 		}
 	},
-	created(){
+	async created(){
 		// 加载显示数据
-		axios({
+		let res = await axios({
 			url: url.getShoppingMallInfo,
 			method: 'get'
-		}).then((res) => {
-			if (res.status == 200) {
-				const data = res.data.data;
-				this.carouselImg = data.slides
-				this.category = data.category
-				this.adBanner = data.advertesPicture.PICTURE_ADDRESS
-				this.recommend = data.recommend
-				this.floorName = data.floorName
-				this.floor1 = data.floor1
-				this.floor2 = data.floor2
-				this.floor3 = data.floor3
-				this.hotGoods = data.hotGoods
-				console.log(data)
-			}
-		}).catch((err) => {
-			console.log(err)
 		})
+
+		if (res.status == 200) {
+			const data = res.data.data;
+			this.carouselImg = data.slides
+			this.category = data.category
+			this.adBanner = data.advertesPicture.PICTURE_ADDRESS
+			this.recommend = data.recommend
+			this.floorName = data.floorName
+			this.floor1 = data.floor1
+			this.floor2 = data.floor2
+			this.floor3 = data.floor3
+			this.hotGoods = data.hotGoods
+		}
+
 	}
 }
 </script>
@@ -198,6 +196,12 @@ export default {
 	text-align: center;
 	font-size:0.85rem;
 	color: #1CA1E2;
+}
+
+.hot-goods{
+    overflow: hidden;
+	height: 113rem;
+    background-color: #fff;
 }
 
 .recommend-area{

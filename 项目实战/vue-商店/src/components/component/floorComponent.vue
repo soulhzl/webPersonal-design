@@ -57,8 +57,8 @@
 .floor-anomaly{
 	display: flex;
 	flex-direction: row;
-	background-color: #fff;
 	border-bottom: 1px solid #ddd;
+	background-color: #fff;
 }
 
 .floor-anomaly div{

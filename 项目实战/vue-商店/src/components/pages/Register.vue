@@ -35,8 +35,8 @@
 
 <script>
 import axios from 'axios'
-import url from '@/serviceAPI.config'
 import { Toast } from 'vant'
+import url from '@/serviceAPI.config'
 export default{
 	name: 'register',
 	data(){
@@ -52,28 +52,26 @@ export default{
 		goBack(){
 			this.$router.go(-1)
 		},
-		registerUser(){
+		async registerUser(){
 			this.openLoading = true
-			axios({
+			let res = await axios({
 				url: url.registerUser,
 				method: 'post',
 				data: {
 					username: this.username,
 					password: this.password
 				}
-			}).then((res) => {
-				if (res.data.code == 200) {
-					Toast.success('注册成功')
-					this.openLoading = false
-					this.$router.push('/')
-				}else{
-					Toast.fail('注册失败')
-					this.openLoading = false
-				}
-			}).catch((err) => {
+			})
+
+			if (res.data.code == 200 && res.data.message != '注册失败') {
+				Toast.success('注册成功')
+				this.openLoading = false
+				this.$router.push('/')
+			}else{
 				Toast.fail('注册失败')
 				this.openLoading = false
-			})
+			}
+
 		},
 		checkForm(){
 			let isOK = true
@@ -93,7 +91,7 @@ export default{
 			return isOK
 		},
 		registerAction(){
-				this.checkForm() && this.registerUser()
+			this.checkForm() && this.registerUser()
 		}
 	}
 }
@@ -102,9 +100,9 @@ export default{
 <style scoped>
 .register-panel{
 	width:96%;
-	border-radius: 5px;
 	margin:20px auto;
 	padding-bottom:50px;
+	border-radius: 5px;
 }
 
 .register-button{

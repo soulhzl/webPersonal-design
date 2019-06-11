@@ -4,5 +4,10 @@ const URL = {
 	getShoppingMallInfo: BASEURL + 'ShoppingMall.json',
 	getGoodsInfo: BASEURL + 'ShoppingMall.json',
 	registerUser: BKBASEURL + 'user/register',
+	loginUser: BKBASEURL + 'user/login',
+	getDetailGoodsInfo: BKBASEURL + 'goods/getDetailGoodsInfo',
+	getCategoryList: BKBASEURL + 'goods/getCategoryList',
+	getCategorySubList: BKBASEURL + 'goods/getCategorySubList',
+	getGoodsListByCategorySubID: BKBASEURL + 'goods/getGoodsListByCategorySubID'
 }
 module.exports = URL

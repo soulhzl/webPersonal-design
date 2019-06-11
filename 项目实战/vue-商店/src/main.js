@@ -11,12 +11,18 @@ import {
 	Lazyload,
 	List,
 	Field,
-	NavBar
+	NavBar,
+	Tab,
+	Tabs,
+	PullRefresh,
+	Tabbar,
+	TabbarItem,
+	Stepper
 } from 'vant'
 import './assets/iconfont.css'
 
 Vue.config.productionTip = false
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar)
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Tab).use(Tabs).use(PullRefresh).use(Tabbar).use(TabbarItem).use(Stepper)
 
 new Vue({
 	router,
