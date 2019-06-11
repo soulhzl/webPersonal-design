@@ -3,6 +3,9 @@
 		<div class="navbar-div">
 			<van-nav-bar title="购物车" /> 
 		</div>
+		<div class="card-title">
+			<van-button size="small" type="danger" @click="clearCart" plain>清空购物车</van-button>
+		</div>
 		<div class="cart-list">
 			<div class="pang-row" v-for="(item,index) in cartInfo" :key="index">
 				<div class="pang-img"><img :src="item.image" width="100%" /></div>
@@ -28,9 +31,6 @@
 		</div>
 		<div class="totalMoney">
 			商品总价：￥ {{totalMoney | moneyFilter}}
-		</div>
-		<div class="card-title">
-			<van-button size="small" type="danger" @click="clearCart" plain>清空购物车</van-button>
 		</div>
 	</div>
 </template>

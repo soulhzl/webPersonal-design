@@ -17,12 +17,14 @@ import {
 	PullRefresh,
 	Tabbar,
 	TabbarItem,
-	Stepper
+	Stepper,
+	CellGroup,
+	Cell
 } from 'vant'
 import './assets/iconfont.css'
 
 Vue.config.productionTip = false
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Tab).use(Tabs).use(PullRefresh).use(Tabbar).use(TabbarItem).use(Stepper)
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Tab).use(Tabs).use(PullRefresh).use(Tabbar).use(TabbarItem).use(Stepper).use(Cell).use(CellGroup)
 
 new Vue({
 	router,

@@ -6,7 +6,8 @@ import Login from './components/pages/Login.vue'
 import Goods from './components/pages/Goods.vue'
 import CategoryList from './components/pages/CategoryList.vue'
 import Cart from './components/pages/Cart.vue'
-import Main from './components/pages/Main.vue'
+import Member from './components/pages/Member.vue'
+import Home from './components/pages/Home.vue'
 
 Vue.use(Router)
 
@@ -14,9 +15,12 @@ export default new Router({
 	mode: 'history',
 	base: process.env.BASE_URL,
 	routes: [{
+		path: '/',
+		redirect: '/member'
+	}, {
 		path: '/home',
-		name: 'Main',
-		component: Main,
+		name: 'Home',
+		component: Home,
 		children: [{
 			path: '/',
 			name: 'ShoppingMall',
@@ -29,6 +33,10 @@ export default new Router({
 			path: '/cart',
 			name: 'Cart',
 			component: Cart
+		}, {
+			path: '/member',
+			name: 'Member',
+			component: Member
 		}]
 	}, {
 		path: '/register',
