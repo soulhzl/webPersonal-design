@@ -44,7 +44,7 @@ export default{
 	name: 'goods',
 	data(){
 		return {
-			goodsId: '775e575ce28a4f89b1dfe2c99eb08ae7',
+			goodsId: '',
 			goodsInfo: {}
 		}
 	},

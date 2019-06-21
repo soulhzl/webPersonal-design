@@ -1,5 +1,5 @@
 <template>
-    <div class="goods-info">
+    <div class="goods-info" @click="clickGoods(goodsId)">
         <div class="goods-image">
             <img v-lazy="goodsImage" />
         </div>
@@ -12,12 +12,17 @@
 import {toMoney} from '@/filter/moneyFilter.js'
 export default {
    name: 'goodsInfo',
-   props:['goodsImage','goodsName','goodsPrice'],
-   filters:{
+   props:['goodsId','goodsImage','goodsName','goodsPrice'],
+   filters: {
     moneyFilter(money){
         return toMoney(money)
-    }  
+    }
 },
+methods: {
+    clickGoods(goodsId){
+        this.$router.push({name:'Goods',params:{goodsId}})
+    }
+}
 }
 </script>
 

@@ -1,5 +1,8 @@
 const BASEURL = "http://localhost:8080/"
-const BKBASEURL = "http://localhost:3000/"
+const BKBASEURL = "http://localhost:8888/"
+// 服务器
+/*const BASEURL = "http://47.107.40.84/"
+const BKBASEURL = "http://47.107.40.84:8888/"*/
 const URL = {
 	getShoppingMallInfo: BASEURL + 'ShoppingMall.json',
 	getGoodsInfo: BASEURL + 'ShoppingMall.json',

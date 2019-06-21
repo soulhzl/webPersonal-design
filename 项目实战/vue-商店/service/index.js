@@ -24,4 +24,4 @@ router.use('/goods', goodsrouter.routes())
 // 路由运用
 app.use(router.routes()).use(router.allowedMethods())
 
-app.listen(3000)
+app.listen(8888)

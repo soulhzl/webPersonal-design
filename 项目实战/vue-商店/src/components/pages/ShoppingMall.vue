@@ -14,14 +14,14 @@
 		<!-- carousel-area -->
 		<div class="swiper-area">
 			<van-swipe :autoplay='1000'>
-				<van-swipe-item v-for='(item, index) in carouselImg' :key='index'>
+				<van-swipe-item v-for='(item, index) in carouselImg' :key='index' @click='clickGoods(item.goodsId)'>
 					<img v-lazy="item.image" alt='' class="carousel-img">
 				</van-swipe-item>
 			</van-swipe>
 		</div>
 		<!-- type-bar-area -->
 		<div class="type-bar">
-			<div v-for='(cate, index) in category' :key='index'>
+			<div v-for='(cate, index) in category' :key='index' @click='clickCategory(cate.mallCategoryId)'>
 				<img v-lazy='cate.image' class="category-img" alt=''/>
 				<span class="category-word">{{cate.mallCategoryName}}</span>
 			</div>
@@ -36,7 +36,7 @@
 			<div class="recommend-body">
 				<swiper :options='swiperOption'>
 					<swiper-slide v-for="(item, key) in recommend" :key="key">
-						<div class="recommend-item">
+						<div class="recommend-item" @click='clickGoods(item.goodsId)'>
 							<img v-lazy="item.image" alt="" class="recommend-img" >
 							<div>{{item.goodsName}}</div>
 							<div>￥{{item.price | moneyFilter}} (￥{{item.mallPrice | moneyFilter}})</div>
@@ -56,7 +56,7 @@
 				<van-list>
 					<van-row gutter="20">
 						<van-col span="12" v-for="( item, index) in hotGoods" :key="index">
-							<goods-info :goodsImage="item.image" :goodsName="item.name" :goodsPrice="item.price"></goods-info>
+							<goods-info :goodsId="item.goodsId" :goodsImage="item.image" :goodsName="item.name" :goodsPrice="item.price"></goods-info>
 						</van-col>
 					</van-row>
 				</van-list>
@@ -74,7 +74,7 @@ import goodsInfo from '../component/goodsInfoComponent'
 import {toMoney} from '@/filter/moneyFilter'
 import url from '@/serviceAPI.config'
 export default {
-	name: 'home',
+	name: 'shoppingmall',
 	data (){
 		return {
 			swiperOption: {
@@ -100,6 +100,14 @@ export default {
 	filters:{
 		moneyFilter(money){
 			return toMoney(money)
+		}
+	},
+	methods: {
+		clickGoods(goodsId){
+			this.$router.push({name:'Goods',params:{goodsId}})
+		},
+		clickCategory(categoryId){
+			this.$router.push({name:'CategoryList',params:{categoryId}})
 		}
 	},
 	async created(){

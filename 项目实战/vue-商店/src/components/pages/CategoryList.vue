@@ -59,8 +59,10 @@ export default{
 			isRefresh:false,
 			page: 1,
 			goodList:[],  
+			categoryId:1,
 			categorySubId:'',
-			errorImg:'this.src="' + require('@/assets/images/errorimg.png') + '"'
+			errorImg:'this.src="' + require('@/assets/images/errorimg.png') + '"',
+			goodAxio: true
 		}
 	},
 	methods: {
@@ -72,7 +74,7 @@ export default{
 
 			if (res.data.code == 200 && res.data.message != '获取不到数据') {
 				this.category = res.data.message
-				this.getCategorySubByCategoryId(this.category[0].ID)
+				this.getCategorySubByCategoryId(this.categoryId)
 			}else{
 				Toast('服务器错误，数据取得失败')
 			}
@@ -94,20 +96,23 @@ export default{
 			}
 		},
 		async getGoodList(){
-			let res = await axios({
-				url: url.getGoodsListByCategorySubID,
-				method: 'post',
-				data: {categorySubId:this.categorySubId,page:this.page}
-			})
+			if (this.goodAxio) {
+				this.goodAxio = false
+				let res = await axios({
+					url: url.getGoodsListByCategorySubID,
+					method: 'post',
+					data: {categorySubId:this.categorySubId,page:this.page}
+				})
 
-			if (res.data.code == 200 && res.data.message != '获取不到数据' && res.data.message.length) {
-				this.page++
-				this.goodList = this.goodList.concat(res.data.message)
-			}else{
-				this.finished = true
+				if (res.data.code == 200 && res.data.message != '获取不到数据' && res.data.message.length) {
+					this.page++
+					this.goodList = this.goodList.concat(res.data.message)
+				}else{
+					this.finished = true
+				}
+				this.loading = false
+				this.goodAxio = true
 			}
-			this.loading = false
-
 		},
 		clickCategory(index, categoryId){
 			this.categoryIndex = index
@@ -153,6 +158,8 @@ export default{
 		this.$refs.listdiv.style.height = (winHeight - 140) + 'px'
 	},
 	created(){
+		this.categoryId = this.$route.params.categoryId ? this.$route.params.categoryId : 1
+		this.categoryIndex = this.$route.params.categoryId ? this.$route.params.categoryId - 1 : 0
 		this.getCategory()
 	}
 }
