@@ -50,6 +50,14 @@ module.exports = {
                 pathRewrite: {
                     '^/user': ''
                 }
+            },
+            '/goodsinfo': {
+                target: 'http://localhost:8888/goodsinfo/',
+                ws: true,
+                changOrigin: true,
+                pathRewrite: {
+                    '^/goodsinfo': ''
+                }
             }
         },
         before: app => {}

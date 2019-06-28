@@ -10,11 +10,11 @@ mongoose.connect(DB_URL, {
 const models = {
 	user: {
 		'name': {
-			type: String,
+			'type': String,
 			'require': true
 		},
 		'password': {
-			type: String,
+			'type': String,
 			'require': true
 		},
 		'email': {
@@ -31,6 +31,40 @@ const models = {
 		'date': {
 			'type': Date,
 			'default': Date.now
+		}
+	},
+	goods: {
+		'name': {
+			'type': String,
+			'require': true
+		},
+		'bgimg': {
+			'type': String,
+			'require': true
+		},
+		'carouselimg': {
+			'type': Array,
+			'require': true
+		},
+		'price': {
+			'type': Number,
+			'require': true
+		},
+		'desc': {
+			'type': String,
+			'require': true
+		},
+		'detail': {
+			'type': Array,
+			'require': true
+		},
+		'commet': {
+			'type': Number,
+			'require': true
+		},
+		'sort': {
+			'type': String,
+			'require': true
 		}
 	}
 }

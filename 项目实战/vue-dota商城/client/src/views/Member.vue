@@ -18,7 +18,7 @@ export default{
 	name: 'member',
 	data(){
 		return {
-			memberImg: "http://localhost:8080/errorimg.png"
+			memberImg: "http://localhost:8080/img/errorimg.png"
 		}
 	}
 }

@@ -4,6 +4,7 @@ const bodyParser = require('koa-bodyparser')
 const passport = require('koa-passport')
 
 const userrouter = require('./router/user')
+const goodsrouter = require('./router/goodsinfo')
 
 const port = process.env.PORT || 8888
 
@@ -19,6 +20,7 @@ app.use(passport.initialize())
 require('./config/passport')(passport)
 
 router.use('/user', userrouter.routes())
+router.use('/goodsinfo', goodsrouter.routes())
 
 // 路由运用
 app.use(router.routes()).use(router.allowedMethods())

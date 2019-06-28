@@ -72,7 +72,7 @@ export default{
 					duration: 1000,
 					background: '#1989fa'
 				});
-				this.$router.push('/home')
+				this.$router.push('/index')
 			}else{
 				Notify({
 					message: data.msg,

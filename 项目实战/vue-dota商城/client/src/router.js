@@ -46,10 +46,10 @@ const router = new Router({
     component: () =>
       import ('./views/Register.vue')
   }, {
-    path: '/goods',
-    name: 'goods',
+    path: '/goodsmess',
+    name: 'goodsmess',
     component: () =>
-      import ('./views/Goods.vue')
+      import ('./views/GoodsMess.vue')
   }, {
     path: '/categorypage',
     name: 'categorypage',
@@ -60,6 +60,11 @@ const router = new Router({
     name: 'address',
     component: () =>
       import ('./views/Address.vue')
+  }, {
+    path: '/addaddress',
+    name: 'addaddress',
+    component: () =>
+      import ('./views/AddAddress.vue')
   }, {
     path: '/setting',
     name: 'setting',

@@ -7,15 +7,15 @@
 		/>
 		<div class="cart-area">
 			<van-card v-for="(item, k) in cartList" :key='k'
-			num="2"
+			:num="item.num"
 			:price="item.price | fixedMoney"
 			:desc="item.desc"  
-			:title="item.title"
+			:title="item.name"
 			:thumb="item.img"
 			/>
 		</div>
 		<van-submit-bar
-		:price="3050"
+		:price="totalPrice"
 		button-text="提交订单"
 		/>
 	</div>
@@ -27,7 +27,8 @@ export default{
 	name: 'cart',
 	data(){
 		return {
-			cartList: [{img: 'http://localhost:8080/good-1.jpg', price: 2, desc: '描述1', title: '标题1'}, {img: 'http://localhost:8080/good-2.jpg', price: 3, desc: '描述2', title: '标题2'}]
+			cartList: [],
+			totalPrice: 0
 		}
 	},
 	methods: {
@@ -39,6 +40,17 @@ export default{
 		fixedMoney(money){
 			return moneyFilter(money)
 		}
+	},
+	mounted(){
+		// 获取购物车列表
+		let cart = JSON.parse(localStorage.cart)
+		this.cartList = cart
+
+		for(let i in this.cartList){
+			this.totalPrice += this.cartList[i].num * this.cartList[i].price
+		}
+
+		this.totalPrice *= 100
 	}
 }
 </script>

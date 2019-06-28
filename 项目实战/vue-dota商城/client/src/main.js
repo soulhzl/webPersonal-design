@@ -21,7 +21,11 @@ import {
 	GoodsActionButton,
 	Tab,
 	Tabs,
-	Rate
+	Rate,
+	AddressList,
+	AddressEdit,
+	CouponList,
+	Sku
 } from 'vant'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import App from './App.vue'
@@ -35,7 +39,7 @@ import './assets/styles/iconfont/iconfont.js'
 Vue.config.productionTip = false
 fastClick.attach(document.body) //移动点击延迟事件
 Vue.prototype.$axios = axios //http请求
-Vue.use(Field).use(Cell).use(CellGroup).use(Button).use(NavBar).use(Tabbar).use(TabbarItem).use(Row).use(Col).use(Icon).use(Swipe).use(SwipeItem).use(Lazyload).use(SubmitBar).use(Card).use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton).use(Tab).use(Tabs).use(Rate).use(VueAwesomeSwiper) //vant组件引入
+Vue.use(Field).use(Cell).use(CellGroup).use(Button).use(NavBar).use(Tabbar).use(TabbarItem).use(Row).use(Col).use(Icon).use(Swipe).use(SwipeItem).use(Lazyload).use(SubmitBar).use(Card).use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton).use(Tab).use(Tabs).use(Rate).use(AddressList).use(AddressEdit).use(CouponList).use(Sku).use(VueAwesomeSwiper) //vant组件引入
 
 new Vue({
 	router,

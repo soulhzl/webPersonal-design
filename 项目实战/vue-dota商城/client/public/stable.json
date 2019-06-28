@@ -1,0 +1,64 @@
+{
+	"data": {
+		"categoryList": [{
+			"name": "特别限量",
+			"img": "http://localhost:8080/img/category-2.jpg"
+		}, {
+			"name": "游戏手办",
+			"img": "http://localhost:8080/img/category-1.jpg"
+		}, {
+			"name": "毛绒玩具",
+			"img": "http://localhost:8080/img/category-3.jpg"
+		}, {
+			"name": "生活用品",
+			"img": "http://localhost:8080/img/category-4.jpg"
+		}],
+		"homeList": [{
+			"img": "http://localhost:8080/img/carousel-1.jpg",
+			"name": "炸弹人"
+		}, {
+			"img": "http://localhost:8080/img/carousel-2.jpg",
+			"name": "伐木机"
+		}],
+		"carouselList": [{
+			"img1": "http://localhost:8080/img/swiper-1.jpg",
+			"name1": "炸弹人",
+			"img2": "http://localhost:8080/img/swiper-2.jpg",
+			"name2": "衣服",
+			"img3": "http://localhost:8080/img/swiper-1.jpg",
+			"name3": "炸弹人"
+		}, {
+			"img1": "http://localhost:8080/img/swiper-2.jpg",
+			"name1": "衣服",
+			"img2": "http://localhost:8080/img/swiper-1.jpg",
+			"name2": "炸弹人",
+			"img3": "http://localhost:8080/img/swiper-2.jpg",
+			"name3": "衣服"
+		}],
+		"nowgoodsList": [{
+			"img": "http://localhost:8080/img/good-1.jpg",
+			"name": "扭蛋手办",
+			"price": 1
+		}, {
+			"img": "http://localhost:8080/img/good-2.jpg",
+			"name": "扭蛋",
+			"price": 2
+		}, {
+			"img": "http://localhost:8080/img/good-3.jpg",
+			"name": "TI玩偶",
+			"price": 3
+		}, {
+			"img": "http://localhost:8080/img/good-4.jpg",
+			"name": "雨伞",
+			"price": 4
+		}, {
+			"img": "http://localhost:8080/img/good-5.jpg",
+			"name": "女王",
+			"price": 5
+		}, {
+			"img": "http://localhost:8080/img/good-6.jpg",
+			"name": "龙骑",
+			"price": 6
+		}]
+	}
+}

@@ -11,7 +11,7 @@
 		<div class="swipe-area">
 			<van-swipe :autoplay="3000" :show-indicators="false" loop>
 				<van-swipe-item v-for="(image, index) in images" :key="index">
-					<router-link to="goods"><img v-lazy="image" alt="" /></router-link>
+					<router-link :to="{name: 'goodsmess', params: {name: image.name}}"><img v-lazy="image.img" alt="" /></router-link>
 				</van-swipe-item>
 			</van-swipe>
 		</div>
@@ -20,9 +20,9 @@
 			<swiper :options="swiperOption">
 				<swiper-slide v-for='(item, k) in carouselList' :key='k'>
 					<div>
-						<router-link to="goods"><img v-lazy="item.img1" alt='' class='new-goods-img'></router-link>
-						<router-link to="goods"><img v-lazy="item.img2" alt='' class='new-goods-img'></router-link>
-						<router-link to="goods"><img v-lazy="item.img3" alt='' class='new-goods-img'></router-link>
+						<router-link :to="{name: 'goodsmess', params: {name: item.name1}}"><img v-lazy="item.img1" alt='' class='new-goods-img'></router-link>
+						<router-link :to="{name: 'goodsmess', params: {name: item.name2}}"><img v-lazy="item.img2" alt='' class='new-goods-img'></router-link>
+						<router-link :to="{name: 'goodsmess', params: {name: item.name3}}"><img v-lazy="item.img3" alt='' class='new-goods-img'></router-link>
 					</div>
 				</swiper-slide>
 			</swiper>
@@ -31,7 +31,7 @@
 			<div class="now-title" :style="{backgroundImage: nowgoodsbg}">近期销售</div>
 			<van-row>
 				<van-col v-for='(item, k) in nowgoods' :key='k' span="12">
-					<router-link to="goods" tag="div">
+					<router-link :to="{name: 'goodsmess', params: {name: item.name}}" tag="div">
 						<img v-lazy="item.img" alt=''>
 						<div class="goods-name">{{item.name}}</div>
 						<div class="goods-price">￥{{item.price | fixedMoney}}</div>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import url from '@/serviceAPI.config.js'
 import { moneyFilter } from '../filter/moneyFilter'
 export default{
 	name: 'home',
@@ -50,14 +51,14 @@ export default{
 		return {
 			scrollTop: 0,
 			searchvalue: '',
-			images: ['http://localhost:8080/carousel-1.jpg', 'http://localhost:8080/carousel-2.jpg'],
+			images: [],
 			newgoodsbg: "url(" + require('../assets/images/bg-2.jpg') + ")",
 			nowgoodsbg: "url(" + require('../assets/images/bg-1.jpg') + ")",
 			swiperOption: {
 				freeMode: true
 			},
-			carouselList:[{img1: 'http://localhost:8080/swiper-1.jpg', img2: 'http://localhost:8080/swiper-2.jpg', img3: 'http://localhost:8080/swiper-1.jpg'}, {img1: 'http://localhost:8080/swiper-2.jpg', img2: 'http://localhost:8080/swiper-1.jpg', img3: 'http://localhost:8080/swiper-2.jpg'}],
-			nowgoods: [{img: 'http://localhost:8080/good-1.jpg', name: '冰女玩偶', price: 123},{img: 'http://localhost:8080/good-2.jpg', name: '扭蛋', price: 234},{img: 'http://localhost:8080/good-3.jpg', name: 'TI玩偶', price: 345},{img: 'http://localhost:8080/good-4.jpg', name: 'TI扭蛋', price: 456},{img: 'http://localhost:8080/good-5.jpg', name: '女王', price: 567},{img: 'http://localhost:8080/good-6.jpg', name: '龙骑', price: 678}]
+			carouselList:[],
+			nowgoods: []
 		}
 	},
 	filters: {
@@ -76,6 +77,14 @@ export default{
 			document.getElementById('app').scrollTop = vm.scrollTop
 		})
 	},
+	async mounted(){
+		// 初始化首页信息
+		let res = await this.$axios.get(url.home)
+		let data = res.data.data
+		this.images = data.homeList
+		this.carouselList = data.carouselList
+		this.nowgoods = data.nowgoodsList
+	}
 }
 </script>
 

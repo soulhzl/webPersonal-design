@@ -5,7 +5,7 @@
 		/>
 		<van-row>
 			<van-col v-for='(item, k) in category' :key='k' span="12" class="category-area">
-				<router-link to="categorypage" tag="div">
+				<router-link :to="{name: 'categorypage', params: {sort: item.name}}" tag="div">
 					<img v-lazy="item.img" alt=''>
 					<div class="category-name">{{item.name}}</div>
 				</router-link>
@@ -15,12 +15,19 @@
 </template>
 
 <script>
+import url from '@/serviceAPI.config.js'
 export default{
 	name: 'category',
 	data(){
 		return {
-			category: [{img: 'http://localhost:8080/category-2.jpg', name: '特别限量'}, {img: 'http://localhost:8080/category-1.jpg', name: '游戏手办'}, {img: 'http://localhost:8080/category-3.jpg', name: '毛绒玩具'}, {img: 'http://localhost:8080/category-4.jpg', name: '生活用品'}]
+			category: []
 		}
+	},
+	async mounted(){
+		// 初始化分类
+		let res = await this.$axios.get(url.home)
+		let data = res.data.data
+		this.category = data.categoryList
 	}
 }
 </script>
