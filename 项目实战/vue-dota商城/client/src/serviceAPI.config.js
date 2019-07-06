@@ -12,7 +12,12 @@ const URL = {
 	getGoodsInfo: BASEURL + 'goodsinfo/getGoodsInfo',
 	getGoodsInfoTest: '/goodsinfo/getGoodsInfo',
 	getCategoryGoods: BASEURL + 'goodsinfo/getCategoryGoods',
-	getCategoryGoodsTest: '/goodsinfo/getCategoryGoods'
-
+	getCategoryGoodsTest: '/goodsinfo/getCategoryGoods',
+	getSearchList: BASEURL + 'goodsinfo/getSearchList',
+	getSearchListTest: 'goodsinfo/getSearchList',
+	saveAddress: BASEURL + 'user/saveAddress',
+	saveAddressTest: 'user/saveAddress',
+	getAddressList: BASEURL + 'user/getAddressList',
+	getAddressListTest: 'user/getAddressList'
 }
 module.exports = URL

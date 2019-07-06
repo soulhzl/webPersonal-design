@@ -10,5 +10,10 @@ export default {
 		commit
 	}, user) => {
 		commit(Type.SET_USER, user)
+	},
+	updateAddress: ({
+		commit
+	}, addressDetail) => {
+		commit(Type.UPDATE_ADDRESS, addressDetail)
 	}
 }

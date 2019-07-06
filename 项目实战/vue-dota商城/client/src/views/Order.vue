@@ -28,6 +28,7 @@ export default{
 	},
 	methods: {
 		backRoute(){
+			// 返回路由
 			this.$router.go(-1)
 		}
 	}

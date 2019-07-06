@@ -14,5 +14,22 @@ export default {
 		} else {
 			state.user = {}
 		}
+	},
+	[Type.UPDATE_ADDRESS](state, addressDetail) {
+		if (addressDetail.addressDetail) {
+			if (addressDetail.addressDetail instanceof Array) {
+				state.address = addressDetail.addressDetail
+			} else {
+				if (addressDetail.operate == "edit") {
+					state.address.splice(addressDetail.index - 1, 1, addressDetail.addressDetail)
+				} else {
+					state.address.push(addressDetail.addressDetail)
+				}
+			}
+		} else {
+			if (addressDetail.operate == "delete") {
+				state.address.splice(addressDetail.index, 1)
+			}
+		}
 	}
 }

@@ -1,10 +1,22 @@
 <template>
 	<div class="home-wrapper">
+		<div v-if="searchgoods.length" class="search-result">
+			<div class="search-title">搜索结果如下：</div>
+			<van-row>
+				<van-col v-for='(item, k) in searchgoods' :key='k' span="12">
+					<router-link :to="{name: 'goodsmess', params: {name: item.name}}" tag="div">
+						<img v-lazy="item.bgimg" alt=''>
+						<div class="goods-name">{{item.name}}</div>
+						<div class="goods-price">￥{{item.price | fixedMoney}}</div>
+					</router-link>
+				</van-col>
+			</van-row>
+		</div>
 		<div class="search-bar">
 			<van-row>
-				<van-col span="2"><img src="../assets/images/logo.png" alt=""></van-col>
-				<van-col span="5"><img src="../assets/images/shop.png" alt=""></van-col>
-				<van-col span="13"><van-field left-icon="search" class="search-input" v-model="searchvalue" placeholder="请输入搜索内容" /></van-col>
+				<van-col span="2"><img src="../assets/images/logo.png" alt="" @click="clearSearch"></van-col>
+				<van-col span="5"><img src="../assets/images/shop.png" alt="" @click="clearSearch"></van-col>
+				<van-col span="13"><van-field left-icon="search" class="search-input" v-model="searchvalue" placeholder="请输入搜索内容" @input="inputSearch"/></van-col>
 				<van-col span="2"><router-link to="member"><van-icon name="contact" class="search-user"/></router-link></van-col>
 			</van-row>
 		</div>
@@ -58,12 +70,32 @@ export default{
 				freeMode: true
 			},
 			carouselList:[],
-			nowgoods: []
+			nowgoods: [],
+			searchgoods: []
 		}
 	},
 	filters: {
 		fixedMoney(money){
 			return moneyFilter(money)
+		}
+	},
+	methods: {
+		async inputSearch(){
+			// 查询搜索的内容
+			if (this.searchvalue) {
+				let res = await this.$axios.get(url.getSearchListTest + '?search=' + this.searchvalue)
+
+				if (res.data.code == 0 && res.data.data.length) {
+					this.searchgoods = res.data.data
+				}
+			}else{
+				this.searchgoods = ''
+			}
+		},
+		clearSearch(){
+			// 清空搜索内容
+			this.searchgoods = ''
+			this.searchvalue = ''
 		}
 	},
 	beforeRouteLeave (to, from, next) {
@@ -91,6 +123,8 @@ export default{
 <style scoped>
 /*搜索框*/
 .search-bar{
+	position: fixed;
+	z-index: 99;
 	overflow: hidden;
 	height: 1rem;
 	line-height: 1rem;
@@ -109,6 +143,23 @@ export default{
 	margin-left: 0.3rem;
 }
 
+.search-result{
+	position: fixed;
+	overflow: scroll;
+	z-index: 99;
+	top:1rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: white;
+}
+
+.search-title{
+	margin: 0.2rem;
+	font-size: 0.4rem;
+	color: grey;
+}
+
 .van-cell{
 	padding: 0 0.3rem;
 }
@@ -122,6 +173,7 @@ export default{
 .swipe-area img{
 	display: block;
 	width: 100%;
+	margin-top: 1rem;
 }
 
 .new-title,
@@ -143,6 +195,7 @@ export default{
 	width: 33.3%;
 }
 
+.search-result img,
 .now-goods img{
 	width: 100%;
 }

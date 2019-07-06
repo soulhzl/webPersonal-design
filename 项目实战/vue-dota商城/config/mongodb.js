@@ -31,6 +31,9 @@ const models = {
 		'date': {
 			'type': Date,
 			'default': Date.now
+		},
+		'address': {
+			'type': Array,
 		}
 	},
 	goods: {

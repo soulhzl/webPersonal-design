@@ -7,9 +7,9 @@
 			@click-left="backRoute"
 			/>
 			<div class="goods-info">
-				<van-swipe :show-indicators="false" loop>
+				<van-swipe loop>
 					<van-swipe-item v-for="(image, index) in goodsImg" :key="index">
-						<img v-lazy="image" alt="" class='goods-img'/>
+						<img v-lazy="image" alt="" class='goods-img' @click='scaleImg(index)'/>
 					</van-swipe-item>
 				</van-swipe>
 				<div class="goods-name">{{name}}</div>
@@ -45,6 +45,7 @@
 			<van-goods-action-icon
 			icon="cart-o"
 			text="购物车"
+			@click="toCart"
 			/>
 			<van-goods-action-button
 			type="warning"
@@ -70,7 +71,7 @@
 </template>
 
 <script>
-import { Notify } from 'vant';
+import { Notify,ImagePreview } from 'vant';
 import url from '@/serviceAPI.config.js'
 import { moneyFilter } from '../filter/moneyFilter'
 export default{
@@ -100,6 +101,7 @@ export default{
 	},
 	methods: {
 		backRoute(){
+			// 返回路由
 			this.$router.go(-1)
 		},
 		saveCart(selectedNum){
@@ -107,8 +109,8 @@ export default{
 			let cartInfo = localStorage.cart ? JSON.parse(localStorage.cart) : {}
 			if (this.id) {
 
-				if (!cartInfo[this.name]) {
-					cartInfo[this.name] = {
+				if (!cartInfo[this.id]) {
+					cartInfo[this.id] = {
 						img: this.bgimg,
 						desc: this.desc,
 						price: this.price,
@@ -118,10 +120,10 @@ export default{
 					}
 
 				}else{
-					cartInfo[this.name].num = cartInfo[this.name].num + 1
+					cartInfo[this.id].num = cartInfo[this.id].num + 1
 				}
 				if (selectedNum) {
-					cartInfo[this.name].num = selectedNum
+					cartInfo[this.id].num = selectedNum
 				}
 
 				localStorage.cart = JSON.stringify(cartInfo)
@@ -140,6 +142,10 @@ export default{
 				});
 			}
 		},
+		toCart(){
+			// 跳转至购物车
+			this.$router.push('cart')
+		},
 		addCart(){
 			this.saveCart()
 		},
@@ -151,6 +157,12 @@ export default{
 		},
 		skuBuyClick(data){
 			console.log(data)
+		},
+		scaleImg(index){
+			ImagePreview({
+				images: this.goodsImg,
+				startPosition: index
+			});
 		}
 	},
 	async created(){

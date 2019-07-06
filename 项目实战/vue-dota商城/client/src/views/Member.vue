@@ -2,7 +2,7 @@
 	<div>
 		<div class="member-wrapper">
 			<img v-lazy="memberImg" alt=""/>
-			<div class="member-name">昵称</div>
+			<div class="member-name">{{this.$store.getters.user.name}}</div>
 		</div>
 		<van-cell-group>
 			<van-cell title="地址" is-link to="address" />

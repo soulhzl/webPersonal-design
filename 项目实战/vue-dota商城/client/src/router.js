@@ -81,6 +81,11 @@ const router = new Router({
     component: () =>
       import ('./views/Ticket.vue')
   }, {
+    path: '/test',
+    name: 'test',
+    component: () =>
+      import ('./views/Test.vue')
+  }, {
     path: '*',
     name: 'notfound',
     component: () =>
