@@ -27,7 +27,7 @@ export default{
 	methods: {
 		backRoute(){
 			// 返回路由
-			this.$router.go(-1)
+			this.$router.push('member')
 		},
 		addAddress(){
 			this.$router.push('addaddress')
