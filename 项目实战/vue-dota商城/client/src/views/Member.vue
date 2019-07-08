@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="member-wrapper">
-			<img v-lazy="memberImg" alt=""/>
+			<img :src="memberImg" alt=""/>
 			<div class="member-name">{{this.$store.getters.user.name}}</div>
 		</div>
 		<van-cell-group>
@@ -18,7 +18,7 @@ export default{
 	name: 'member',
 	data(){
 		return {
-			memberImg: "http://localhost:8080/img/errorimg.png"
+			memberImg: "http://47.107.40.84/img/errorimg.png"
 		}
 	}
 }

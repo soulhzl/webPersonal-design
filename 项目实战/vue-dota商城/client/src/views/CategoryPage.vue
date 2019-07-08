@@ -9,7 +9,7 @@
 			<van-row>
 				<van-col v-for='(item, k) in nowgoods' :key='k' span="12">
 					<router-link :to="{name: 'goodsmess', params: {name: item.name}}" tag="div">
-						<img v-lazy="item.bgimg" alt='' class="goods-img">
+						<img :src="item.bgimg" alt='' class="goods-img">
 						<div class="goods-name">{{item.name}}</div>
 						<div class="goods-price">￥{{item.price | fixedMoney}}</div>
 					</router-link>

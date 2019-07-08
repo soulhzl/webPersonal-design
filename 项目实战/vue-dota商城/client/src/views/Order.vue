@@ -23,7 +23,7 @@ export default{
 	name: 'order',
 	data(){
 		return {
-			orderList: [{img: 'http://localhost:8080/img/good-1.jpg', price: 2, desc: '描述1', title: '标题1'}, {img: 'http://localhost:8080/img/good-2.jpg', price: 3, desc: '描述2', title: '标题2'}]
+			orderList: [{img: 'http://47.107.40.84/img/good-1.jpg', price: 2, desc: '描述1', title: '标题1'}, {img: 'http://47.107.40.84/img/good-2.jpg', price: 3, desc: '描述2', title: '标题2'}]
 		}
 	},
 	methods: {

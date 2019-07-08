@@ -5,7 +5,7 @@
 			<van-row>
 				<van-col v-for='(item, k) in searchgoods' :key='k' span="12">
 					<router-link :to="{name: 'goodsmess', params: {name: item.name}}" tag="div">
-						<img v-lazy="item.bgimg" alt=''>
+						<img :src="item.bgimg" alt=''>
 						<div class="goods-name">{{item.name}}</div>
 						<div class="goods-price">￥{{item.price | fixedMoney}}</div>
 					</router-link>
@@ -23,7 +23,7 @@
 		<div class="swipe-area">
 			<van-swipe :autoplay="3000" :show-indicators="false" loop>
 				<van-swipe-item v-for="(image, index) in images" :key="index">
-					<router-link :to="{name: 'goodsmess', params: {name: image.name}}"><img v-lazy="image.img" alt="" /></router-link>
+					<router-link :to="{name: 'goodsmess', params: {name: image.name}}"><img :src="image.img" alt="" /></router-link>
 				</van-swipe-item>
 			</van-swipe>
 		</div>
@@ -32,9 +32,9 @@
 			<swiper :options="swiperOption">
 				<swiper-slide v-for='(item, k) in carouselList' :key='k'>
 					<div>
-						<router-link :to="{name: 'goodsmess', params: {name: item.name1}}"><img v-lazy="item.img1" alt='' class='new-goods-img'></router-link>
-						<router-link :to="{name: 'goodsmess', params: {name: item.name2}}"><img v-lazy="item.img2" alt='' class='new-goods-img'></router-link>
-						<router-link :to="{name: 'goodsmess', params: {name: item.name3}}"><img v-lazy="item.img3" alt='' class='new-goods-img'></router-link>
+						<router-link :to="{name: 'goodsmess', params: {name: item.name1}}"><img :src="item.img1" alt='' class='new-goods-img'></router-link>
+						<router-link :to="{name: 'goodsmess', params: {name: item.name2}}"><img :src="item.img2" alt='' class='new-goods-img'></router-link>
+						<router-link :to="{name: 'goodsmess', params: {name: item.name3}}"><img :src="item.img3" alt='' class='new-goods-img'></router-link>
 					</div>
 				</swiper-slide>
 			</swiper>
@@ -44,7 +44,7 @@
 			<van-row>
 				<van-col v-for='(item, k) in nowgoods' :key='k' span="12">
 					<router-link :to="{name: 'goodsmess', params: {name: item.name}}" tag="div">
-						<img v-lazy="item.img" alt=''>
+						<img :src="item.img" alt=''>
 						<div class="goods-name">{{item.name}}</div>
 						<div class="goods-price">￥{{item.price | fixedMoney}}</div>
 					</router-link>

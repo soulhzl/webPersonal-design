@@ -6,7 +6,7 @@
 		<van-row>
 			<van-col v-for='(item, k) in category' :key='k' span="12" class="category-area">
 				<router-link :to="{name: 'categorypage', params: {sort: item.name}}" tag="div">
-					<img v-lazy="item.img" alt=''>
+					<img :src="item.img" alt=''>
 					<div class="category-name">{{item.name}}</div>
 				</router-link>
 			</van-col>

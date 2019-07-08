@@ -9,7 +9,7 @@
 			<div class="goods-info">
 				<van-swipe loop>
 					<van-swipe-item v-for="(image, index) in goodsImg" :key="index">
-						<img v-lazy="image" alt="" class='goods-img' @click='scaleImg(index)'/>
+						<img :src="image" alt="" class='goods-img' @click='scaleImg(index)'/>
 					</van-swipe-item>
 				</van-swipe>
 				<div class="goods-name">{{name}}</div>
@@ -19,7 +19,7 @@
 			<van-tabs swipeable sticky>
 				<van-tab title="详情">
 					<div v-for="(detail, index) in detail" :key="index">
-						<img v-lazy="detail" alt="" class='goods-img'>
+						<img :src="detail" alt="" class='goods-img'>
 					</div>
 				</van-tab>
 				<van-tab title="评论">
@@ -215,13 +215,13 @@ export default{
 				selectedNum: 3
 			}
 		}else{
-			this.goodsImg = ["http://localhost:8080/img/errorimg.png"]
+			this.goodsImg = ["http://47.107.40.84/img/errorimg.png"]
 			this.value = 0
 			this.desc = '无法获取数据'
 			this.detail = []
 			this.name = ''
 			this.price = 0
-			this.bgimg = ["http://localhost:8080/img/errorimg.png"]
+			this.bgimg = ["http://47.107.40.84/img/errorimg.png"]
 			this.id = ''
 			this.goodsInfo = {}
 			this.sku = {}

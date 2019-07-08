@@ -2,12 +2,12 @@
 	<swiper :options="swiperOption">
 				<swiper-slide>
 					<div>
-						<img v-lazy="img" alt='' class='new-goods-img'>
+						<img :src="img" alt='' class='new-goods-img'>
 					</div>
 				</swiper-slide>
 				<swiper-slide>
 					<div>
-						<img v-lazy="img" alt='' class='new-goods-img'>
+						<img :src="img" alt='' class='new-goods-img'>
 					</div>
 				</swiper-slide>
 			</swiper>
@@ -18,7 +18,7 @@
 		name: 'text',
 		data(){
 		return {
-			img: 'http://localhost:8080/img/swiper-1.jpg',
+			img: 'http://47.107.40.84/img/swiper-1.jpg',
 			swiperOption: {
 				freeMode: true
 			}
