@@ -1,0 +1,19 @@
+路由刷新报404解决办法
+
+apache:
+1.apache开启rewrite模块
+去掉#号
+LoadModule rewrite_module modules/mod_rewrite.so
+
+2.虚拟主机配置Allowoverride为all
+
+3.本地新建文件.htaccess
+内容：
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
