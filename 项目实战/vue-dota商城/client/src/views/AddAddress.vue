@@ -21,7 +21,7 @@ import { Notify } from 'vant';
 import areaList from '@/assets/area.js'
 import url from '@/serviceAPI.config.js'
 export default{
-	name: 'address',
+	name: 'addaddress',
 	data(){
 		return {
 			areaList: areaList,
