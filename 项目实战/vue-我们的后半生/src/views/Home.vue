@@ -1,11 +1,36 @@
 <template>
   <div class="home">
   	<!-- <Monster :monsterPer="monsterPer"/> -->
-    <div class="main-wrapper">
-      <Man class="man"/>
-      <Futuredialog :text="nowques" class="dialog"/>
-      <Cube cubetext="" class='cube'/>
+    <div class="cube-wrapper" v-for="(item, index) in 7">
+      <Cube v-if="index == 0" class="cube" cubetext="起点" upcolor="#cdcd9a" :style="{left: 5 + index * 6 + 'rem',top: 0 + index * 3 + 'rem'}"/>
+      <Cube v-else class="cube" :cubetext="19 + index" upcolor="#cdcd9a" :style="{left: 5 + index * 6 + 'rem',top: 0 + index * 3 + 'rem'}"/>
     </div>
+    <div class="cube-wrapper" v-for="(item, index) in 7">
+      <Cube class="cube" :cubetext="26 + index" upcolor="#c7c7e2" :style="{left: 5 + index * 6 + 'rem',top: 8 + index * 3 + 'rem'}"/>
+    </div>
+    <div class="cube-wrapper" v-for="(item, index) in 7">
+      <Cube class="cube" :cubetext="33 + index" upcolor="#d2a2cc" :style="{left: 5 + index * 6 + 'rem',top: 16 + index * 3 + 'rem'}"/>
+    </div>
+    <div class="cube-wrapper" v-for="(item, index) in 7">
+      <Cube class="cube" :cubetext="40 + index" upcolor="#ffcbb3" :style="{left: 5 + index * 6 + 'rem',top: 24 + index * 3 + 'rem'}"/>
+    </div>
+    <div class="cube-wrapper" v-for="(item, index) in 7"> 
+      <Cube class="cube" :cubetext="47 + index" upcolor="#fff0ac" :style="{left: 5 + index * 6 + 'rem',top: 32 + index * 3 + 'rem'}"/>
+    </div>
+    <div class="cube-wrapper" v-for="(item, index) in 7">
+      <Cube class="cube" :cubetext="54 + index" upcolor="#deffac" :style="{left: 5 + index * 6 + 'rem',top: 40 + index * 3 + 'rem'}"/>
+    </div>
+    <div class="cube-wrapper" v-for="(item, index) in 7">
+      <Cube class="cube" :cubetext="61 + index" upcolor="#acd6ff" :style="{left: 5 + index * 6 + 'rem',top: 48 + index * 3 + 'rem'}"/>
+    </div>
+    <div class="cube-wrapper" v-for="(item, index) in 4">
+      <Cube v-if="index == 3" class="cube" cubetext="终点" upcolor="#cdcd9a" :style="{left: 5 + index * 6 + 'rem',top: 56 + index * 3 + 'rem'}"/>
+      <Cube v-else class="cube" :cubetext="68 + index" upcolor="#ffbfff" :style="{left: 5 + index * 6 + 'rem',top: 56 + index * 3 + 'rem'}"/>
+    </div>
+    <div class="main-wrapper">
+      <Man class="man" ref="man"/>
+    </div>
+    <TextDialog v-if="nowage" :age="nowage" :text="nowques" class="dialog" ref="dialog"/>
     <Dice class="dice" @getDiceNum="getDiceNum"/>
     <div>
       <button class="tips" v-if="showTip" @click="clickTips">!</button>
@@ -34,7 +59,7 @@
 // import Monster from '../components/Monster.vue'
 import Man from '../components/Man.vue'
 import Cube from '../components/Cube.vue'
-import Futuredialog from '../components/Futuredialog.vue'
+import TextDialog from '../components/TextDialog.vue'
 import Dice from '../components/Dice.vue'
 import axios from 'axios'
 export default {
@@ -43,7 +68,7 @@ export default {
   	// Monster,
   	Cube,
     Man,
-    Futuredialog,
+    TextDialog,
     Dice
   },
   data(){
@@ -55,11 +80,11 @@ export default {
         facecolor: 'black',
         borderradius: ''
       },
-      showTip: true,
+      showTip: false,
       question: [],
       nowques: '',
+      nowage: 0,
       diceNum: 0
-
     }
   },
   methods: {
@@ -69,7 +94,42 @@ export default {
     },
     getDiceNum(num){
       this.diceNum += num
-      this.nowques = (20 + this.diceNum - 1) + '岁：' + this.question[this.diceNum]
+      let nownum = 19 + this.diceNum
+      this.nowage = nownum + '岁'
+      if (nownum >= 71) {
+        this.nowage = 70 + '岁'
+        this.$refs.man.$el.style.top = "66rem"
+        this.$refs.man.$el.style.left = "23.5rem"
+      }
+      else if (nownum > 67) {
+        this.$refs.man.$el.style.top = 57 + (nownum - 68) * 3 + "rem"
+        this.$refs.man.$el.style.left = 5.5 + (nownum - 68) * 6 + "rem"
+      }else if (nownum > 60) {
+        this.$refs.man.$el.style.top = 49 + (nownum - 61) * 3 + "rem"
+        this.$refs.man.$el.style.left = 5.5 + (nownum - 61) * 6 + "rem"
+      }else if (nownum > 53) {
+        this.$refs.man.$el.style.top = 41 + (nownum - 54) * 3 + "rem"
+        this.$refs.man.$el.style.left = 5.5 + (nownum - 54) * 6 + "rem"
+      }else if (nownum > 46) {
+        this.$refs.man.$el.style.top = 33 + (nownum - 47) * 3 + "rem"
+        this.$refs.man.$el.style.left = 5.5 + (nownum - 47) * 6 + "rem"
+      }else if (nownum > 39) {
+        this.$refs.man.$el.style.top = 25 + (nownum - 40) * 3 + "rem"
+        this.$refs.man.$el.style.left = 5.5 + (nownum - 40) * 6 + "rem"
+      }else if (nownum > 32) {
+        this.$refs.man.$el.style.top = 17 + (nownum - 33) * 3 + "rem"
+        this.$refs.man.$el.style.left = 5.5 + (nownum - 33) * 6 + "rem"
+      }else if (nownum > 25) {
+        this.$refs.man.$el.style.top = 9 + (nownum - 26) * 3 + "rem"
+        this.$refs.man.$el.style.left = 5.5 + (nownum - 26) * 6 + "rem"
+      }else{
+        this.$refs.man.$el.style.top = 1 + this.diceNum * 3 + "rem"
+        this.$refs.man.$el.style.left = 5.5 + this.diceNum * 6 + "rem"
+      }
+      this.nowques = this.question[this.diceNum]
+      if (this.$refs.dialog) {
+      this.$refs.dialog.$el.style.display = 'block'
+      }
       if(this.diceNum >= this.question.length){
         this.nowques = "对不起，游戏只为您提供了20~70岁之间的问题~游戏已结束！！！"
       }
@@ -103,9 +163,6 @@ export default {
 
 <style scoped>
 .home{
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	width: 100%;
 	height: 100%;
   background: #DB4D6D;
@@ -113,33 +170,42 @@ export default {
 
 .main-wrapper{
   position: relative;
+  transform-origin: top left;
+  transform: scale(0.2);
 }
 
 .man{
-  margin-top: -2rem;
+  position: absolute;
+  top: 1rem;
+  left: 5.5rem;
+  transition: 2s;
 }
 
 .dialog{
+  z-index: 100;
   position: absolute;
-  top: -5rem;
-  left: -1rem;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 40%;
+  transform: translateX(-50%) translateY(-50%)
+}
+
+.cube-wrapper{
+  position: relative;
+  transform-origin: top left;
+  transform: scale(0.2);
 }
 
 .cube{
-	z-index: 1;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin-left: -100px;
-	margin-top: -40px;
+  z-index: 1;
+  position: absolute;
 }
 
 .dice{
   position: fixed;
-  top: 7.5rem;
-  left: -3.5rem;
-  width: 100%;
-  height: 100%;
+  bottom: -40px;
+  left: -40px;
   transform: scale(0.2);
   cursor: pointer;
 }
@@ -147,7 +213,7 @@ export default {
 .tips{
   display: inline-block;
   position: absolute;
-  bottom: 40px;
+  top: 40px;
   right: 40px;
   width: 40px;
   height: 40px;
@@ -180,7 +246,7 @@ export default {
   padding: 10px;
   background: white;
   border-radius: 20px;
-  font-size: 0.44rem;
+  font-size: 0.36rem;
   transform: translateX(-50%) translateY(-50%)
 }
 

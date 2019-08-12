@@ -1,7 +1,7 @@
 <template>
 	<div class="cube">
 		<span class="cube-side front"></span>
-		<span class="cube-side up"><b class="cube-text">{{cubetext}}</b></span>
+		<span class="cube-side up" :style="{backgroundColor: upcolor}"><b class="cube-text">{{cubetext}}</b></span>
 		<span class="cube-side down"></span>
 		<span class="cube-side left"></span>
 		<span class="cube-side right"></span>
@@ -12,7 +12,7 @@
 <script>
 export default{
 	name: 'cube',
-	props: ['cubetext']
+	props: ['cubetext', 'upcolor']
 }
 </script>
 
@@ -32,11 +32,11 @@ export default{
 	position: absolute;
 	width: 200px;
 	height: 100px;
-	background-image: url('../assets/img/cube1.png');
 }
 
 .cube-side.up {
 	height: 200px;
+	background-color: #cdcd9a;
 	color: white;
 	text-align: center;
 	line-height: 200px;
@@ -45,29 +45,34 @@ export default{
 
 .cube-side.down {
 	height: 200px;
+	background-color: #cdcd9a;
 	transform: rotateX(-90deg) translateZ(0px);
 	box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.2);
 }
 
 .cube-side.left {
+	background-color: #d9b3b3;
 	transform: rotateY(-90deg) translateZ(100px);
 }
 
 .cube-side.right {
+	background-color: #d9b3b3;
 	transform: rotateY(90deg) translateZ(100px);
 }
 
 .cube-side.front {
+	background-color: #a3d1d1;
 	transform: translateZ(100px);
 }
 
 .cube-side.back {
+	background-color: #a3d1d1;
 	transform: translateZ(-100px) rotateY(180deg);
 }
 
 .cube-text{
 	display: inline-block;
-	font-size: 0.4rem;
+	font-size: 1.5rem;
 	color: black;
 	transform: rotateZ(50deg);
 }

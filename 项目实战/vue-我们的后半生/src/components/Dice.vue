@@ -78,7 +78,6 @@ export default{
 	position: relative;
 	width: 200px;
 	height: 200px;
-	margin: 200px auto;
 	border-radius: 20px;
 	background-color: #E8E8E9;
 	transform-style: preserve-3d;
