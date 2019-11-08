@@ -1,0 +1,115 @@
+html,
+body {
+
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+
+#debug_button {
+	z-index: 9999;
+	position: absolute;
+	right:10px;
+	top: 10px;
+	cursor: pointer;
+	width: 48px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	background: #4c97ff;
+	border-radius: 4px;
+	color: #FFFFFF;
+	/* display: none; */
+	
+}
+
+#blocklyDiv {
+	width: 100%;
+	height: 100%;
+
+}
+
+.myLabelStyle>.blocklyFlyoutLabelText {
+	fill: white;
+	font-size: 14px;
+}
+
+.blocklyToolboxDiv {
+	background-color: #585858 !important;
+	color: #FFFFFF !important;
+}
+
+.blocklySvg {
+
+	background: url("../img/blockly-background.png") !important;
+
+}
+
+.blocklyTreeRow {
+	height: 48px !important;
+	line-height: 44px;
+	border-radius: 4px;
+	padding-left: 6px !important;
+}
+
+
+
+
+div>span.blocklyTreeIcon.blocklyTreeIconNone {
+	width: 26px;
+	height: 26px;
+	float: left;
+	margin-right: 5px;
+	margin-top: 11px;
+	
+}
+
+#\:1>div>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/control_normal.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:1>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/control_pressed.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:2>div>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/operation_normal.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:2>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/operation_pressed.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:3>div>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/variable_normal.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:3>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/variable_pressed.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:4>div>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/function_normal.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:4>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/function_pressed.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:5>div>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/action_normal.svg') no-repeat;
+	background-size: 100% auto;
+}
+
+#\:5>.blocklyTreeSelected>span.blocklyTreeIcon.blocklyTreeIconNone {
+	background: url('../img/action_pressed.svg') no-repeat;
+	background-size: 100% auto;
+}
