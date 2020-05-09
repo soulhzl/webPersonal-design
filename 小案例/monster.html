@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body {
+            width: 170px;
+            height: 170px;
+            background: #eb4547;
+            -webkit-border-radius: 37%;
+            -moz-border-radius: 37%;
+            border-radius: 37%;
+            position: relative;
+        }
+
+        .body:after,
+        .body:before {
+            content: '';
+            background: rgba(255, 255, 255, 0.50);
+            position: absolute;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .body:after {
+            width: 14%;
+            height: 7%;
+            -webkit-transform: rotate(-35deg);
+            -moz-transform: rotate(-35deg);
+            -ms-transform: rotate(-35deg);
+            -o-transform: rotate(-35deg);
+            transform: rotate(-35deg);
+            left: 12%;
+            top: 12%;
+        }
+
+        .body:before {
+            width: 4%;
+            height: 4%;
+            -webkit-transform: rotate(-35deg);
+            -moz-transform: rotate(-35deg);
+            -ms-transform: rotate(-35deg);
+            -o-transform: rotate(-35deg);
+            transform: rotate(-35deg);
+            left: 8%;
+            top: 20%;
+        }
+
+        .eye {
+            width: 40%;
+            height: 40%;
+            background: #fff;
+            border: 7px solid #c9373a;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            position: absolute;
+            left: 25%;
+            top: 10%;
+        }
+
+        .eye-point {
+            width: 30%;
+            height: 30%;
+            background: #292421;
+            position: absolute;
+            left: 35%;
+            top: 35%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .eye-point:before {
+            content: '';
+            width: 40%;
+            height: 40%;
+            background: #fff;
+            position: absolute;
+            left: 60%;
+            bottom: 60%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .mouth {
+            width: 55%;
+            height: 20%;
+            -webkit-border-radius: 45%;
+            -moz-border-radius: 45%;
+            border-radius: 45%;
+            background: #67330e;
+            border: 10px solid #feaf14;
+            position: relative;
+            left: 17%;
+            top: 63%;
+            overflow: hidden;
+        }
+
+        .Tongue {
+            position: absolute;
+            width: 55%;
+            height: 40%;
+            -webkit-border-radius: 45%;
+            -moz-border-radius: 45%;
+            border-radius: 45%;
+            background: #fb8265;
+            left: 20%;
+            top: 50%;
+        }
+
+        .tooth-left,
+        .tooth-right {
+            width: 13%;
+            height: 40%;
+            background: #fff;
+            position: absolute;
+            -webkit-border-bottom-right-radius: 50%;
+            -moz-border-bottom-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            -webkit-border-bottom-left-radius: 50%;
+            -moz-border-bottom-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+
+        .tooth-left {
+            left: 15%;
+            bottom: 60%;
+        }
+
+        .tooth-right {
+            left: 70%;
+            bottom: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <div class="eye">
+            <div class="eye-point"></div>
+        </div>
+        <div class="mouth">
+            <div class="tooth-left"></div>
+            <div class="tooth-right"></div>
+            <div class="Tongue"></div>
+        </div>
+    </div>
+</body>
+
+</html>
