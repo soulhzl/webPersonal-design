@@ -1,0 +1,68 @@
+
+.list-wrapper.data-v-599dbdc7 {
+	border-bottom: 1px solid #eee;
+}
+.list-wrapper .header-left.data-v-599dbdc7,
+.list-wrapper .header-right.data-v-599dbdc7 {
+	margin: 15rpx;
+}
+.list-wrapper .header-left text.data-v-599dbdc7 {
+	color: #777;
+	font-size: 30rpx;
+}
+.list-wrapper .header-left-image.data-v-599dbdc7 {
+	width: 60rpx;
+	height: 60rpx;
+	margin-right: 10rpx;
+	border-radius: 5rpx;
+}
+.list-wrapper .header-right.data-v-599dbdc7 {
+	padding: 10rpx 20rpx;
+	background-color: #eee;
+	border-radius: 10rpx;
+}
+.list-wrapper .title.data-v-599dbdc7 {
+	margin-left: 15rpx;
+	font-size: 35rpx;
+}
+.list-wrapper .image.data-v-599dbdc7 {
+	position: relative;
+}
+.list-wrapper .image.data-v-599dbdc7,
+.list-wrapper .image image.data-v-599dbdc7 {
+	width: 100%;
+}
+.list-wrapper .image-bofang.data-v-599dbdc7,
+.list-wrapper .image-times.data-v-599dbdc7 {
+	position: absolute;
+}
+.list-wrapper .image-bofang.data-v-599dbdc7 {
+	font-size: 140rpx;
+	color: white;
+}
+.list-wrapper .image-times.data-v-599dbdc7 {
+	bottom: 20rpx;
+	right: 20rpx;
+	padding: 5rpx 20rpx;
+	border-radius: 25rpx;
+	background-color: rgba(33, 33, 33, 0.4);
+	color: white;
+}
+.list-wrapper .status.data-v-599dbdc7 {
+	color: #777;
+}
+.list-wrapper .status text.data-v-599dbdc7 {
+	margin-left: 10rpx;
+}
+.list-wrapper .status-zan.data-v-599dbdc7,
+.list-wrapper .status-share.data-v-599dbdc7 {
+	margin: 15rpx;
+}
+.list-wrapper .status-zan-left.data-v-599dbdc7,
+.list-wrapper .status-share-left.data-v-599dbdc7 {
+	margin-right: 15rpx;
+}
+.list-wrapper .status .active.data-v-599dbdc7 {
+	color: red;
+}
+

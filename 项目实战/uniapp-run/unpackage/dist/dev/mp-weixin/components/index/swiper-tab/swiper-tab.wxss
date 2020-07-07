@@ -1,0 +1,16 @@
+
+.swiper-tab-list {
+	color: #999;
+}
+.active {
+	color: black;
+	font-weight: bold;
+}
+.active-border {
+	width: 50%;
+	height: 10rpx;
+	margin: auto;
+	background-color: orange;
+	border-radius: 20rpx;
+}
+

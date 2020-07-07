@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/home",
+    "pages/me/me",
+    "pages/chat/chat",
+    "components/index/list-wrapper/list-wrapper",
+    "components/index/swiper-tab/swiper-tab",
+    "pages/search/search",
+    "pages/publish/publish"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "跑跑",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#1296db",
+    "selectedColor": "#d4237a",
+    "backgroundColor": "white",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/run.png",
+        "selectedIconPath": "static/runed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/angel.png",
+        "selectedIconPath": "static/angeled.png",
+        "text": "动态"
+      },
+      {
+        "pagePath": "pages/chat/chat",
+        "iconPath": "static/evil.png",
+        "selectedIconPath": "static/eviled.png",
+        "text": "瞎聊"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "static/crow.png",
+        "selectedIconPath": "static/crowed.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

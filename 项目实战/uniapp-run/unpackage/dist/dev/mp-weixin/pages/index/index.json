@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "list-wrapper": "/components/index/list-wrapper/list-wrapper",
+    "swiper-tab": "/components/index/swiper-tab/swiper-tab",
+    "load-more": "/components/common/load-more",
+    "not-found": "/components/common/not-found"
+  }
+}

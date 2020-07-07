@@ -1,0 +1,19 @@
+.c-flex,.c-flex-aic,.c-flex-jcc{
+	display: flex;
+}
+
+.c-flex-aic,.c-flex-jcc{
+	align-items: center;
+}
+
+.c-flex-jcc{
+	justify-content: center;
+}
+
+.c-flex-spb{
+	justify-content: space-between;
+}
+
+.c-margin-auto{
+	margin: 0 auto;
+}

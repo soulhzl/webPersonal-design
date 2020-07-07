@@ -1,0 +1,21 @@
+
+.cell-pd {
+	padding: 22rpx 30rpx;
+}
+.list-pd {
+	margin-top: 50rpx;
+}
+.uni-uploader__file{
+	position: relative;
+}
+.delete{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 2rpx 8rpx;
+	border: 1rpx solid black;
+	border-radius: 15rpx;
+	background-color: black;
+	color: white;
+}
+

@@ -1,0 +1,119 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"app-plus": {
+					"bounce":"none",
+					"titleNView": {
+						"searchInput": {
+							"placeholder":"搜索",
+							"backgroundColor":"#eee",
+							"borderRadius":"20upx",
+							"disabled":true
+						},
+						"buttons": [{
+							"color":"#007AFF",
+							"float":"left",
+							"fontSrc":"/static/font/icon.ttf",
+							"text":"\ue667"
+						}, {
+							"color":"#007AFF",
+							"float":"right",
+							"fontSrc":"/static/font/icon.ttf",
+							"text":"\ue666"
+						}]
+					}
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/home/home",
+            "style" : {
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/me/me",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/chat/chat",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/index/list-wrapper/list-wrapper",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/index/swiper-tab/swiper-tab",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/search/search",
+            "style" : {
+				"app-plus": {
+					"bounce":"none",
+					"titleNView": {
+						"autoBackButton":false,
+						"searchInput": {
+							"placeholder":"搜索",
+							"backgroundColor":"#eee",
+							"borderRadius":"20upx",
+							"align":"left"
+						},
+						"buttons": [{
+							"color":"black",
+							"float":"right",
+							"fontSize":"35upx",
+							"text":"取消"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/publish/publish",
+            "style" : {
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "跑跑",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color":"#1296db",
+		"selectedColor":"#d4237a",
+		"backgroundColor":"white",
+		"borderStyle":"black",
+		"list": [{
+			"pagePath":"pages/index/index",
+			"iconPath":"static/run.png",
+			"selectedIconPath":"static/runed.png",
+			"text":"首页"
+		},{
+			"pagePath":"pages/home/home",
+			"iconPath":"static/angel.png",
+			"selectedIconPath":"static/angeled.png",
+			"text":"动态"
+		},{
+			"pagePath":"pages/chat/chat",
+			"iconPath":"static/evil.png",
+			"selectedIconPath":"static/eviled.png",
+			"text":"瞎聊"
+		},{
+			"pagePath":"pages/me/me",
+			"iconPath":"static/crow.png",
+			"selectedIconPath":"static/crowed.png",
+			"text":"我的"
+		}]
+	}
+}

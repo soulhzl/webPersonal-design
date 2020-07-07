@@ -1,0 +1,7 @@
+
+.load-more{
+	color: #ccc;
+	text-align: center;
+	font-size: 35rpx;
+}
+
