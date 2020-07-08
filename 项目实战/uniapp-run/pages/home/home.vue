@@ -49,22 +49,13 @@
 				</view>
 				<view class="guanzhu-right-four c-flex-jcc c-flex-spb">
 					<view class="c-flex-jcc guanzhu-right-four-left">
-						<view>深圳</view> 
+						<view>深圳</view>
 						<view>龙岗</view>
 					</view>
 					<view class="c-flex-jcc guanzhu-right-four-right">
-						<view class="c-flex-jcc">
-							<view class="icon iconfont icon-valentine_-cupid-love-heart-god1"></view>
-							<view>0</view>
-						</view>
-						<view class="c-flex-jcc">
-							<view class="icon iconfont icon-valentine_-cupid-love-heart-god1"></view>
-							<view>0</view>
-						</view>
-						<view class="c-flex-jcc">
-							<view class="icon iconfont icon-valentine_-cupid-love-heart-god1"></view>
-							<view>0</view>
-						</view>
+						<view class="icon iconfont icon-valentine_-cupid-love-heart-god1">0</view>
+						<view class="icon iconfont icon-valentine_-cupid-love-heart-god1">0</view>
+						<view class="icon iconfont icon-valentine_-cupid-love-heart-god1">0</view>
 					</view>
 				</view>
 			</view>
@@ -152,8 +143,8 @@
 		font-size: 30upx;
 		color: #777;
 	}
-	
-	.guanzhu-right-one .right-one-left view:nth-of-type(2){
+
+	.guanzhu-right-one .right-one-left view:nth-of-type(2) {
 		height: 14upx;
 		line-height: 14upx;
 		padding: 8upx;
@@ -162,41 +153,41 @@
 		font-size: 4upx;
 		color: white;
 	}
-	
-	.guanzhu-right-one .right-one-right view:nth-of-type(1){
-			padding: 4upx 16upx;
-			background-color: #eee;
+
+	.guanzhu-right-one .right-one-right view:nth-of-type(1) {
+		padding: 4upx 16upx;
+		background-color: #eee;
 	}
-		
-	.guanzhu-right-one .right-one-right view:nth-of-type(2){
+
+	.guanzhu-right-one .right-one-right view:nth-of-type(2) {
 		color: #ccc;
 	}
-	
-	.guanzhu-right-two{
+
+	.guanzhu-right-two {
 		font-size: 35upx;
 	}
-	
-	.guanzhu-right-three{
+
+	.guanzhu-right-three {
 		position: relative;
 		width: 100%;
 		background-color: #eee;
 	}
-	
-	.guanzhu-right-three .mode1{
+
+	.guanzhu-right-three .mode1 {
 		width: 100%;
 		border-radius: 20upx;
 	}
-	
+
 	.guanzhu-right-three .image-bofang,
 	.guanzhu-right-three .image-times {
 		position: absolute;
 	}
-	
+
 	.guanzhu-right-three .image-bofang {
 		font-size: 140upx;
 		color: white;
 	}
-	
+
 	.guanzhu-right-three .image-times {
 		bottom: 20upx;
 		right: 20upx;
@@ -205,28 +196,28 @@
 		background-color: rgba(33, 33, 33, 0.4);
 		color: white;
 	}
-	
-	.guanzhu-right-three .mode2{
+
+	.guanzhu-right-three .mode2 {
 		width: 90%;
 		flex: 1;
 		margin: 10upx;
 		border-radius: 20upx;
 	}
-	
-	.guanzhu-right-three view{
+
+	.guanzhu-right-three view {
 		flex: 3;
 		width: 100%;
 	}
-	
-	.guanzhu-right-four{
+
+	.guanzhu-right-four {
 		color: #aaa;
 	}
-	
-	.guanzhu-right-four .guanzhu-right-four-left view{
+
+	.guanzhu-right-four .guanzhu-right-four-left view {
 		margin: 0 10upx;
 	}
-	
-	.guanzhu-right-four .guanzhu-right-four-right view{
-		margin: 0 5upx;
+
+	.guanzhu-right-four .guanzhu-right-four-right view {
+		margin: 0 10upx;
 	}
 </style>

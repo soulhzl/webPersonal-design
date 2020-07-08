@@ -20,24 +20,12 @@
 			</view>
 			<view class="status c-flex c-flex-spb">
 				<view class="status-zan c-flex-jcc">
-					<view class="status-zan-left c-flex-jcc" :class="{active: smileOrSad.type == 1}" @tap="caozuo('smile')">
-						<view class="icon iconfont icon-valentine_-cupid-love-heart-god1"></view>
-						<view>{{smileOrSad.smileNum}}</view>
-					</view>
-					<view class="status-zan-right c-flex-jcc" :class="{active: smileOrSad.type == 2}" @tap="caozuo('sad')">
-						<view class="icon iconfont icon-valentine_-cupid-love-heart-god"></view>
-						<view>{{smileOrSad.sadNum}}</view>
-					</view>
+						<view class="status-zan-left icon iconfont icon-valentine_-cupid-love-heart-god1" :class="{active: smileOrSad.type == 1}" @tap="caozuo('smile')">{{smileOrSad.smileNum}}</view>
+						<view class="status-zan-right icon iconfont icon-valentine_-cupid-love-heart-god" :class="{active: smileOrSad.type == 2}" @tap="caozuo('sad')">{{smileOrSad.sadNum}}</view>
 				</view>
 				<view class="status-share c-flex-jcc">
-					<view class="status-share-left c-flex-jcc">
-						<view class="icon iconfont icon-pinglun"></view>
-						<view>{{item.commentNum}}</view>
-					</view>
-					<view class="status-share-right c-flex-jcc">
-						<view class="icon iconfont icon-fenxiang"></view>
-						<view>{{item.shareNum}}</view>
-					</view>
+						<view class="icon iconfont icon-pinglun status-share-left">{{item.commentNum}}</view>
+						<view class="icon iconfont icon-fenxiang status-share-right c-flex-jcc">{{item.shareNum}}</view>
 				</view>
 			</view>
 		</view>
@@ -160,10 +148,6 @@
 
 	.list-wrapper .status {
 		color: #777;
-	}
-
-	.list-wrapper .status view view view:nth-of-type(2) {
-		margin-left: 10upx;
 	}
 
 	.list-wrapper .status-zan,
